@@ -127,8 +127,8 @@ export const Hero: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
                 <span className="px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/80 font-medium">Python</span>
                 <span className="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 border border-blue-200/80 font-medium">C++</span>
-                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">React</span>
-                <span className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/80 font-medium">Node.js</span>
+                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">Pandas</span>
+                <span className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/80 font-medium">NumPy</span>
                 <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200/80 font-medium">Scikit-Learn</span>
                 <span className="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80 font-medium">SQL</span>
                 <span className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-800 border border-rose-200/80 font-medium">Docker</span>
@@ -233,7 +233,7 @@ export const Hero: React.FC = () => {
                 <div className="w-full p-3.5 rounded-2xl bg-slate-50/90 border border-slate-200 text-left">
                   <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-1">
                     <span className="font-semibold text-slate-700">// CURRENT DEV FOCUS</span>
-                    <span className="text-indigo-600 font-bold">Python · React · scikit-learn</span>
+                    <span className="text-indigo-600 font-bold">Python · scikit-learn · SQL</span>
                   </div>
                   <p className="text-xs text-slate-700 leading-relaxed">
                     Building accessible AI learning companions and machine learning classification workflows.

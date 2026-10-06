@@ -30,7 +30,7 @@ export const aboutPillars = [
     number: "01",
     title: "Build",
     subtitle: "Creating practical web and AI solutions",
-    description: "Designing end-to-end applications from intuitive React frontends to robust Python & Node backends, with a strong emphasis on clean code and reliable performance."
+    description: "Designing end-to-end applications from intuitive web frontends to robust Python backends and AI workflows, with a strong emphasis on clean code and reliable performance."
   },
   {
     number: "02",
@@ -108,8 +108,8 @@ export const skillsData: SkillItem[] = [
   {
     name: "n8n",
     category: "AI / ML",
-    description: "Node-based workflow automation, webhook triggers, multi-service integrations, and autonomous data pipelines.",
-    snippet: "// Automated Event Node\nTrigger: Webhook -> Transform: Python -> Action: Database Sync",
+    description: "Visual workflow automation, webhook triggers, multi-service integrations, and autonomous data pipelines.",
+    snippet: "// Automated Event Flow\nTrigger: Webhook -> Transform: Python -> Action: Database Sync",
     iconName: "Workflow"
   },
 
@@ -191,7 +191,7 @@ export const projectsData: Project[] = [
       "Low-Bandwidth & Offline Support: Cached lessons for spotty connectivity with background delta synchronization",
       "Voice Learning & Accessibility: Speech-based interaction, high contrast, and keyboard navigation"
     ],
-    techStack: ["Python", "Multi-Agent Architecture", "NLP & Indian Language Models", "React", "Node.js", "SQL", "Voice TTS/STT", "PWA Offline Cache"],
+    techStack: ["Python", "Multi-Agent Architecture", "NLP & Indian Language Models", "SQL", "Voice TTS/STT", "PWA Offline Cache"],
     developmentHighlights: [
       "Designed central agent orchestrator routing queries dynamically across Teacher, Assessment, and Language agents",
       "Constructed Catch-Up Mode roadmap generator prioritizing high-weightage foundation concepts",
@@ -219,7 +219,7 @@ export const projectsData: Project[] = [
       "Interactive glossary explaining terms like 'no cap', 'locked in', 'delulu', 'rizz', and 'rent free'",
       "Responsive, sleek dark interface designed with accessible contrast and micro-interactions"
     ],
-    techStack: ["JavaScript", "React", "Node.js", "Express.js", "Tailwind CSS", "NLP Rule Dictionaries"],
+    techStack: ["JavaScript", "HTML5 & CSS3", "Tailwind CSS", "NLP Rule Dictionaries", "Web APIs"],
     developmentHighlights: [
       "Designed a token-based sentiment and idiom replacement engine preserving original sentence meaning",
       "Implemented responsive state architecture with instant preview and micro-animation feedback",
@@ -283,7 +283,7 @@ export const experienceData: ExperienceItem[] = [
       "Engaged in constructive code reviews, incorporating maintainer feedback to refine implementation quality",
       "Assisted in structuring project documentation and modular utility scripts for newcomer onboarding"
     ],
-    technologies: ["Git", "GitHub", "JavaScript", "React", "Python", "Open Source Workflow"],
+    technologies: ["Git", "GitHub", "JavaScript", "Python", "Open Source Workflow"],
     link: "https://gssoc.girlscript.tech"
   },
   {
@@ -358,7 +358,7 @@ export const servicesData = [
     title: "Full-Stack Web Development",
     subtitle: "End-to-End Modern Web Engineering",
     description: "Creating responsive, performant, and intuitive web applications from component-driven user interfaces to backend REST APIs and persistent database schemas.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "React", "Node.js", "Express.js", "SQL", "Tailwind CSS"],
+    technologies: ["HTML5", "CSS3", "JavaScript", "Python", "SQL", "Tailwind CSS", "RESTful APIs"],
     capabilities: [
       "Responsive, mobile-first web applications with accessible design",
       "Interactive single-page applications (SPAs) with state management",

@@ -50,7 +50,7 @@ export const ExperienceSection: React.FC = () => {
               delay={0.15 * index}
               className="relative group"
             >
-              {/* Timeline Node Bullet with Pastel Ring */}
+              {/* Timeline Bullet with Pastel Ring */}
               <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white ring-4 ring-purple-100 shadow-xs group-hover:scale-125 transition-transform" />
 
               {/* Experience Card */}
