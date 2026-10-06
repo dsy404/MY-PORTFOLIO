@@ -1,11 +1,53 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import fs from 'fs';
+import {defineConfig, Plugin} from 'vite';
+
+function savePhotoPlugin(): Plugin {
+  return {
+    name: 'save-photo-plugin',
+    configureServer(server) {
+      server.middlewares.use('/api/save-photo', (req, res) => {
+        if (req.method === 'POST') {
+          let body = '';
+          req.on('data', (chunk) => {
+            body += chunk;
+          });
+          req.on('end', () => {
+            try {
+              const { imageBase64 } = JSON.parse(body);
+              if (imageBase64 && typeof imageBase64 === 'string') {
+                const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+                const buffer = Buffer.from(base64Data, 'base64');
+                const publicDir = path.resolve(__dirname, 'public');
+                if (!fs.existsSync(publicDir)) {
+                  fs.mkdirSync(publicDir, { recursive: true });
+                }
+                fs.writeFileSync(path.join(publicDir, 'profile-picture.jpg'), buffer);
+                fs.writeFileSync(path.join(publicDir, 'profile.png'), buffer);
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: true, message: 'Photo saved successfully to disk' }));
+                return;
+              }
+            } catch (err) {
+              console.error('Error saving profile photo:', err);
+            }
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'Failed to save photo' }));
+          });
+        } else {
+          res.writeHead(405, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Method not allowed' }));
+        }
+      });
+    },
+  };
+}
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), savePhotoPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

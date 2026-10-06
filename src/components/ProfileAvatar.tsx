@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ShieldCheck, Sparkles, Code2, Camera, Upload, RotateCcw } from 'lucide-react';
+import { ShieldCheck, Sparkles, Code2, Camera, RotateCcw, Check, CheckCircle2 } from 'lucide-react';
 
 interface ProfileAvatarProps {
   size?: 'sm' | 'md' | 'lg';
@@ -13,19 +13,85 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [imageSrc, setImageSrc] = useState<string>('/profile-picture.jpg');
   const [imageError, setImageError] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [showSavedToast, setShowSavedToast] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize or load stored profile photo from localStorage
+  // Sync photo with server disk endpoint
+  const persistToServer = async (base64Data: string) => {
+    try {
+      const res = await fetch('/api/save-photo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ imageBase64: base64Data })
+      });
+      if (res.ok) {
+        setIsSaved(true);
+      }
+    } catch {
+      // If server route is unreachable, localStorage still preserves it
+    }
+  };
+
+  // Initialize and load saved profile photo from localStorage
   useEffect(() => {
     try {
       const saved = localStorage.getItem('deepshikha_profile_photo');
       if (saved) {
         setImageSrc(saved);
+        setIsSaved(true);
+        if (saved.startsWith('data:')) {
+          persistToServer(saved);
+        }
+      } else {
+        setIsSaved(true);
       }
     } catch {
-      // ignore storage access errors
+      setIsSaved(true);
     }
   }, []);
+
+  // Process, square-crop, and compress image to optimal 480x480 resolution
+  const processAndSavePhoto = (dataUrl: string) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const minDim = Math.min(img.width, img.height);
+      const startX = (img.width - minDim) / 2;
+      const startY = (img.height - minDim) / 2;
+      const targetSize = 480;
+      canvas.width = targetSize;
+      canvas.height = targetSize;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, startX, startY, minDim, minDim, 0, 0, targetSize, targetSize);
+        const optimized = canvas.toDataURL('image/jpeg', 0.92);
+        setImageSrc(optimized);
+        setImageError(false);
+        setIsSaved(true);
+        setShowSavedToast(true);
+        setTimeout(() => setShowSavedToast(false), 3500);
+
+        try {
+          localStorage.setItem('deepshikha_profile_photo', optimized);
+        } catch (err) {
+          console.warn('LocalStorage quota note:', err);
+        }
+        persistToServer(optimized);
+      }
+    };
+    img.onerror = () => {
+      setImageSrc(dataUrl);
+      setIsSaved(true);
+      setShowSavedToast(true);
+      setTimeout(() => setShowSavedToast(false), 3500);
+      try {
+        localStorage.setItem('deepshikha_profile_photo', dataUrl);
+      } catch {}
+      persistToServer(dataUrl);
+    };
+    img.src = dataUrl;
+  };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -34,13 +100,7 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
       reader.onload = (event) => {
         const result = event.target?.result as string;
         if (result) {
-          setImageSrc(result);
-          setImageError(false);
-          try {
-            localStorage.setItem('deepshikha_profile_photo', result);
-          } catch (err) {
-            console.warn('Unable to persist photo to localStorage:', err);
-          }
+          processAndSavePhoto(result);
         }
       };
       reader.readAsDataURL(file);
@@ -51,11 +111,12 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
     e.stopPropagation();
     try {
       localStorage.removeItem('deepshikha_profile_photo');
-    } catch {
-      // ignore
-    }
+    } catch {}
     setImageSrc('/profile-picture.jpg');
     setImageError(false);
+    setIsSaved(true);
+    setShowSavedToast(true);
+    setTimeout(() => setShowSavedToast(false), 3500);
   };
 
   const sizeClasses = {
@@ -78,6 +139,14 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
         className="hidden" 
         onChange={handleFileUpload}
       />
+
+      {/* Floating Save Confirmation Toast */}
+      {showSavedToast && (
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-50 whitespace-nowrap px-3 py-1.5 rounded-full bg-emerald-600 text-white font-mono text-[11px] font-semibold shadow-lg flex items-center gap-1.5 animate-bounce">
+          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+          <span>Profile Photo Saved!</span>
+        </div>
+      )}
 
       {/* Outer ambient glow ring with soft pastel gradient */}
       <div 
@@ -113,11 +182,11 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
                   }
                 }}
               />
-              {/* Soft bottom vignette for professional depth */}
+              {/* Soft bottom vignette for depth */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a1128]/60 to-transparent pointer-events-none" />
             </div>
           ) : (
-            /* Fallback Stylized Monogram Illustration if no image available */
+            /* Fallback Stylized Monogram */
             <div className="relative z-10 flex flex-col items-center justify-center text-center">
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-rose-300 p-[1.5px] shadow-lg flex items-center justify-center mb-1 group-hover:rotate-3 transition-transform duration-300">
                 <div className="w-full h-full rounded-2xl bg-[#0a1128] flex items-center justify-center">
@@ -137,7 +206,7 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
             </div>
           )}
 
-          {/* Interactive hover overlay with profile info & quick photo upload button */}
+          {/* Interactive hover overlay with profile info & photo controls */}
           <div className={`absolute inset-0 bg-[#0a1128]/85 backdrop-blur-xs flex flex-col items-center justify-center text-white transition-opacity duration-300 p-2 text-center z-10 ${isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             <Sparkles className="w-4 h-4 text-sky-300 mb-0.5 animate-bounce" />
             <span className="text-[11px] font-semibold text-white">Deepshikha Yadav</span>
@@ -152,10 +221,10 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
                   fileInputRef.current?.click();
                 }}
                 className="px-2.5 py-1 rounded-full bg-white/20 hover:bg-white/30 text-[9px] font-mono font-semibold flex items-center gap-1 text-white border border-white/30 backdrop-blur-xs transition shadow-sm cursor-pointer hover:scale-105 active:scale-95"
-                title="Choose an image file from your device"
+                title="Change or upload new photo"
               >
                 <Camera className="w-2.5 h-2.5 text-sky-300" />
-                <span>Upload Photo</span>
+                <span>Change Photo</span>
               </button>
 
               {imageSrc !== '/profile-picture.jpg' && (
@@ -163,18 +232,24 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
                   type="button"
                   onClick={resetPhoto}
                   className="p-1 rounded-full bg-white/15 hover:bg-white/25 text-white/80 hover:text-white transition cursor-pointer"
-                  title="Reset to default"
+                  title="Reset to default picture"
                 >
                   <RotateCcw className="w-2.5 h-2.5" />
                 </button>
               )}
+            </div>
+
+            {/* Saved indicator in hover */}
+            <div className="flex items-center gap-1 mt-1 text-[8px] font-mono text-emerald-400">
+              <Check className="w-2.5 h-2.5" />
+              <span>Saved in portfolio</span>
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* Floating Camera Quick Upload Badge */}
+      {/* Floating Camera Button with Saved checkmark */}
       <button
         type="button"
         onClick={(e) => {
@@ -182,13 +257,13 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
           fileInputRef.current?.click();
         }}
         aria-label="Upload profile picture"
-        title="Upload or change profile picture"
+        title="Upload or replace profile picture (automatically saved)"
         className="absolute -top-1 -right-1 z-20 p-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:text-purple-700 hover:border-purple-300 shadow-md transition-all duration-200 hover:scale-110 cursor-pointer group/cam"
       >
         <Camera className="w-3.5 h-3.5 text-purple-600 group-hover/cam:rotate-12 transition-transform" />
       </button>
 
-      {/* Verified Status Tag */}
+      {/* Verified Status Tag with Saved indicator */}
       {showBadge && (
         <div className="absolute -bottom-2 -right-1 z-20 bg-white border border-slate-200 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
