@@ -1,8 +1,7 @@
 import React from 'react';
-import { ArrowDown, ArrowUpRight, Github, MapPin, GraduationCap, Terminal } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Github, MapPin, GraduationCap } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { personalInfo } from '../data/portfolioData';
-import { Hero3DCanvas } from './Hero3DCanvas';
 import { ProfileAvatar } from './ProfileAvatar';
 
 export const Hero: React.FC = () => {
@@ -139,50 +138,124 @@ export const Hero: React.FC = () => {
 
           </motion.div>
 
-          {/* Right Column: 3D Developer & AI Interactive Canvas + Profile Card with Motion Entrance */}
+          {/* Right Column: Developer Profile Showcase Card with Motion Entrance */}
           <motion.div 
             initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: shouldReduceMotion ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 relative flex flex-col items-center justify-center"
+            className="lg:col-span-5 relative flex flex-col items-center justify-center w-full"
           >
             
-            {/* 3D Canvas Box with crisp light frame aesthetic */}
-            <div className="w-full relative rounded-2xl bg-white border border-slate-200 shadow-xl overflow-hidden">
+            {/* Developer Profile Card Frame with crisp light aesthetic and pastel borders */}
+            <div className="w-full relative rounded-3xl bg-white border border-slate-200 hover:border-purple-200 shadow-xl overflow-hidden transition-all duration-300">
               
-              {/* Window Header */}
-              <div className="flex items-center justify-between px-4 py-2.5 bg-slate-50 border-b border-slate-200 text-xs font-mono text-slate-600">
+              {/* Card Window Header Bar with Pastel Mac-Style Controls */}
+              <div className="flex items-center justify-between px-4 py-3 bg-slate-50/90 border-b border-slate-200 text-xs font-mono text-slate-600">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block" />
-                  <span className="ml-2 text-slate-700 font-medium text-[11px]">neural_orbit_3d.sim</span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-300 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-300 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 inline-block" />
+                  <span className="ml-2 text-slate-700 font-semibold text-[11px]">deepshikha_profile.tsx</span>
                 </div>
-                <div className="flex items-center gap-1 text-[11px] text-blue-700 font-semibold">
-                  <Terminal className="w-3 h-3" />
-                  <span>Interactive 3D</span>
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-[11px] font-semibold shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Student & Developer</span>
                 </div>
               </div>
 
-              {/* The 3D Three.js Canvas */}
-              <Hero3DCanvas />
-
-              {/* Inset Profile Card Floating Overlay */}
-              <div className="p-4 bg-white/95 border-t border-slate-200">
-                <div className="flex items-center gap-3.5">
-                  <ProfileAvatar size="sm" showBadge={false} />
-                  <div>
-                    <h3 className="text-sm font-bold text-[#0a1128] font-display">
-                      Deepshikha Yadav
-                    </h3>
-                    <p className="text-xs text-blue-700 font-semibold">
-                      2nd-Year B.Tech CSE @ SRMCEM
-                    </p>
-                    <p className="text-[11px] text-slate-500 mt-0.5 font-mono">
-                      Expected Graduation: 2029
-                    </p>
-                  </div>
+              {/* Card Main Body */}
+              <div className="p-6 sm:p-7 flex flex-col items-center text-center space-y-5">
+                
+                {/* Profile Avatar with Pastel Ring */}
+                <div className="pt-1">
+                  <ProfileAvatar size="md" showBadge={true} />
                 </div>
+
+                {/* Identity & Academic Info */}
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold font-display text-[#0a1128]">
+                    Deepshikha Yadav
+                  </h3>
+                  <p className="text-xs sm:text-sm text-indigo-700 font-semibold mt-0.5">
+                    2nd-Year B.Tech Computer Science & Engineering
+                  </p>
+                  <p className="text-xs text-slate-600 mt-1 font-mono">
+                    SRMCEM, Lucknow · Class of 2029
+                  </p>
+                </div>
+
+                {/* 4 Pastel Highlights Micro-Grid */}
+                <div className="grid grid-cols-2 gap-2.5 w-full text-left">
+                  
+                  {/* Focus */}
+                  <div className="p-3 rounded-2xl bg-sky-50/80 border border-sky-200/80 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-sky-800 font-bold tracking-wider mb-0.5">
+                      FOCUS DOMAIN
+                    </div>
+                    <div className="text-xs font-bold text-[#0a1128]">
+                      Full-Stack & AI/ML
+                    </div>
+                  </div>
+
+                  {/* Open Source */}
+                  <div className="p-3 rounded-2xl bg-purple-50/80 border border-purple-200/80 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-purple-800 font-bold tracking-wider mb-0.5">
+                      OPEN SOURCE
+                    </div>
+                    <div className="text-xs font-bold text-[#0a1128]">
+                      GSSoC '26 Contributor
+                    </div>
+                  </div>
+
+                  {/* Projects */}
+                  <div className="p-3 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-emerald-800 font-bold tracking-wider mb-0.5">
+                      PORTFOLIO WORK
+                    </div>
+                    <div className="text-xs font-bold text-[#0a1128]">
+                      Phoenix AI & ML Models
+                    </div>
+                  </div>
+
+                  {/* Hackathons */}
+                  <div className="p-3 rounded-2xl bg-amber-50/80 border border-amber-200/80 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-amber-800 font-bold tracking-wider mb-0.5">
+                      COMPETITIONS
+                    </div>
+                    <div className="text-xs font-bold text-[#0a1128]">
+                      ET AI Hackathon
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Current Active Focus Snippet */}
+                <div className="w-full p-3.5 rounded-2xl bg-slate-50/90 border border-slate-200 text-left">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-1">
+                    <span className="font-semibold text-slate-700">// CURRENT DEV FOCUS</span>
+                    <span className="text-indigo-600 font-bold">Python · React · scikit-learn</span>
+                  </div>
+                  <p className="text-xs text-slate-700 leading-relaxed">
+                    Building accessible AI learning companions and machine learning classification workflows.
+                  </p>
+                </div>
+
+                {/* Quick Profile Action Buttons */}
+                <div className="flex items-center justify-center gap-3 w-full pt-1">
+                  <button
+                    onClick={() => scrollTo('projects')}
+                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] transition-colors cursor-pointer shadow-sm"
+                  >
+                    View Projects
+                  </button>
+                  <button
+                    onClick={() => scrollTo('contact')}
+                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-[#0a1128] bg-purple-50/70 hover:bg-purple-100 text-purple-900 border border-purple-200 transition-colors cursor-pointer"
+                  >
+                    Get in Touch
+                  </button>
+                </div>
+
               </div>
 
             </div>
