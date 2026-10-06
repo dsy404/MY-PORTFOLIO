@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ShieldCheck, Sparkles, Code2 } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ShieldCheck, Sparkles, Code2, Camera, Upload, RotateCcw } from 'lucide-react';
 
 interface ProfileAvatarProps {
   size?: 'sm' | 'md' | 'lg';
@@ -11,6 +11,52 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
   showBadge = true 
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageSrc, setImageSrc] = useState<string>('/profile-picture.jpg');
+  const [imageError, setImageError] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Initialize or load stored profile photo from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('deepshikha_profile_photo');
+      if (saved) {
+        setImageSrc(saved);
+      }
+    } catch {
+      // ignore storage access errors
+    }
+  }, []);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result as string;
+        if (result) {
+          setImageSrc(result);
+          setImageError(false);
+          try {
+            localStorage.setItem('deepshikha_profile_photo', result);
+          } catch (err) {
+            console.warn('Unable to persist photo to localStorage:', err);
+          }
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const resetPhoto = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      localStorage.removeItem('deepshikha_profile_photo');
+    } catch {
+      // ignore
+    }
+    setImageSrc('/profile-picture.jpg');
+    setImageError(false);
+  };
 
   const sizeClasses = {
     sm: 'w-24 h-24',
@@ -20,10 +66,19 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
 
   return (
     <div 
-      className="relative group inline-block"
+      className="relative group inline-block select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Hidden file input for uploading custom photo */}
+      <input 
+        ref={fileInputRef}
+        type="file" 
+        accept="image/*" 
+        className="hidden" 
+        onChange={handleFileUpload}
+      />
+
       {/* Outer ambient glow ring with soft pastel gradient */}
       <div 
         className="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-sky-200 via-purple-200 to-rose-200 opacity-60 group-hover:opacity-95 blur-md transition duration-500 group-hover:scale-105"
@@ -43,40 +98,99 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
           {/* Subtle grid backdrop */}
           <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
 
-          {/* Abstract stylized developer avatar illustration */}
-          <div className="relative z-10 flex flex-col items-center justify-center text-center">
-            {/* Tech Monogram */}
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-rose-300 p-[1.5px] shadow-lg flex items-center justify-center mb-1 group-hover:rotate-3 transition-transform duration-300">
-              <div className="w-full h-full rounded-2xl bg-[#0a1128] flex items-center justify-center">
-                <span className="font-display font-bold text-2xl md:text-3xl text-white tracking-wider">
-                  DY
-                </span>
+          {/* Portrait Photo Display */}
+          {!imageError ? (
+            <div className="w-full h-full relative">
+              <img 
+                src={imageSrc} 
+                alt="Deepshikha Yadav" 
+                className="w-full h-full object-cover object-top rounded-full transition-transform duration-500 group-hover:scale-105"
+                onError={() => {
+                  if (imageSrc !== '/profile.png') {
+                    setImageSrc('/profile.png');
+                  } else {
+                    setImageError(true);
+                  }
+                }}
+              />
+              {/* Soft bottom vignette for professional depth */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a1128]/60 to-transparent pointer-events-none" />
+            </div>
+          ) : (
+            /* Fallback Stylized Monogram Illustration if no image available */
+            <div className="relative z-10 flex flex-col items-center justify-center text-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-rose-300 p-[1.5px] shadow-lg flex items-center justify-center mb-1 group-hover:rotate-3 transition-transform duration-300">
+                <div className="w-full h-full rounded-2xl bg-[#0a1128] flex items-center justify-center">
+                  <span className="font-display font-bold text-2xl md:text-3xl text-white tracking-wider">
+                    DY
+                  </span>
+                </div>
+              </div>
+
+              <div className="text-[10px] md:text-xs font-mono text-blue-200 tracking-wider uppercase font-semibold">
+                Deepshikha
+              </div>
+              <div className="text-[9px] font-mono text-slate-300 flex items-center gap-1 mt-0.5">
+                <Code2 className="w-2.5 h-2.5 text-sky-300" />
+                <span>SRMCEM '29</span>
               </div>
             </div>
+          )}
 
-            {/* Subtext label */}
-            <div className="text-[10px] md:text-xs font-mono text-blue-200 tracking-wider uppercase font-semibold">
-              Deepshikha
-            </div>
-            <div className="text-[9px] font-mono text-slate-300 flex items-center gap-1 mt-0.5">
-              <Code2 className="w-2.5 h-2.5 text-sky-300" />
-              <span>SRMCEM '29</span>
-            </div>
-          </div>
-
-          {/* Interactive hover overlay */}
-          <div className={`absolute inset-0 bg-[#0a1128]/95 backdrop-blur-xs flex flex-col items-center justify-center text-white transition-opacity duration-300 p-2 text-center ${isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <Sparkles className="w-5 h-5 text-sky-400 mb-1 animate-bounce" />
+          {/* Interactive hover overlay with profile info & quick photo upload button */}
+          <div className={`absolute inset-0 bg-[#0a1128]/85 backdrop-blur-xs flex flex-col items-center justify-center text-white transition-opacity duration-300 p-2 text-center z-10 ${isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+            <Sparkles className="w-4 h-4 text-sky-300 mb-0.5 animate-bounce" />
             <span className="text-[11px] font-semibold text-white">Deepshikha Yadav</span>
-            <span className="text-[9px] text-blue-200 mt-0.5">Computer Science</span>
-            <span className="text-[8px] font-mono text-blue-300 mt-1">Lucknow, UP</span>
+            <span className="text-[9px] text-blue-200">B.Tech CSE · SRMCEM</span>
+            
+            {/* Quick action button to upload/replace user's picture */}
+            <div className="flex items-center gap-1.5 mt-2">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fileInputRef.current?.click();
+                }}
+                className="px-2.5 py-1 rounded-full bg-white/20 hover:bg-white/30 text-[9px] font-mono font-semibold flex items-center gap-1 text-white border border-white/30 backdrop-blur-xs transition shadow-sm cursor-pointer hover:scale-105 active:scale-95"
+                title="Choose an image file from your device"
+              >
+                <Camera className="w-2.5 h-2.5 text-sky-300" />
+                <span>Upload Photo</span>
+              </button>
+
+              {imageSrc !== '/profile-picture.jpg' && (
+                <button
+                  type="button"
+                  onClick={resetPhoto}
+                  className="p-1 rounded-full bg-white/15 hover:bg-white/25 text-white/80 hover:text-white transition cursor-pointer"
+                  title="Reset to default"
+                >
+                  <RotateCcw className="w-2.5 h-2.5" />
+                </button>
+              )}
+            </div>
           </div>
+
         </div>
       </div>
 
+      {/* Floating Camera Quick Upload Badge */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          fileInputRef.current?.click();
+        }}
+        aria-label="Upload profile picture"
+        title="Upload or change profile picture"
+        className="absolute -top-1 -right-1 z-20 p-1.5 rounded-full bg-white border border-slate-200 text-slate-700 hover:text-purple-700 hover:border-purple-300 shadow-md transition-all duration-200 hover:scale-110 cursor-pointer group/cam"
+      >
+        <Camera className="w-3.5 h-3.5 text-purple-600 group-hover/cam:rotate-12 transition-transform" />
+      </button>
+
       {/* Verified Status Tag */}
       {showBadge && (
-        <div className="absolute -bottom-2 -right-1 bg-white border border-slate-200 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md">
+        <div className="absolute -bottom-2 -right-1 z-20 bg-white border border-slate-200 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-[10px] font-mono text-slate-800 font-semibold">B.Tech CSE</span>
           <ShieldCheck className="w-3 h-3 text-blue-600" />
