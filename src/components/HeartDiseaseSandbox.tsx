@@ -154,18 +154,27 @@ export const HeartDiseaseSandbox: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick Presets */}
+      {/* Quick Presets with Pastel Accents */}
       <div className="flex flex-wrap items-center gap-2 mb-4 text-xs">
         <span className="text-slate-500 font-mono text-[11px] font-semibold">Test Profiles:</span>
-        {presets.map((p) => (
-          <button
-            key={p.label}
-            onClick={() => applyPreset(p)}
-            className="px-2.5 py-1 rounded-md bg-white hover:bg-slate-100 text-slate-700 hover:text-black border border-slate-200 transition-colors cursor-pointer shadow-2xs text-[11px]"
-          >
-            {p.label}
-          </button>
-        ))}
+        <button
+          onClick={() => applyPreset(presets[0])}
+          className="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors cursor-pointer shadow-2xs text-[11px] font-medium"
+        >
+          {presets[0].label}
+        </button>
+        <button
+          onClick={() => applyPreset(presets[1])}
+          className="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition-colors cursor-pointer shadow-2xs text-[11px] font-medium"
+        >
+          {presets[1].label}
+        </button>
+        <button
+          onClick={() => applyPreset(presets[2])}
+          className="px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 transition-colors cursor-pointer shadow-2xs text-[11px] font-medium"
+        >
+          {presets[2].label}
+        </button>
       </div>
 
       {/* Interactive Medical Feature Sliders & Selectors */}

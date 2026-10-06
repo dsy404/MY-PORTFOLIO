@@ -24,20 +24,20 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Outer ambient glow ring */}
+      {/* Outer ambient glow ring with soft pastel gradient */}
       <div 
-        className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-blue-500 via-sky-400 to-indigo-500 opacity-25 group-hover:opacity-50 blur-md transition duration-500 group-hover:scale-105"
+        className="absolute -inset-2.5 rounded-full bg-gradient-to-tr from-sky-200 via-purple-200 to-rose-200 opacity-60 group-hover:opacity-95 blur-md transition duration-500 group-hover:scale-105"
         aria-hidden="true"
       />
 
       {/* Rotating orbit ring */}
       <div 
-        className="absolute -inset-2 rounded-full border border-blue-300/40 border-t-blue-600 group-hover:border-t-blue-700 animate-[spin_10s_linear_infinite]"
+        className="absolute -inset-3 rounded-full border border-sky-300/60 border-t-purple-400 group-hover:border-t-rose-400 animate-[spin_10s_linear_infinite]"
         aria-hidden="true"
       />
 
       {/* Main Portrait Frame */}
-      <div className={`relative ${sizeClasses[size]} rounded-full p-1 bg-white border-2 border-blue-600 shadow-xl overflow-hidden backdrop-blur-sm transition-transform duration-300 group-hover:scale-[1.02]`}>
+      <div className={`relative ${sizeClasses[size]} rounded-full p-1 bg-white border-2 border-purple-200 shadow-xl overflow-hidden backdrop-blur-sm transition-transform duration-300 group-hover:scale-[1.02]`}>
         <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0a1128] via-[#162a5c] to-[#0f1c3f] flex flex-col items-center justify-center relative overflow-hidden">
           
           {/* Subtle grid backdrop */}
@@ -46,7 +46,7 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
           {/* Abstract stylized developer avatar illustration */}
           <div className="relative z-10 flex flex-col items-center justify-center text-center">
             {/* Tech Monogram */}
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 p-[1px] shadow-lg flex items-center justify-center mb-1 group-hover:rotate-3 transition-transform duration-300">
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-sky-300 via-purple-300 to-rose-300 p-[1.5px] shadow-lg flex items-center justify-center mb-1 group-hover:rotate-3 transition-transform duration-300">
               <div className="w-full h-full rounded-2xl bg-[#0a1128] flex items-center justify-center">
                 <span className="font-display font-bold text-2xl md:text-3xl text-white tracking-wider">
                   DY

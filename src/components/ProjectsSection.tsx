@@ -15,12 +15,51 @@ import { AnimatedSection } from './AnimatedSection';
 export const ProjectsSection: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const getProjectPastelTheme = (id: string) => {
+    if (id === 'phoenix-ai') {
+      return {
+        topGradient: 'from-purple-500 via-indigo-400 to-sky-400',
+        badge: 'bg-purple-50 border-purple-200/80 text-purple-800',
+        cardBorder: 'hover:border-purple-300',
+        quoteBg: 'bg-purple-50/80 border-purple-400 text-purple-900',
+        innerFrameBorder: 'group-hover:border-purple-200',
+        techHover: 'hover:text-purple-700'
+      };
+    }
+    if (id === 'heart-disease-prediction') {
+      return {
+        topGradient: 'from-rose-500 via-pink-400 to-emerald-400',
+        badge: 'bg-rose-50 border-rose-200/80 text-rose-800',
+        cardBorder: 'hover:border-rose-300',
+        quoteBg: 'bg-rose-50/80 border-rose-400 text-rose-900',
+        innerFrameBorder: 'group-hover:border-rose-200',
+        techHover: 'hover:text-rose-700'
+      };
+    }
+    return {
+      topGradient: 'from-orange-400 via-amber-400 to-purple-400',
+      badge: 'bg-amber-50 border-amber-200/80 text-amber-800',
+      cardBorder: 'hover:border-amber-300',
+      quoteBg: 'bg-amber-50/80 border-amber-400 text-amber-900',
+      innerFrameBorder: 'group-hover:border-amber-200',
+      techHover: 'hover:text-amber-700'
+    };
+  };
+
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* Background ambient lighting */}
+      {/* Background ambient multi-tone pastel lighting */}
       <div 
-        className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-blue-50/70 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-100/35 rounded-full blur-[140px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-1/3 right-10 w-[450px] h-[450px] bg-sky-100/40 rounded-full blur-[130px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-rose-100/35 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -29,13 +68,14 @@ export const ProjectsSection: React.FC = () => {
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold mb-2">
-              FEATURED ENGINEERING WORK
+            <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+              <span>FEATURED ENGINEERING WORK</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
               Highlighted Projects
             </h2>
-            <div className="w-16 h-1 bg-blue-600 rounded-full mt-4" />
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-rose-400 rounded-full mt-4" />
           </div>
 
           <p className="text-sm text-slate-600 max-w-md">
@@ -47,6 +87,7 @@ export const ProjectsSection: React.FC = () => {
         <div className="space-y-16">
           {projectsData.map((project, idx) => {
             const isPhoenix = project.id === 'phoenix-ai';
+            const theme = getProjectPastelTheme(project.id);
 
             return (
               <AnimatedSection 
@@ -55,11 +96,11 @@ export const ProjectsSection: React.FC = () => {
                 delay={0.15 * idx}
                 className="w-full"
               >
-                <div className="group relative rounded-3xl bg-white border border-slate-200 hover:border-blue-400 transition-all duration-300 shadow-xl hover:shadow-2xl overflow-hidden">
+                <div className={`group relative rounded-3xl bg-white border border-slate-200 ${theme.cardBorder} transition-all duration-300 shadow-xl hover:shadow-2xl overflow-hidden`}>
                   
                   {/* Subtle top accent gradient */}
                   <div 
-                    className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-sky-400 to-[#0a1128]" 
+                    className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${theme.topGradient}`} 
                     aria-hidden="true" 
                   />
 
@@ -68,11 +109,13 @@ export const ProjectsSection: React.FC = () => {
                     {/* Left Column: Project Info & Narrative (6 cols) */}
                     <div className="lg:col-span-6 flex flex-col items-start text-left">
                       
-                      {/* Metadata line (clean unboxed text) */}
-                      <div className="flex items-center gap-2 text-xs font-mono text-blue-700 font-semibold mb-3">
-                        <span className="uppercase tracking-wider">{project.focusArea}</span>
+                      {/* Metadata line with pastel category badge */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className={`text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border ${theme.badge}`}>
+                          {project.focusArea}
+                        </span>
                         <span aria-hidden="true" className="text-slate-300">·</span>
-                        <span className="text-slate-500">{project.category}</span>
+                        <span className="text-xs font-mono text-slate-500">{project.category}</span>
                       </div>
 
                       <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#0a1128] tracking-tight mb-2 group-hover:text-blue-700 transition-colors">
@@ -84,7 +127,7 @@ export const ProjectsSection: React.FC = () => {
                       </p>
 
                       {project.coreQuote && (
-                        <div className="mb-4 text-xs font-semibold text-blue-900 bg-blue-50/80 border-l-2 border-blue-600 px-3 py-1.5 rounded-r-lg italic">
+                        <div className={`mb-4 text-xs font-semibold ${theme.quoteBg} border-l-2 px-3 py-1.5 rounded-r-lg italic`}>
                           "{project.coreQuote}"
                         </div>
                       )}
@@ -101,7 +144,7 @@ export const ProjectsSection: React.FC = () => {
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-700">
                           {project.techStack.map((tech, tIdx) => (
                             <React.Fragment key={tech}>
-                              <span className="hover:text-blue-700 transition-colors font-medium">{tech}</span>
+                              <span className={`${theme.techHover} transition-colors font-medium`}>{tech}</span>
                               {tIdx < project.techStack.length - 1 && <span className="text-slate-300">/</span>}
                             </React.Fragment>
                           ))}
@@ -135,14 +178,14 @@ export const ProjectsSection: React.FC = () => {
                     <div className="lg:col-span-6 w-full">
                       
                       {/* Visual Card Frame */}
-                      <div className="relative rounded-2xl bg-white border border-slate-200 p-4 shadow-lg overflow-hidden group-hover:border-blue-300 transition-colors">
+                      <div className={`relative rounded-3xl bg-white border border-slate-200 p-4 shadow-lg overflow-hidden ${theme.innerFrameBorder} transition-colors`}>
                         
-                        {/* Terminal-like Window Bar */}
+                        {/* Terminal-like Window Bar with Mac-style pastel dots */}
                         <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 text-xs font-mono text-slate-600">
                           <div className="flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 inline-block" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 inline-block" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 inline-block" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-rose-300 inline-block" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-amber-300 inline-block" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 inline-block" />
                             <span className="ml-2 text-slate-700 text-[11px] font-semibold">{project.title.toLowerCase()}_preview.tsx</span>
                           </div>
                           <button

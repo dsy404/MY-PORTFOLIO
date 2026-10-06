@@ -26,20 +26,26 @@ export const EducationSection: React.FC = () => {
           <div className="w-16 h-1 bg-blue-600 rounded-full mt-4" />
         </AnimatedSection>
 
-        {/* Modern Academic Showcase Card */}
+        {/* Modern Academic Showcase Card with Pastel Accents */}
         <AnimatedSection direction="up" delay={0.15}>
-          <div className="p-8 md:p-10 rounded-3xl bg-white border border-slate-200 shadow-xl relative overflow-hidden">
+          <div className="p-8 md:p-10 rounded-3xl bg-white border border-sky-100 shadow-xl relative overflow-hidden">
             
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Pastel decorative background blur */}
+            <div 
+              className="absolute -top-16 -right-16 w-64 h-64 bg-purple-100/50 rounded-full blur-2xl pointer-events-none" 
+              aria-hidden="true" 
+            />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
               
               {/* Left Column: Degree & Institution (5 cols) */}
               <div className="lg:col-span-5 flex flex-col items-start">
                 
-                <div className="p-3.5 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200 mb-6 shadow-xs">
+                <div className="p-3.5 rounded-2xl bg-sky-100 text-sky-800 border border-sky-200 mb-6 shadow-2xs">
                   <GraduationCap className="w-8 h-8" />
                 </div>
 
-                <div className="text-xs font-mono text-blue-700 font-bold uppercase tracking-wider mb-1">
+                <div className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-mono font-bold uppercase tracking-wider mb-2">
                   {educationData.currentStanding}
                 </div>
 
@@ -47,7 +53,7 @@ export const EducationSection: React.FC = () => {
                   {educationData.degree}
                 </h3>
 
-                <div className="text-base font-semibold text-blue-800 mb-4">
+                <div className="text-base font-semibold text-indigo-700 mb-4">
                   {educationData.major}
                 </div>
 
@@ -60,17 +66,17 @@ export const EducationSection: React.FC = () => {
                 </div>
 
                 {/* Metadata details (clean unboxed text with typographic separators) */}
-                <div className="flex flex-col gap-2 text-xs font-mono text-slate-600 w-full pt-4 border-t border-slate-200">
+                <div className="flex flex-col gap-2.5 text-xs font-mono text-slate-600 w-full pt-4 border-t border-slate-200">
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                      <Calendar className="w-3.5 h-3.5 text-indigo-600" />
                       Expected Graduation
                     </span>
                     <span className="text-[#0a1128] font-bold">{educationData.graduationYear}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                      <MapPin className="w-3.5 h-3.5 text-rose-500" />
                       Location
                     </span>
                     <span className="text-slate-800 font-medium">{educationData.location}</span>
@@ -88,8 +94,8 @@ export const EducationSection: React.FC = () => {
 
                   <div className="space-y-4">
                     {educationData.highlights.map((point, idx) => (
-                      <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+                      <div key={idx} className="p-4 rounded-2xl bg-gradient-to-r from-sky-50/60 to-purple-50/30 border border-sky-100 flex items-start gap-3 shadow-2xs">
+                        <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
                         <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
                           {point}
                         </p>
@@ -98,8 +104,8 @@ export const EducationSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-8 p-4 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 font-mono font-medium">
-                  Synthesizing academic CS principles with daily hands-on web and AI experimentation.
+                <div className="mt-8 p-4 rounded-2xl bg-gradient-to-r from-purple-50 via-sky-50 to-emerald-50/40 border border-purple-200/80 text-xs text-indigo-950 font-mono font-medium shadow-2xs">
+                  Synthesizing foundational CS algorithms with daily hands-on full-stack engineering and machine learning workflows.
                 </div>
               </div>
 

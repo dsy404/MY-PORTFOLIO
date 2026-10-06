@@ -97,17 +97,17 @@ export const PhoenixAISandbox: React.FC = () => {
   return (
     <div className="p-5 md:p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-md text-left">
       
-      {/* Header */}
+      {/* Header with Pastel Accents */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-slate-200 gap-3">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-blue-100 text-blue-700">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-xl bg-purple-100 text-purple-800 border border-purple-200 shadow-2xs">
             <Bot className="w-4 h-4" />
           </div>
           <div>
             <h4 className="text-sm font-bold text-[#0a1128] font-display">
               Phoenix AI Multi-Agent Education Simulator
             </h4>
-            <p className="text-[11px] text-blue-700">
+            <p className="text-[11px] text-indigo-700 font-medium">
               Personal AI Learning Companion · Teaching, Assessment & Catch-Up Recovery
             </p>
           </div>
@@ -119,10 +119,10 @@ export const PhoenixAISandbox: React.FC = () => {
             href="https://github.com/dsy404/Phoenix-AI"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-slate-700 hover:text-black bg-white hover:bg-slate-100 border border-slate-300 rounded-lg transition-colors shadow-2xs"
+            className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-slate-700 hover:text-black bg-white hover:bg-purple-50/70 border border-slate-300 rounded-lg transition-colors shadow-2xs"
             title="View Phoenix AI GitHub Repository"
           >
-            <Github className="w-3.5 h-3.5 text-blue-700" />
+            <Github className="w-3.5 h-3.5 text-purple-700" />
             <span>dsy404/Phoenix-AI</span>
           </a>
 
@@ -134,14 +134,14 @@ export const PhoenixAISandbox: React.FC = () => {
             </span>
             <span className={`w-2.5 h-2.5 rounded-full ${
               pipelineState === 'idle' ? 'bg-slate-400' :
-              pipelineState === 'running' ? 'bg-amber-500 animate-ping' :
-              'bg-emerald-500'
+              pipelineState === 'running' ? 'bg-amber-400 animate-ping' :
+              'bg-emerald-400'
             }`} />
           </div>
         </div>
       </div>
 
-      {/* Scenario Selection */}
+      {/* Scenario Selection with Pastel Badges */}
       <div className="flex flex-wrap items-center gap-2 mb-4 text-xs">
         <span className="text-slate-500 font-mono text-[11px] font-semibold">Select Student Barrier:</span>
         {scenarios.map((sc) => (
@@ -152,10 +152,10 @@ export const PhoenixAISandbox: React.FC = () => {
               if (pipelineState === 'completed') handleReset();
             }}
             disabled={pipelineState === 'running'}
-            className={`px-2.5 py-1.5 rounded-md transition-colors cursor-pointer border ${
+            className={`px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer border text-[11px] ${
               selectedScenario === sc.id
-                ? 'bg-[#0a1128] text-white border-[#0a1128] font-medium shadow-xs'
-                : 'bg-white text-slate-700 hover:text-black border-slate-200'
+                ? 'bg-purple-100 text-purple-900 border-purple-300 font-bold shadow-2xs'
+                : 'bg-white text-slate-700 hover:bg-purple-50/50 border-slate-200'
             }`}
           >
             {sc.label}

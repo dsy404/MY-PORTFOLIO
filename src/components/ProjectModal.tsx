@@ -117,11 +117,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             )}
           </div>
 
-          {/* 1. Problem & 2. Idea (2 Column Grid) */}
+          {/* 1. Problem & 2. Idea (2 Column Grid with Pastel Accents) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-5 rounded-2xl bg-rose-50/50 border border-rose-200">
-              <div className="text-xs font-mono uppercase tracking-wider text-rose-700 font-bold mb-2 flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-rose-600" />
+            <div className="p-5 rounded-2xl bg-rose-50/80 border border-rose-200/90 shadow-2xs">
+              <div className="text-xs font-mono uppercase tracking-wider text-rose-800 font-bold mb-2 flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-rose-500" />
                 <span>01. The Educational Challenge</span>
               </div>
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
@@ -129,8 +129,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200">
-              <div className="text-xs font-mono uppercase tracking-wider text-emerald-800 font-bold mb-2 flex items-center gap-1.5">
+            <div className="p-5 rounded-2xl bg-emerald-50/80 border border-emerald-200/90 shadow-2xs">
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-900 font-bold mb-2 flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-600" />
                 <span>02. The Multi-Agent Solution</span>
               </div>
@@ -142,13 +142,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
           {/* 3. Key Features */}
           <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-            <div className="text-xs font-mono uppercase tracking-wider text-blue-700 font-bold mb-3">
-              03. Core Functional Capabilities
+            <div className="text-xs font-mono uppercase tracking-wider text-indigo-700 font-bold mb-3 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-purple-600" />
+              <span>03. Core Functional Capabilities</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {project.features.map((feat, idx) => (
                 <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600 shrink-0 mt-0.5" />
                   <span>{feat}</span>
                 </div>
               ))}
@@ -160,35 +161,37 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <div className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold mb-2">
               04. Technologies & Tools
             </div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-700">
-              {project.techStack.map((tech, idx) => (
-                <React.Fragment key={tech}>
-                  <span className="text-[#0a1128] font-semibold">{tech}</span>
-                  {idx < project.techStack.length - 1 && <span className="text-slate-300">/</span>}
-                </React.Fragment>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-slate-700">
+              {project.techStack.map((tech) => (
+                <span 
+                  key={tech}
+                  className="px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/80 font-medium"
+                >
+                  {tech}
+                </span>
               ))}
             </div>
           </div>
 
-          {/* 5. Development Highlights */}
-          <div className="p-5 rounded-2xl bg-blue-50/50 border border-blue-200">
-            <div className="text-xs font-mono uppercase tracking-wider text-blue-800 font-bold mb-3 flex items-center gap-1.5">
-              <Code2 className="w-3.5 h-3.5 text-blue-600" />
+          {/* 5. Development Highlights with Pastel Sky */}
+          <div className="p-5 rounded-2xl bg-sky-50/70 border border-sky-200 shadow-2xs">
+            <div className="text-xs font-mono uppercase tracking-wider text-sky-900 font-bold mb-3 flex items-center gap-1.5">
+              <Code2 className="w-3.5 h-3.5 text-sky-600" />
               <span>05. Engineering & System Design</span>
             </div>
             <div className="space-y-2">
               {project.developmentHighlights.map((hl, idx) => (
                 <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
-                  <ArrowRight className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
+                  <ArrowRight className="w-3.5 h-3.5 text-sky-600 shrink-0 mt-0.5" />
                   <span>{hl}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* 6. Outcome */}
-          <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 border-y border-r border-blue-200 shadow-xs">
-            <div className="text-xs font-mono uppercase tracking-wider text-blue-800 font-bold mb-1">
+          {/* 6. Outcome with Pastel Lavender Gradient */}
+          <div className="p-5 rounded-2xl bg-gradient-to-r from-purple-50 via-sky-50 to-indigo-50/50 border-l-4 border-indigo-600 border-y border-r border-purple-200 shadow-xs">
+            <div className="text-xs font-mono uppercase tracking-wider text-indigo-900 font-bold mb-1">
               06. Result & Impact
             </div>
             <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">

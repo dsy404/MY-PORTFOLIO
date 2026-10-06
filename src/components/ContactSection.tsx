@@ -60,9 +60,17 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* Background radial glow */}
+      {/* Background multi-tone pastel glows */}
       <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-100/50 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-purple-100/50 rounded-full blur-[140px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-10 right-1/4 w-[450px] h-[380px] bg-sky-100/45 rounded-full blur-[130px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-rose-100/35 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -70,12 +78,14 @@ export const ContactSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold mb-2">
-            START A CONVERSATION
+          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center justify-center gap-2">
+            <span>START A CONVERSATION</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight mb-4 text-balance">
             Let's Build Something Meaningful Together.
           </h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-rose-400 rounded-full mx-auto mb-4" />
           <p className="text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
             I'm always interested in learning, building, collaborating, contributing to open source, and exploring new technology.
           </p>
@@ -88,18 +98,18 @@ export const ContactSection: React.FC = () => {
           <div className="lg:col-span-5 space-y-4">
             <AnimatedSection direction="up" delay={0.1} className="space-y-4">
               
-              {/* Email Card */}
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-300 shadow-sm group transition-all">
+              {/* Email Card with Pastel Sky */}
+              <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-sky-300 shadow-sm group transition-all">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-blue-100 text-blue-700 border border-blue-200">
+                    <div className="p-3 rounded-2xl bg-sky-100 text-sky-800 border border-sky-200 shadow-2xs">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-xs font-mono text-slate-500 font-semibold">EMAIL DIRECTLY</div>
                       <a 
                         href={`mailto:${personalInfo.email}`}
-                        className="text-sm font-bold text-[#0a1128] hover:text-blue-700 transition-colors break-all"
+                        className="text-sm font-bold text-[#0a1128] hover:text-sky-700 transition-colors break-all"
                       >
                         {personalInfo.email}
                       </a>
@@ -108,7 +118,7 @@ export const ContactSection: React.FC = () => {
 
                   <button
                     onClick={handleCopyEmail}
-                    className="p-2 text-slate-400 hover:text-black rounded-lg hover:bg-slate-200 transition-colors cursor-pointer"
+                    className="p-2 text-slate-400 hover:text-black rounded-lg hover:bg-sky-50 transition-colors cursor-pointer"
                     title="Copy email address"
                     aria-label="Copy email"
                   >
@@ -117,36 +127,36 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* GitHub Card */}
+              {/* GitHub Card with Pastel Purple */}
               <a 
                 href={personalInfo.github} 
                 target="_blank" 
                 rel="noreferrer"
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:shadow-md shadow-sm flex items-center justify-between group transition-all"
+                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-purple-300 hover:shadow-md shadow-sm flex items-center justify-between group transition-all"
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-blue-100 text-blue-700 border border-blue-200">
+                  <div className="p-3 rounded-2xl bg-purple-100 text-purple-800 border border-purple-200 shadow-2xs">
                     <Github className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="text-xs font-mono text-slate-500 font-semibold">GITHUB PROFILE</div>
-                    <div className="text-sm font-bold text-[#0a1128] group-hover:text-blue-700 transition-colors">
+                    <div className="text-sm font-bold text-[#0a1128] group-hover:text-purple-700 transition-colors">
                       github.com/{personalInfo.githubUsername}
                     </div>
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-purple-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
-              {/* LinkedIn Card */}
+              {/* LinkedIn Card with Pastel Blue */}
               <a 
                 href={personalInfo.linkedin} 
                 target="_blank" 
                 rel="noreferrer"
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:shadow-md shadow-sm flex items-center justify-between group transition-all"
+                className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-300 hover:shadow-md shadow-sm flex items-center justify-between group transition-all"
               >
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-blue-100 text-blue-700 border border-blue-200">
+                  <div className="p-3 rounded-2xl bg-blue-100 text-blue-800 border border-blue-200 shadow-2xs">
                     <Linkedin className="w-5 h-5" />
                   </div>
                   <div>
@@ -159,10 +169,10 @@ export const ContactSection: React.FC = () => {
                 <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-700 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
 
-              {/* Location & Optional Phone Card (with click-to-reveal privacy) */}
-              <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm space-y-4">
+              {/* Location & Optional Phone Card with Pastel Mint & Rose */}
+              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-blue-100 text-blue-700 border border-blue-200">
+                  <div className="p-3 rounded-2xl bg-emerald-100 text-emerald-800 border border-emerald-200 shadow-2xs">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>

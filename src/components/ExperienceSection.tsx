@@ -14,9 +14,13 @@ export const ExperienceSection: React.FC = () => {
   return (
     <section id="experience" className="py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200">
       
-      {/* Background glow */}
+      {/* Background multi-tone pastel glows */}
       <div 
-        className="absolute bottom-10 left-10 w-96 h-96 bg-indigo-100/40 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute bottom-10 left-10 w-96 h-96 bg-purple-100/40 rounded-full blur-[120px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute top-1/4 right-10 w-96 h-96 bg-sky-100/40 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -24,20 +28,21 @@ export const ExperienceSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold mb-2">
-            PRACTICAL CONTRIBUTION & IMPACT
+          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+            <span>PRACTICAL CONTRIBUTION & IMPACT</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
             Experience & Open Source
           </h2>
-          <div className="w-16 h-1 bg-blue-600 rounded-full mt-4" />
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-sky-400 rounded-full mt-4" />
           <p className="text-sm text-slate-600 mt-4 max-w-2xl">
             Real-world software engineering through open-source communities, peer code reviews, and structured developer initiatives.
           </p>
         </AnimatedSection>
 
         {/* Timeline Layout */}
-        <div className="relative pl-6 md:pl-8 border-l-2 border-blue-200 ml-2 md:ml-4 space-y-12">
+        <div className="relative pl-6 md:pl-8 border-l-2 border-purple-200 ml-2 md:ml-4 space-y-12">
           {experienceData.map((item, index) => (
             <AnimatedSection 
               key={item.id} 
@@ -45,11 +50,11 @@ export const ExperienceSection: React.FC = () => {
               delay={0.15 * index}
               className="relative group"
             >
-              {/* Timeline Node Bullet */}
-              <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow-xs group-hover:scale-125 transition-transform" />
+              {/* Timeline Node Bullet with Pastel Ring */}
+              <div className="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white ring-4 ring-purple-100 shadow-xs group-hover:scale-125 transition-transform" />
 
               {/* Experience Card */}
-              <div className="p-6 md:p-8 rounded-2xl bg-white border border-slate-200 hover:border-blue-400 transition-all duration-300 shadow-md hover:shadow-lg">
+              <div className="p-6 md:p-8 rounded-3xl bg-white border border-slate-200 hover:border-purple-300 transition-all duration-300 shadow-md hover:shadow-lg">
                 
                 {/* Header row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
@@ -61,27 +66,27 @@ export const ExperienceSection: React.FC = () => {
                           href={item.link} 
                           target="_blank" 
                           rel="noreferrer" 
-                          className="text-blue-600 hover:text-blue-800 transition-colors"
+                          className="text-indigo-600 hover:text-indigo-800 transition-colors"
                           aria-label={`Visit ${item.organization}`}
                         >
                           <ExternalLink className="w-4 h-4" />
                         </a>
                       )}
                     </h3>
-                    <div className="text-sm font-bold text-blue-700 mt-0.5">
+                    <div className="text-sm font-bold text-indigo-700 mt-0.5">
                       {item.organization}
                     </div>
                   </div>
 
-                  {/* Metadata (clean unboxed text with typographic separators) */}
+                  {/* Metadata with pastel date badge */}
                   <div className="flex items-center gap-3 text-xs font-mono text-slate-600">
-                    <span className="flex items-center gap-1 font-medium">
-                      <Calendar className="w-3.5 h-3.5 text-blue-600" />
+                    <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-50 text-purple-800 border border-purple-200 font-medium">
+                      <Calendar className="w-3.5 h-3.5" />
                       {item.period}
                     </span>
                     <span aria-hidden="true" className="text-slate-300">·</span>
                     <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                      <MapPin className="w-3.5 h-3.5 text-rose-400" />
                       {item.location}
                     </span>
                   </div>
@@ -105,14 +110,16 @@ export const ExperienceSection: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Technologies (Clean unboxed tags separated by slashes) */}
-                <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-600">
-                  <span className="text-blue-700 font-semibold">Technologies:</span>
-                  {item.technologies.map((tech, idx) => (
-                    <React.Fragment key={tech}>
-                      <span className="text-slate-800 font-medium">{tech}</span>
-                      {idx < item.technologies.length - 1 && <span className="text-slate-300">/</span>}
-                    </React.Fragment>
+                {/* Technologies with pastel tags */}
+                <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center gap-2 text-xs font-mono">
+                  <span className="text-indigo-700 font-semibold mr-1">Technologies:</span>
+                  {item.technologies.map((tech) => (
+                    <span 
+                      key={tech} 
+                      className="px-2.5 py-0.5 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/80 font-medium"
+                    >
+                      {tech}
+                    </span>
                   ))}
                 </div>
 
@@ -121,18 +128,18 @@ export const ExperienceSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Open Source Callout Banner */}
+        {/* Open Source Callout Banner with Pastel Lavender & Sky Gradient */}
         <AnimatedSection direction="up" delay={0.2} className="mt-16">
-          <div className="p-6 rounded-2xl bg-blue-50 border border-blue-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+          <div className="p-6 md:p-8 rounded-3xl bg-gradient-to-r from-purple-50 via-sky-50 to-indigo-50/50 border border-purple-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-blue-600 text-white shadow-xs">
+              <div className="p-3.5 rounded-2xl bg-purple-100 text-purple-800 border border-purple-200 shadow-2xs">
                 <FolderGit2 className="w-6 h-6" />
               </div>
               <div>
                 <h4 className="text-base font-bold font-display text-[#0a1128]">
                   Interested in Collaborating on Open Source?
                 </h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-slate-600 mt-0.5">
                   Explore my repositories on GitHub or reach out to build impactful developer tools together.
                 </p>
               </div>
@@ -142,10 +149,10 @@ export const ExperienceSection: React.FC = () => {
               href="https://github.com/dsy404"
               target="_blank"
               rel="noreferrer"
-              className="px-5 py-2.5 text-xs font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] rounded-lg transition-colors flex items-center gap-2 whitespace-nowrap shadow-xs"
+              className="px-5 py-2.5 text-xs font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] rounded-xl transition-all shadow-md shadow-navy-950/20 whitespace-nowrap flex items-center gap-2 cursor-pointer"
             >
-              <GitPullRequest className="w-3.5 h-3.5 text-blue-300" />
-              <span>View GitHub @dsy404</span>
+              <span>Explore GitHub</span>
+              <ExternalLink className="w-3.5 h-3.5 text-purple-300" />
             </a>
           </div>
         </AnimatedSection>
@@ -154,3 +161,4 @@ export const ExperienceSection: React.FC = () => {
     </section>
   );
 };
+

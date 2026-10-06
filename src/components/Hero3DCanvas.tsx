@@ -58,15 +58,17 @@ export const Hero3DCanvas: React.FC = () => {
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     mainGroup.add(coreMesh);
 
-    // 3. Orbiting Neural Particle Cloud (High contrast navy & blue on light background)
-    const particleCount = 280;
+    // 3. Orbiting Neural Particle Cloud (Pastel & Navy high-dimension mix)
+    const particleCount = 320;
     const particleGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const colorNavy = new THREE.Color(0x0a1128); // Midnight Navy
-    const colorRoyal = new THREE.Color(0x1d4ed8); // Royal Blue
-    const colorSky = new THREE.Color(0x0284c7); // Vivid Sky Blue
+    const colorNavy = new THREE.Color(0x1e3a8a); // Navy Anchor
+    const colorPastelSky = new THREE.Color(0x38bdf8); // Pastel Sky Cyan
+    const colorPastelLavender = new THREE.Color(0x818cf8); // Pastel Lavender
+    const colorPastelMint = new THREE.Color(0x34d399); // Pastel Mint
+    const colorPastelRose = new THREE.Color(0xf472b6); // Pastel Rose
 
     for (let i = 0; i < particleCount; i++) {
       const radius = 7.5 + Math.random() * 3.5;
@@ -78,7 +80,16 @@ export const Hero3DCanvas: React.FC = () => {
       positions[i * 3 + 2] = radius * Math.cos(phi);
 
       const rChoice = Math.random();
-      const c = rChoice > 0.5 ? colorNavy : rChoice > 0.25 ? colorRoyal : colorSky;
+      const c = rChoice > 0.7 
+        ? colorNavy 
+        : rChoice > 0.45 
+        ? colorPastelSky 
+        : rChoice > 0.25 
+        ? colorPastelLavender 
+        : rChoice > 0.1 
+        ? colorPastelMint 
+        : colorPastelRose;
+
       colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
@@ -88,25 +99,26 @@ export const Hero3DCanvas: React.FC = () => {
     particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.32,
+      size: 0.34,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.9,
     });
     const particleCloud = new THREE.Points(particleGeo, particleMat);
     mainGroup.add(particleCloud);
 
-    // 4. Tech Nodes orbiting in rings
+    // 4. Tech Nodes orbiting in rings with pastel node hues
     const techLabels = ["AI/ML", "Python", "Full-Stack", "SQL", "Open Source", "Docker", "n8n"];
     const nodesGroup = new THREE.Group();
     mainGroup.add(nodesGroup);
 
     const nodeObjects: { mesh: THREE.Mesh; name: string; angle: number; radius: number; speed: number; yOffset: number }[] = [];
+    const pastelNodeColors = [0x6366f1, 0x0284c7, 0x10b981, 0x8b5cf6, 0x06b6d4, 0xec4899, 0x3b82f6];
 
     techLabels.forEach((label, idx) => {
-      const nodeGeo = new THREE.SphereGeometry(0.35, 12, 12);
+      const nodeGeo = new THREE.SphereGeometry(0.36, 12, 12);
       const nodeMat = new THREE.MeshBasicMaterial({
-        color: idx % 2 === 0 ? 0x1e3a8a : 0x2563eb,
+        color: pastelNodeColors[idx % pastelNodeColors.length],
       });
       const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
       const radius = 9.5;
@@ -130,13 +142,13 @@ export const Hero3DCanvas: React.FC = () => {
       });
     });
 
-    // 5. Equatorial Ring Orbit
-    const ringGeo = new THREE.RingGeometry(8.9, 9.05, 64);
+    // 5. Equatorial Ring Orbit in Soft Pastel Periwinkle
+    const ringGeo = new THREE.RingGeometry(8.9, 9.08, 64);
     const ringMat = new THREE.MeshBasicMaterial({
-      color: 0x3b82f6,
+      color: 0x818cf8,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.4,
+      opacity: 0.55,
     });
     const ringMesh = new THREE.Mesh(ringGeo, ringMat);
     ringMesh.rotation.x = Math.PI / 2.3;

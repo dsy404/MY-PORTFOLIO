@@ -27,9 +27,17 @@ export const AboutSection: React.FC = () => {
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200">
       
-      {/* Background glow */}
+      {/* Background multi-tone pastel glows */}
       <div 
-        className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-blue-100/50 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-purple-100/50 rounded-full blur-[100px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute top-1/4 right-10 w-96 h-96 bg-sky-100/50 rounded-full blur-[120px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-10 left-1/3 w-80 h-80 bg-rose-100/40 rounded-full blur-[110px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -37,13 +45,14 @@ export const AboutSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold mb-2">
-            BIOGRAPHY & PHILOSOPHY
+          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+            <span>BIOGRAPHY & PHILOSOPHY</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
             About Me
           </h2>
-          <div className="w-16 h-1 bg-blue-600 rounded-full mt-4" />
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-sky-400 rounded-full mt-4" />
         </AnimatedSection>
 
         {/* Narrative & Visual Layout */}
@@ -52,7 +61,7 @@ export const AboutSection: React.FC = () => {
           {/* Left Column: Interactive Framed Profile Visual & Key Stats (5 cols) */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <AnimatedSection direction="up" delay={0.1} className="w-full max-w-md">
-              <div className="relative p-8 rounded-3xl bg-white border border-slate-200 shadow-xl w-full flex flex-col items-center text-center group">
+              <div className="relative p-8 rounded-3xl bg-white border border-purple-100 shadow-xl w-full flex flex-col items-center text-center group">
                 
                 {/* Profile Avatar with subtle glow */}
                 <div className="mb-6">
@@ -66,40 +75,37 @@ export const AboutSection: React.FC = () => {
                   Computer Science & Engineering Student
                 </p>
                 
-                {/* Institution & Location details */}
-                <div className="flex flex-col gap-1.5 text-xs text-slate-700 font-mono mb-6 w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200">
+                {/* Institution & Location details with pastel card backgrounds */}
+                <div className="flex flex-col gap-2 text-xs text-slate-700 font-mono mb-6 w-full px-4 py-3.5 rounded-2xl bg-gradient-to-b from-sky-50/50 to-purple-50/30 border border-sky-100">
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500 flex items-center gap-1.5">
-                      <GraduationCap className="w-3.5 h-3.5 text-blue-600" />
+                      <GraduationCap className="w-3.5 h-3.5 text-sky-600" />
                       College
                     </span>
                     <span className="text-[#0a1128] font-semibold text-right">SRMCEM, Lucknow</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500 flex items-center gap-1.5">
-                      <Target className="w-3.5 h-3.5 text-sky-600" />
+                      <Target className="w-3.5 h-3.5 text-purple-600" />
                       Cohort
                     </span>
                     <span className="text-[#0a1128] font-semibold">Class of 2029 (2nd Year)</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500 flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-indigo-600" />
+                      <MapPin className="w-3.5 h-3.5 text-rose-500" />
                       Location
                     </span>
                     <span className="text-[#0a1128] font-semibold">Lucknow, Uttar Pradesh</span>
                   </div>
                 </div>
 
-                {/* Verified Interest Tags */}
-                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-xs text-slate-600 font-mono font-medium">
-                  <span>AI / ML</span>
-                  <span className="text-slate-300">·</span>
-                  <span>Full-Stack</span>
-                  <span className="text-slate-300">·</span>
-                  <span>Open Source</span>
-                  <span className="text-slate-300">·</span>
-                  <span>Hackathons</span>
+                {/* Verified Interest Tags with pastel borders */}
+                <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-medium">
+                  <span className="px-2.5 py-1 rounded-full bg-purple-50 border border-purple-200/80 text-purple-800">AI / ML</span>
+                  <span className="px-2.5 py-1 rounded-full bg-sky-50 border border-sky-200/80 text-sky-800">Full-Stack</span>
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800">Open Source</span>
+                  <span className="px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-800">Hackathons</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -116,43 +122,45 @@ export const AboutSection: React.FC = () => {
                 My engineering journey is driven by hands-on experimentation. From developing responsive full-stack web applications to training predictive machine learning models with Python, scikit-learn, and NumPy, I enjoy understanding how systems work under the hood and crafting solutions that make tasks easier for people.
               </p>
 
-              {/* What I enjoy doing checklist */}
+              {/* What I enjoy doing checklist with pastel bullet dots */}
               <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-blue-700 font-semibold mb-4">
-                  WHAT DRIVES MY DAILY WORK
+                <h4 className="text-xs font-mono uppercase tracking-wider text-blue-700 font-semibold mb-4 flex items-center gap-2">
+                  <span>WHAT DRIVES MY DAILY WORK</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
                   <div className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-sky-400 mt-2 shrink-0 ring-4 ring-sky-100" />
                     <span>Building web-based applications</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0 ring-4 ring-purple-100" />
                     <span>Building AI-based projects & automations</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 mt-2 shrink-0 ring-4 ring-emerald-100" />
                     <span>Learning new engineering technologies</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-amber-400 mt-2 shrink-0 ring-4 ring-amber-100" />
                     <span>Participating in intensive hackathons</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-rose-400 mt-2 shrink-0 ring-4 ring-rose-100" />
                     <span>Contributing to open source software</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0 ring-4 ring-indigo-100" />
                     <span>Solving real-world technological challenges</span>
                   </div>
                 </div>
               </div>
 
-              {/* Long-term goal statement */}
-              <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50/50 border-l-4 border-blue-600 border-y border-r border-blue-200/60 shadow-xs">
-                <div className="text-xs font-mono text-blue-800 font-bold uppercase tracking-wider mb-1">
-                  LONG-TERM ASPIRATION
+              {/* Long-term goal statement with soft pastel lavender-to-sky gradient */}
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-50 via-sky-50 to-blue-50/50 border-l-4 border-indigo-600 border-y border-r border-indigo-100 shadow-xs">
+                <div className="text-xs font-mono text-indigo-900 font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+                  <span>LONG-TERM ASPIRATION</span>
                 </div>
                 <p className="text-sm sm:text-base text-slate-800 italic leading-relaxed">
                   "{personalInfo.objective}"
@@ -163,42 +171,73 @@ export const AboutSection: React.FC = () => {
 
         </div>
 
-        {/* 4 Supporting Highlight Pillars: 01 Build, 02 Learn, 03 Contribute, 04 Solve */}
+        {/* 4 Supporting Highlight Pillars with Distinct Pastel Themes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {aboutPillars.map((pillar, index) => (
-            <AnimatedSection 
-              key={pillar.number}
-              direction="up" 
-              delay={0.1 * index}
-              className="h-full"
-            >
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group h-full flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold font-mono text-blue-600 group-hover:text-blue-700 transition-colors">
-                      {pillar.number}
-                    </span>
-                    <div className="p-2 rounded-xl bg-slate-50 border border-slate-200">
-                      {getPillarIcon(pillar.number)}
+          {aboutPillars.map((pillar, index) => {
+            const pillarThemes = [
+              {
+                bg: 'bg-gradient-to-b from-sky-50/90 to-white',
+                border: 'border-sky-200/90 hover:border-sky-400',
+                badgeBg: 'bg-sky-100 text-sky-800 border-sky-200',
+                numColor: 'text-sky-600'
+              },
+              {
+                bg: 'bg-gradient-to-b from-purple-50/90 to-white',
+                border: 'border-purple-200/90 hover:border-purple-400',
+                badgeBg: 'bg-purple-100 text-purple-800 border-purple-200',
+                numColor: 'text-purple-600'
+              },
+              {
+                bg: 'bg-gradient-to-b from-emerald-50/90 to-white',
+                border: 'border-emerald-200/90 hover:border-emerald-400',
+                badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-200',
+                numColor: 'text-emerald-600'
+              },
+              {
+                bg: 'bg-gradient-to-b from-amber-50/90 to-white',
+                border: 'border-amber-200/90 hover:border-amber-400',
+                badgeBg: 'bg-amber-100 text-amber-800 border-amber-200',
+                numColor: 'text-amber-600'
+              }
+            ];
+            const theme = pillarThemes[index % pillarThemes.length];
+
+            return (
+              <AnimatedSection 
+                key={pillar.number}
+                direction="up" 
+                delay={0.1 * index}
+                className="h-full"
+              >
+                <div className={`p-6 rounded-2xl ${theme.bg} border ${theme.border} transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group h-full flex flex-col justify-between`}>
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={`text-2xl font-bold font-mono ${theme.numColor}`}>
+                        {pillar.number}
+                      </span>
+                      <div className={`p-2.5 rounded-xl ${theme.badgeBg} border shadow-2xs`}>
+                        {getPillarIcon(pillar.number)}
+                      </div>
                     </div>
+                    
+                    <h3 className="text-lg font-bold font-display text-[#0a1128] mb-1 group-hover:text-blue-700 transition-colors">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-blue-700 mb-3">
+                      {pillar.subtitle}
+                    </p>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {pillar.description}
+                    </p>
                   </div>
-                  
-                  <h3 className="text-lg font-bold font-display text-[#0a1128] mb-1 group-hover:text-blue-700 transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-blue-600 mb-3">
-                    {pillar.subtitle}
-                  </p>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {pillar.description}
-                  </p>
                 </div>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            );
+          })}
         </div>
 
       </div>
     </section>
   );
 };
+

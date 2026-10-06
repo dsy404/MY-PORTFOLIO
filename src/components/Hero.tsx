@@ -18,15 +18,23 @@ export const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-white bg-grid-pattern"
+      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-pastel-mesh-hero bg-grid-pattern"
     >
-      {/* Soft Light Navy & Blue Ambient Background Gradients */}
+      {/* Soft Multi-Tone Pastel Ambient Glows */}
       <div 
-        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-blue-100/60 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-sky-200/45 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-indigo-50/70 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-purple-200/40 rounded-full blur-[130px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-10 right-10 w-[420px] h-[420px] bg-rose-100/50 rounded-full blur-[120px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-16 left-12 w-[380px] h-[380px] bg-emerald-100/50 rounded-full blur-[110px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -41,17 +49,17 @@ export const Hero: React.FC = () => {
             className="lg:col-span-7 flex flex-col items-start text-left"
           >
             
-            {/* Status & Identity Indicator (clean unboxed text with typographic separators) */}
+            {/* Status & Identity Indicator with Pastel Mint & Sky Accents */}
             <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-slate-600 mb-6 font-mono">
-              <span className="flex items-center gap-1.5 text-blue-700 font-semibold">
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 font-semibold shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
                 <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block -ml-3.5" />
                 Available for internships & projects
               </span>
               <span aria-hidden="true" className="text-slate-300">·</span>
-              <span className="flex items-center gap-1 text-slate-700">
-                <GraduationCap className="w-3.5 h-3.5 text-blue-600" />
-                SRMCEM Class of 2029
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 border border-sky-200/80 text-sky-800 font-medium">
+                <GraduationCap className="w-3.5 h-3.5 text-sky-600" />
+                SRMCEM '29
               </span>
               <span aria-hidden="true" className="text-slate-300">·</span>
               <span className="flex items-center gap-1 text-slate-600">
@@ -62,17 +70,17 @@ export const Hero: React.FC = () => {
 
             {/* Main Primary Heading in Deep Navy */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-[#0a1128] leading-[1.08] mb-4 text-balance">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0a1128] via-blue-800 to-blue-600">Deepshikha Yadav.</span>
+              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0a1128] via-blue-800 to-indigo-600">Deepshikha Yadav.</span>
             </h1>
 
-            {/* Secondary Role Kicker */}
-            <p className="text-base sm:text-lg md:text-xl font-semibold text-blue-700 mb-5 tracking-tight flex flex-wrap items-center gap-x-2 gap-y-1">
+            {/* Secondary Role Kicker with Soft Pastel Tinted Separation */}
+            <p className="text-base sm:text-lg md:text-xl font-semibold text-blue-800 mb-5 tracking-tight flex flex-wrap items-center gap-x-2 gap-y-1">
               <span>B.Tech CSE Student</span>
-              <span className="text-blue-400 font-bold">·</span>
+              <span className="text-purple-400 font-bold">·</span>
               <span>Full-Stack Developer</span>
-              <span className="text-blue-400 font-bold">·</span>
+              <span className="text-sky-400 font-bold">·</span>
               <span>AI Enthusiast</span>
-              <span className="text-blue-400 font-bold">·</span>
+              <span className="text-emerald-400 font-bold">·</span>
               <span>Open Source Contributor</span>
             </p>
 
@@ -81,7 +89,7 @@ export const Hero: React.FC = () => {
               {personalInfo.bio}
             </p>
 
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons with subtle pastel highlights */}
             <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
               <button
                 onClick={() => scrollTo('projects')}
@@ -93,45 +101,39 @@ export const Hero: React.FC = () => {
 
               <button
                 onClick={() => scrollTo('contact')}
-                className="px-6 py-3.5 text-sm font-semibold text-[#0a1128] bg-white hover:bg-slate-50 border border-slate-300 hover:border-blue-600 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-3.5 text-sm font-semibold text-[#0a1128] bg-white hover:bg-purple-50/60 border border-slate-300 hover:border-purple-300 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <span>Let's Connect</span>
-                <ArrowUpRight className="w-4 h-4 text-blue-600" />
+                <ArrowUpRight className="w-4 h-4 text-purple-600" />
               </button>
 
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-3.5 text-sm font-medium text-slate-700 hover:text-[#0a1128] bg-slate-50 hover:bg-blue-50/60 border border-slate-200 hover:border-slate-300 rounded-xl transition-all flex items-center gap-2"
+                className="px-4 py-3.5 text-sm font-medium text-slate-700 hover:text-[#0a1128] bg-white hover:bg-sky-50/70 border border-slate-200 hover:border-sky-300 rounded-xl transition-all flex items-center gap-2 shadow-2xs"
                 aria-label="GitHub Profile"
               >
-                <Github className="w-4 h-4 text-blue-600" />
+                <Github className="w-4 h-4 text-sky-600" />
                 <span className="font-mono text-xs">github.com/{personalInfo.githubUsername}</span>
               </a>
             </div>
 
-            {/* Quick Tech Highlights Bar */}
+            {/* Quick Tech Highlights Bar with Pastel Accents */}
             <div className="pt-6 border-t border-slate-200 w-full">
-              <div className="text-xs font-mono text-slate-500 font-semibold mb-2">
-                CORE STACK & TOOLING
+              <div className="text-xs font-mono text-slate-500 font-semibold mb-2.5 flex items-center gap-2">
+                <span>CORE STACK & TOOLING</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
               </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-700">
-                <span className="hover:text-blue-700 transition-colors font-medium">Python</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">C++</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">React</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">Node.js</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">Scikit-Learn</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">SQL</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">Docker</span>
-                <span className="text-slate-300">/</span>
-                <span className="hover:text-blue-700 transition-colors font-medium">n8n</span>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                <span className="px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/80 font-medium">Python</span>
+                <span className="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 border border-blue-200/80 font-medium">C++</span>
+                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">React</span>
+                <span className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/80 font-medium">Node.js</span>
+                <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200/80 font-medium">Scikit-Learn</span>
+                <span className="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80 font-medium">SQL</span>
+                <span className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-800 border border-rose-200/80 font-medium">Docker</span>
+                <span className="px-2.5 py-1 rounded-lg bg-teal-50 text-teal-800 border border-teal-200/80 font-medium">n8n</span>
               </div>
             </div>
 
