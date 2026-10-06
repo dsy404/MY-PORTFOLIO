@@ -199,7 +199,7 @@ export const projectsData: Project[] = [
       "Built simplified Parent Digest generator translating academic metrics into clear, non-technical updates"
     ],
     outcome: "Created a scalable, compassionate AI education platform ensuring students can catch up, master concepts in their native languages, and receive personalized mentorship regardless of socioeconomic or geographic constraints.",
-    githubUrl: "https://github.com/dsy404/phoenix-ai",
+    githubUrl: "https://github.com/dsy404/Phoenix-AI",
     accentColor: "#2563eb"
   },
   {

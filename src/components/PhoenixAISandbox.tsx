@@ -10,7 +10,8 @@ import {
   Sparkles, 
   RefreshCw,
   BookOpen,
-  Volume2
+  Volume2,
+  Github
 } from 'lucide-react';
 
 export const PhoenixAISandbox: React.FC = () => {
@@ -112,18 +113,31 @@ export const PhoenixAISandbox: React.FC = () => {
           </div>
         </div>
 
-        {/* Status Indicator */}
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-mono font-semibold text-slate-700">
-            {pipelineState === 'idle' && 'SYSTEM READY'}
-            {pipelineState === 'running' && 'AGENTS COLLABORATING...'}
-            {pipelineState === 'completed' && 'RECOVERY ROADMAP READY'}
-          </span>
-          <span className={`w-2.5 h-2.5 rounded-full ${
-            pipelineState === 'idle' ? 'bg-slate-400' :
-            pipelineState === 'running' ? 'bg-amber-500 animate-ping' :
-            'bg-emerald-500'
-          }`} />
+        {/* Status Indicator & Repo Link */}
+        <div className="flex flex-wrap items-center gap-2.5">
+          <a
+            href="https://github.com/dsy404/Phoenix-AI"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-slate-700 hover:text-black bg-white hover:bg-slate-100 border border-slate-300 rounded-lg transition-colors shadow-2xs"
+            title="View Phoenix AI GitHub Repository"
+          >
+            <Github className="w-3.5 h-3.5 text-blue-700" />
+            <span>dsy404/Phoenix-AI</span>
+          </a>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono font-semibold text-slate-700">
+              {pipelineState === 'idle' && 'SYSTEM READY'}
+              {pipelineState === 'running' && 'AGENTS COLLABORATING...'}
+              {pipelineState === 'completed' && 'RECOVERY ROADMAP READY'}
+            </span>
+            <span className={`w-2.5 h-2.5 rounded-full ${
+              pipelineState === 'idle' ? 'bg-slate-400' :
+              pipelineState === 'running' ? 'bg-amber-500 animate-ping' :
+              'bg-emerald-500'
+            }`} />
+          </div>
         </div>
       </div>
 
