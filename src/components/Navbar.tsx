@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Github } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Github, FileText } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 interface NavbarProps {
@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'achievements', 'education', 'contact'];
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'achievements', 'education', 'resume', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -40,6 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Services', href: '#services' },
     { name: 'Achievements', href: '#achievements' },
     { name: 'Contact', href: '#contact' },
@@ -96,12 +97,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           </nav>
 
           {/* Zone 3: 1-2 primary actions */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2.5">
+            <a
+              href="#resume"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick('#resume');
+              }}
+              className="px-3 py-1.5 text-xs font-mono font-semibold text-purple-900 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer"
+            >
+              <FileText className="w-3.5 h-3.5 text-purple-600" />
+              <span>Resume</span>
+            </a>
+
             <a
               href={personalInfo.github}
               target="_blank"
               rel="noreferrer"
-              aria-label="GitHub Profile (dsy404)"
+              aria-label="GitHub Profile"
               className="p-2 text-slate-500 hover:text-[#0a1128] transition-colors hover:bg-slate-100 rounded-lg"
             >
               <Github className="w-4 h-4" />

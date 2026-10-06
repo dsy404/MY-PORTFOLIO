@@ -13,6 +13,7 @@ import { ProjectsSection } from './components/ProjectsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { AchievementsSection } from './components/AchievementsSection';
 import { EducationSection } from './components/EducationSection';
+import { ResumeSection } from './components/ResumeSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 
@@ -55,7 +56,10 @@ export default function App() {
         {/* 8. Education Section */}
         <EducationSection />
 
-        {/* 9. Contact Section */}
+        {/* 9. Formal Resume Section */}
+        <ResumeSection />
+
+        {/* 10. Contact Section */}
         <ContactSection />
       </main>
 

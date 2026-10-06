@@ -1,4 +1,4 @@
-import { Project, SkillItem, ExperienceItem, HackathonItem } from '../types/portfolio';
+import { Project, SkillItem, ExperienceItem, HackathonItem, ResumeData } from '../types/portfolio';
 
 export const personalInfo = {
   name: "Deepshikha Yadav",
@@ -9,18 +9,20 @@ export const personalInfo = {
   degree: "B.Tech in Computer Science and Engineering",
   currentYear: "2nd Year",
   graduationYear: "2029",
+  cgpa: "7.75/10 (1st Year)",
   location: "Lucknow, Uttar Pradesh, India",
   email: "dy.deepshikha04aug@gmail.com",
-  github: "https://github.com/dsy404",
-  githubUsername: "dsy404",
-  linkedin: "https://www.linkedin.com/in/deepshikha-yadav",
-  linkedinName: "Deepshikha Yadav",
+  github: "https://github.com/deeps0408",
+  githubUsername: "deeps0408",
+  secondaryGithub: "https://github.com/dsy404",
+  linkedin: "https://www.linkedin.com/in/deepshikha-yadav-586b723b6",
+  linkedinName: "deepshikha-yadav-586b723b6",
   phone: "9369534593",
-  objective: "To become a skilled software developer, contribute to impactful open-source initiatives, and use artificial intelligence and full-stack technologies to solve meaningful real-world challenges.",
+  objective: "Second-year B.Tech Computer Science student passionate about building reliable, user-focused AI applications, with hands-on experience developing LLM-powered agents, multi-agent orchestration (LangGraph), and Retrieval-Augmented Generation (RAG) systems.",
   stats: [
     { label: "Graduation Cohort", value: "2029" },
+    { label: "Academic CGPA", value: "7.75 / 10" },
     { label: "Current Standing", value: "2nd Year B.Tech" },
-    { label: "Primary Discipline", value: "Computer Science" },
     { label: "Open Source Role", value: "GSSoC '26 Contributor" }
   ]
 };
@@ -386,3 +388,111 @@ export const servicesData = [
     borderAccent: "border-sky-500/30"
   }
 ];
+
+export const resumeData: ResumeData = {
+  name: "DEEPSHIKHA YADAV",
+  location: "Lucknow, Uttar Pradesh",
+  phone: "9369534593",
+  email: "dy.deepshikha04aug@gmail.com",
+  linkedin: "linkedin.com/in/deepshikha-yadav-586b723b6",
+  linkedinUrl: "https://www.linkedin.com/in/deepshikha-yadav-586b723b6",
+  github: "github.com/deeps0408",
+  githubUrl: "https://github.com/deeps0408",
+  objective: "Second-year B.Tech Computer Science student passionate about building reliable, user-focused AI applications, with hands-on experience developing LLM-powered agents, multi-agent orchestration (LangGraph), and Retrieval-Augmented Generation (RAG) systems. Strong foundation in Python, C++, and full-stack development, demonstrated through independent projects on reinforcement learning environments, responsible AI, and accessible education technology. Seeking a Software Engineering/AI internship at OpenAI to contribute to safe, impactful AI systems while learning from world-class researchers and engineers.",
+  education: {
+    institution: "Shri Ramswaroop Memorial College of Engineering and Management",
+    expectedGraduation: "2029",
+    degree: "B.Tech in Computer Science and Engineering",
+    cgpa: "7.75/10 (1st Year)",
+    standing: "Currently in 2nd Year"
+  },
+  technicalSkills: [
+    {
+      category: "Languages",
+      skills: ["Python", "C++"]
+    },
+    {
+      category: "AI/ML & Agents",
+      skills: ["LLMs", "RAG", "AI Agents", "LangGraph", "Prompt Engineering", "Reinforcement Learning", "Scikit-learn"]
+    },
+    {
+      category: "Frontend",
+      skills: ["React", "TypeScript", "HTML", "CSS"]
+    },
+    {
+      category: "Backend & APIs",
+      skills: ["Node.js", "FastAPI", "REST APIs"]
+    },
+    {
+      category: "Libraries & Data",
+      skills: ["NumPy", "Pandas", "Matplotlib", "ChromaDB (Vector DB)"]
+    },
+    {
+      category: "Tools & DevOps",
+      skills: ["Docker", "n8n", "Git/GitHub", "VS Code", "Jupyter Notebook", "Windows"]
+    }
+  ],
+  projects: [
+    {
+      title: "AI Customer Support Training Environment",
+      techStack: "Python, Docker, FastAPI, OpenEnv",
+      githubUrl: "https://github.com/deeps0408/openenv-project",
+      highlights: [
+        "Built an OpenEnv-compliant reinforcement learning environment that trains AI agents to resolve multi-turn customer support issues, from issue classification to full resolution",
+        "Designed step-by-step, rule-based reward functions (issue identification, clarification, resolution) achieving a full 1.0 episode reward on sample multi-turn scenarios",
+        "Simulated diverse, realistic customer scenarios for reproducible, gym-style agent training and evaluation",
+        "Solo-built for a hackathon; used Claude to accelerate code generation and environment architecture"
+      ]
+    },
+    {
+      title: "Phoenix AI — Multi-Agent Education Platform",
+      techStack: "Next.js, TypeScript, FastAPI, LangGraph, OpenAI/Gemini API, ChromaDB",
+      githubUrl: "https://github.com/deeps0408/Phoenix-AI",
+      highlights: [
+        "Architected a LangGraph-powered orchestrator that routes student queries across 10 specialized AI agents (teaching, translation, mentoring, assessment, emotional support, offline sync) for underserved learners",
+        "Solved offline access for low-bandwidth (2G) regions by implementing lesson caching, ensuring learning continuity without stable internet",
+        "Integrated RAG-based resource recommendations and Whisper/ElevenLabs voice pipelines for multilingual support across 7+ regional languages",
+        "Solo-built as capstone project for Google's 5-day AI Intensive Vibe Coding Program"
+      ]
+    },
+    {
+      title: "FAIRTRACE-AI — AI Fairness Analysis Platform",
+      techStack: "React, FastAPI, Scikit-learn, AIF360, SHAP/LIME",
+      githubUrl: "https://github.com/deeps0408/FAIRTRACE-AI",
+      highlights: [
+        "Built an AI fairness evaluation platform that detects and explains demographic bias in ML models using metrics such as Statistical Parity Difference and Disparate Impact",
+        "Implemented explainable AI dashboards (SHAP/LIME) and automated bias-mitigation recommendations to support trustworthy AI deployment in hiring, healthcare, and finance",
+        "Developed for Google Solution Challenge 2026 under the UN SDG-aligned \"Responsible & Ethical AI for Social Impact\" track"
+      ]
+    }
+  ],
+  trainingPrograms: [
+    {
+      title: "AI/ML Training Program",
+      institution: "Shri Ramswaroop Memorial College of Engineering and Management",
+      period: "Jul 2026 (2 weeks)",
+      highlights: [
+        "Completed hands-on training in Python, NumPy, Pandas, Matplotlib, Scikit-learn, reinforcement learning, and classification algorithms (logistic regression, decision trees, KNN, random forest)",
+        "Built capstone project Heart Disease Prediction — a logistic regression classifier predicting heart disease risk from patient medical records (github.com/deeps0408/Heart_Disease_Prediction)"
+      ]
+    }
+  ],
+  openSource: [
+    {
+      program: "GirlScript Summer of Code 2026",
+      contributions: [
+        "Contributed 2 web projects to the 100_days_100_web_project repository and resolved bugs in the Pizza-Customization-Web-App repository (~5 pull requests)"
+      ]
+    }
+  ],
+  certifications: [
+    {
+      name: "Google Solution Challenge 2026 — Participation Certificate",
+      date: "Jul 2026"
+    },
+    {
+      name: "Microsoft AI Skills Certification",
+      date: "Jun 2026"
+    }
+  ]
+};

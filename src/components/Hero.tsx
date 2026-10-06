@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowDown, ArrowUpRight, Github, MapPin, GraduationCap } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Github, MapPin, GraduationCap, FileText } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { personalInfo } from '../data/portfolioData';
 import { ProfileAvatar } from './ProfileAvatar';
@@ -96,6 +96,14 @@ export const Hero: React.FC = () => {
               >
                 <span>View My Work</span>
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              </button>
+
+              <button
+                onClick={() => scrollTo('resume')}
+                className="px-5 py-3.5 text-sm font-semibold text-purple-950 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
+              >
+                <FileText className="w-4 h-4 text-purple-600" />
+                <span>View Resume</span>
               </button>
 
               <button

@@ -49,3 +49,46 @@ export interface HackathonItem {
   learnings: string[];
   skillsApplied: string[];
 }
+
+export interface ResumeData {
+  name: string;
+  location: string;
+  phone: string;
+  email: string;
+  linkedin: string;
+  linkedinUrl: string;
+  github: string;
+  githubUrl: string;
+  objective: string;
+  education: {
+    institution: string;
+    expectedGraduation: string;
+    degree: string;
+    cgpa: string;
+    standing: string;
+  };
+  technicalSkills: {
+    category: string;
+    skills: string[];
+  }[];
+  projects: {
+    title: string;
+    techStack: string;
+    githubUrl: string;
+    highlights: string[];
+  }[];
+  trainingPrograms: {
+    title: string;
+    institution: string;
+    period: string;
+    highlights: string[];
+  }[];
+  openSource: {
+    program: string;
+    contributions: string[];
+  }[];
+  certifications: {
+    name: string;
+    date: string;
+  }[];
+}
