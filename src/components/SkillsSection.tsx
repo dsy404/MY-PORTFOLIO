@@ -186,7 +186,7 @@ export const SkillsSection: React.FC = () => {
                 {/* Practical Takeaway Footnote */}
                 <div className="pt-4 border-t border-slate-200 flex items-center gap-2 text-xs text-slate-600">
                   <Layers className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                  <span>Applied in Phoenix AI, GenZify, and open-source contributions.</span>
+                  <span>Applied in Phoenix AI, GenZify, Heart Disease Prediction, and open source contributions.</span>
                 </div>
 
               </div>

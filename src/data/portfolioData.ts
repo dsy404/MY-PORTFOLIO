@@ -230,6 +230,41 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/dsy404/genzify",
     demoUrl: "#genzify-live-demo",
     accentColor: "#38bdf8"
+  },
+  {
+    id: "heart-disease-prediction",
+    title: "Heart Disease Prediction",
+    tagline: "Binary Classification & Clinical Risk Assessment with Logistic Regression",
+    focusArea: "Machine Learning · Healthcare · Scikit-Learn",
+    category: "Machine Learning / Healthcare",
+    summary: "A practical Machine Learning classification project that predicts whether a patient is likely to have heart disease based on medical attributes including age, resting blood pressure, cholesterol, max heart rate, and exercise-induced angina.",
+    coreQuote: "Predictive health insights through statistical machine learning and data-driven risk assessment.",
+    targetAudience: [
+      "Healthcare data researchers & informatics students",
+      "Preventive cardiology screening exploration",
+      "Developers learning end-to-end classification pipelines",
+      "Patients seeking educational cardiovascular risk awareness"
+    ],
+    problem: "Early detection of cardiac risk factors is vital for preventive cardiology, but complex multi-dimensional health metrics (blood pressure, cholesterol, ST depression) require quantitative synthesis to detect risk patterns reliably.",
+    idea: "Trained a Scikit-Learn Logistic Regression binary classification model on a 205-patient clinical dataset, mapping multi-dimensional medical parameters into a calibrated probability of heart disease likelihood (Class 0: No Disease vs Class 1: Disease).",
+    features: [
+      "Complete end-to-end ML workflow: data loading, cleaning, categorical encoding, EDA, model training, and prediction",
+      "Missing data imputation handling numerical values with mean and categorical attributes with mode",
+      "Categorical feature encoding for sex, chest pain type, fasting blood sugar, resting ECG, and exercise angina",
+      "Exploratory Data Analysis with Matplotlib: age distributions, cholesterol histograms, and correlation heatmaps",
+      "80/20 train-test data partitioning evaluating model generalization on unseen patient health records",
+      "Interactive prediction module accepting user patient inputs to generate direct classification output"
+    ],
+    techStack: ["Python", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib", "Jupyter Notebook", "Logistic Regression"],
+    developmentHighlights: [
+      "Cleaned and preprocessed a 205-record patient dataset, handling missing values and verifying zero duplicate records",
+      "Converted categorical medical parameters into numerical feature vectors ready for classification modeling",
+      "Plotted exploratory visualizations including feature distributions and correlation heatmaps using Matplotlib",
+      "Trained a Scikit-Learn Logistic Regression classifier separating binary classes with a clear decision boundary"
+    ],
+    outcome: "Successfully implemented a complete, transparent machine learning classification pipeline from raw tabular data ingestion to exploratory visualization, model evaluation, and patient risk prediction.",
+    githubUrl: "https://github.com/dsy404/Heart_Disease_Prediction",
+    accentColor: "#e11d48"
   }
 ];
 

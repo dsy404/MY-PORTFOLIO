@@ -9,6 +9,7 @@ import { Project } from '../types/portfolio';
 import { ProjectModal } from './ProjectModal';
 import { GenZifyPlayground } from './GenZifyPlayground';
 import { PhoenixAISandbox } from './PhoenixAISandbox';
+import { HeartDiseaseSandbox } from './HeartDiseaseSandbox';
 import { AnimatedSection } from './AnimatedSection';
 
 export const ProjectsSection: React.FC = () => {
@@ -157,6 +158,10 @@ export const ProjectsSection: React.FC = () => {
                         {isPhoenix ? (
                           <div className="relative">
                             <PhoenixAISandbox />
+                          </div>
+                        ) : project.id === 'heart-disease-prediction' ? (
+                          <div className="relative">
+                            <HeartDiseaseSandbox />
                           </div>
                         ) : (
                           <div className="relative">

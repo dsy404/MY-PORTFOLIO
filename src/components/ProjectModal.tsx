@@ -3,6 +3,7 @@ import { X, Github, CheckCircle2, Cpu, Code2, ArrowRight, Heart, Users, Sparkles
 import { Project } from '../types/portfolio';
 import { PhoenixAISandbox } from './PhoenixAISandbox';
 import { GenZifyPlayground } from './GenZifyPlayground';
+import { HeartDiseaseSandbox } from './HeartDiseaseSandbox';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -88,7 +89,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
               <div className="text-xs font-mono uppercase tracking-wider text-blue-700 font-bold mb-3 flex items-center gap-2">
                 <Users className="w-4 h-4 text-blue-600" />
-                <span>WHO IS PHOENIX AI FOR?</span>
+                <span>WHO IS {project.title.toUpperCase()} FOR?</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
                 {project.targetAudience.map((aud, i) => (
@@ -109,6 +110,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </div>
             {project.id === 'phoenix-ai' ? (
               <PhoenixAISandbox />
+            ) : project.id === 'heart-disease-prediction' ? (
+              <HeartDiseaseSandbox />
             ) : (
               <GenZifyPlayground />
             )}

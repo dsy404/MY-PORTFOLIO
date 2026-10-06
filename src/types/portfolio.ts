@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   tagline: string;
   focusArea: string;
-  category: 'AI / EdTech' | 'Creative Web / NLP';
+  category: 'AI / EdTech' | 'Creative Web / NLP' | 'Machine Learning / Healthcare';
   summary: string;
   problem: string;
   idea: string;
