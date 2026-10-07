@@ -88,10 +88,10 @@ export const ScrollTimelineScrubber: React.FC = () => {
         
         {/* Left Indicator: Active Chapter & Title */}
         <div className="flex items-center gap-2 min-w-[110px] sm:min-w-[180px]">
-          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+          <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 animate-pulse" />
           <div className="flex flex-col">
-            <span className="text-[9px] font-mono uppercase tracking-wider text-slate-500 font-semibold">
-              SECTION 0{activeIndex + 1} / 0{sections.length}
+            <span className="text-[9px] font-mono uppercase tracking-wider text-purple-900 font-semibold">
+              SECTION 0{activeIndex + 1} / {sections.length < 10 ? `0${sections.length}` : sections.length}
             </span>
             <span className="text-xs font-bold font-display text-[#0a1128] truncate max-w-[100px] sm:max-w-[150px]">
               {currentSectionObj.name}
@@ -99,15 +99,15 @@ export const ScrollTimelineScrubber: React.FC = () => {
           </div>
         </div>
 
-        {/* Center: Interactive Scrubber Rail with Section Nodes (as in Weglot video) */}
+        {/* Center: Interactive Scrubber Rail with Section Nodes */}
         <div className="flex-1 relative flex items-center justify-between py-2">
           
           {/* Background Rail Line */}
-          <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[3px] bg-slate-200 rounded-full" />
+          <div className="absolute left-2 right-2 top-1/2 -translate-y-1/2 h-[3px] bg-purple-100/80 rounded-full" />
 
-          {/* Filled Active Progress Line */}
+          {/* Filled Active Progress Line in Pastel Purple & Pink */}
           <div 
-            className="absolute left-2 top-1/2 -translate-y-1/2 h-[3.5px] bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-full transition-all duration-150"
+            className="absolute left-2 top-1/2 -translate-y-1/2 h-[3.5px] bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 rounded-full transition-all duration-150"
             style={{ 
               width: `calc(${scrollProgress * 100}% - 4px)` 
             }}
@@ -129,7 +129,7 @@ export const ScrollTimelineScrubber: React.FC = () => {
                 {/* Floating Tooltip Bubble */}
                 {hoveredNode === section.id && (
                   <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-1 rounded-lg bg-[#0a1128] text-white text-[10px] font-mono font-semibold shadow-md pointer-events-none animate-in fade-in zoom-in-95 duration-150 flex items-center gap-1.5 z-50">
-                    <Icon className="w-3 h-3 text-sky-400" />
+                    <Icon className="w-3 h-3 text-pink-400" />
                     <span>0{idx + 1}. {section.name}</span>
                   </div>
                 )}
@@ -141,20 +141,20 @@ export const ScrollTimelineScrubber: React.FC = () => {
                   aria-label={`Jump to ${section.name} section`}
                   className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
                     isActive 
-                      ? 'bg-blue-600 text-white scale-125 shadow-[0_0_12px_rgba(37,99,235,0.6)] ring-4 ring-blue-100' 
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white scale-125 shadow-[0_0_12px_rgba(236,72,153,0.5)] ring-4 ring-pink-100' 
                       : isPassed
-                      ? 'bg-indigo-600 text-white hover:scale-110'
-                      : 'bg-white border-2 border-slate-300 text-slate-400 hover:border-blue-400 hover:scale-110'
+                      ? 'bg-purple-600 text-white hover:scale-110'
+                      : 'bg-white border-2 border-purple-200 text-purple-400 hover:border-pink-400 hover:scale-110'
                   }`}
                 >
                   <span className={`w-1.5 h-1.5 rounded-full ${
-                    isActive || isPassed ? 'bg-white' : 'bg-slate-300'
+                    isActive || isPassed ? 'bg-white' : 'bg-purple-200'
                   }`} />
                 </button>
 
                 {/* Micro Label on desktop */}
                 <span className={`hidden md:block absolute -bottom-4 text-[9px] font-mono tracking-tight transition-colors ${
-                  isActive ? 'text-blue-700 font-bold' : 'text-slate-400'
+                  isActive ? 'text-purple-900 font-bold' : 'text-slate-400'
                 }`}>
                   {section.shortName}
                 </span>

@@ -20,7 +20,11 @@ export const ExperienceSection: React.FC = () => {
         aria-hidden="true" 
       />
       <div 
-        className="absolute top-1/4 right-10 w-96 h-96 bg-sky-100/40 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-1/4 right-10 w-96 h-96 bg-pink-200/40 rounded-full blur-[130px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute bottom-1/4 left-10 w-96 h-96 bg-purple-200/40 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -28,14 +32,14 @@ export const ExperienceSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
             <span>PRACTICAL CONTRIBUTION & IMPACT</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
             Experience & Open Source
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-sky-400 rounded-full mt-4" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-400 rounded-full mt-4" />
           <p className="text-sm text-slate-600 mt-4 max-w-2xl">
             Real-world software engineering through open-source communities, peer code reviews, and structured developer initiatives.
           </p>

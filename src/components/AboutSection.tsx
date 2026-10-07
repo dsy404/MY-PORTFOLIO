@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { 
   Code2, 
   Sparkles, 
@@ -8,6 +8,8 @@ import {
   GraduationCap, 
   Target,
   Compass,
+  Camera,
+  Upload
 } from 'lucide-react';
 import { personalInfo, aboutPillars } from '../data/portfolioData';
 import { ProfileAvatar } from './ProfileAvatar';
@@ -16,28 +18,28 @@ import { AnimatedSection } from './AnimatedSection';
 export const AboutSection: React.FC = () => {
   const getPillarIcon = (number: string) => {
     switch (number) {
-      case '01': return <Code2 className="w-5 h-5 text-blue-600" />;
-      case '02': return <Sparkles className="w-5 h-5 text-sky-600" />;
-      case '03': return <GitPullRequest className="w-5 h-5 text-indigo-600" />;
-      case '04': return <Lightbulb className="w-5 h-5 text-amber-500" />;
-      default: return <Compass className="w-5 h-5 text-blue-600" />;
+      case '01': return <Code2 className="w-5 h-5 text-purple-600" />;
+      case '02': return <Sparkles className="w-5 h-5 text-pink-600" />;
+      case '03': return <GitPullRequest className="w-5 h-5 text-purple-600" />;
+      case '04': return <Lightbulb className="w-5 h-5 text-rose-500" />;
+      default: return <Compass className="w-5 h-5 text-purple-600" />;
     }
   };
 
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200">
       
-      {/* Background multi-tone pastel glows */}
+      {/* Background multi-tone pastel pink & pastel purple glows */}
       <div 
-        className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-purple-100/50 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-purple-200/40 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute top-1/4 right-10 w-96 h-96 bg-sky-100/50 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-1/4 right-10 w-96 h-96 bg-pink-200/45 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-10 left-1/3 w-80 h-80 bg-rose-100/40 rounded-full blur-[110px] pointer-events-none" 
+        className="absolute bottom-10 left-1/3 w-80 h-80 bg-fuchsia-100/50 rounded-full blur-[110px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -45,14 +47,14 @@ export const AboutSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
             <span>BIOGRAPHY & PHILOSOPHY</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
             About Me
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-sky-400 rounded-full mt-4" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 rounded-full mt-4" />
         </AnimatedSection>
 
         {/* Narrative & Visual Layout */}
@@ -61,32 +63,69 @@ export const AboutSection: React.FC = () => {
           {/* Left Column: Interactive Framed Profile Visual & Key Stats (5 cols) */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <AnimatedSection direction="up" delay={0.1} className="w-full max-w-md">
-              <div className="relative p-8 rounded-3xl bg-white border border-purple-100 shadow-xl w-full flex flex-col items-center text-center group">
+              <div className="relative p-8 rounded-3xl bg-gradient-to-b from-white via-pink-50/25 to-purple-50/25 border border-pink-200/80 shadow-xl shadow-purple-500/5 w-full flex flex-col items-center text-center group">
                 
-                {/* Profile Avatar with subtle glow */}
-                <div className="mb-6">
+                {/* Profile Avatar with Pastel Pink & Purple glow */}
+                <div className="mb-5">
                   <ProfileAvatar size="lg" showBadge={true} />
+                </div>
+
+                {/* Direct helper badge for user photo upload */}
+                <div className="mb-4">
+                  <label 
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-pink-200/80 text-[11px] font-mono text-purple-900 font-medium cursor-pointer transition shadow-2xs hover:scale-105 active:scale-95"
+                    title="Choose photo from device or drag & drop onto avatar"
+                  >
+                    <Camera className="w-3 h-3 text-pink-600" />
+                    <span>Upload & Set Photo</span>
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      className="hidden" 
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (event) => {
+                            const result = event.target?.result as string;
+                            if (result) {
+                              try {
+                                localStorage.setItem('deepshikha_profile_photo', result);
+                                fetch('/api/save-photo', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ imageBase64: result })
+                                }).catch(() => {});
+                                window.location.reload();
+                              } catch {}
+                            }
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }}
+                    />
+                  </label>
                 </div>
 
                 <h3 className="text-xl font-bold font-display text-[#0a1128] mb-1">
                   Deepshikha Yadav
                 </h3>
-                <p className="text-sm font-semibold text-blue-700 mb-2">
+                <p className="text-sm font-semibold text-purple-800 mb-2">
                   Computer Science & Engineering Student
                 </p>
                 
                 {/* Institution & Location details with pastel card backgrounds */}
-                <div className="flex flex-col gap-2 text-xs text-slate-700 font-mono mb-6 w-full px-4 py-3.5 rounded-2xl bg-gradient-to-b from-sky-50/50 to-purple-50/30 border border-sky-100">
+                <div className="flex flex-col gap-2 text-xs text-slate-700 font-mono mb-6 w-full px-4 py-3.5 rounded-2xl bg-gradient-to-b from-purple-50/50 via-pink-50/40 to-white border border-pink-100">
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500 flex items-center gap-1.5">
-                      <GraduationCap className="w-3.5 h-3.5 text-sky-600" />
+                      <GraduationCap className="w-3.5 h-3.5 text-purple-600" />
                       College
                     </span>
                     <span className="text-[#0a1128] font-semibold text-right">SRMCEM, Lucknow</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500 flex items-center gap-1.5">
-                      <Target className="w-3.5 h-3.5 text-purple-600" />
+                      <Target className="w-3.5 h-3.5 text-pink-600" />
                       Cohort
                     </span>
                     <span className="text-[#0a1128] font-semibold">Class of 2029 (2nd Year)</span>
@@ -100,12 +139,12 @@ export const AboutSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Verified Interest Tags with pastel borders */}
+                {/* Verified Interest Tags with pastel pink & purple borders */}
                 <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-medium">
                   <span className="px-2.5 py-1 rounded-full bg-purple-50 border border-purple-200/80 text-purple-800">AI / ML</span>
-                  <span className="px-2.5 py-1 rounded-full bg-sky-50 border border-sky-200/80 text-sky-800">Full-Stack</span>
-                  <span className="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800">Open Source</span>
-                  <span className="px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-amber-800">Hackathons</span>
+                  <span className="px-2.5 py-1 rounded-full bg-pink-50 border border-pink-200/80 text-pink-800">Full-Stack</span>
+                  <span className="px-2.5 py-1 rounded-full bg-fuchsia-50 border border-fuchsia-200/80 text-fuchsia-800">Open Source</span>
+                  <span className="px-2.5 py-1 rounded-full bg-rose-50 border border-rose-200/80 text-rose-800">Hackathons</span>
                 </div>
               </div>
             </AnimatedSection>
@@ -123,43 +162,43 @@ export const AboutSection: React.FC = () => {
               </p>
 
               {/* What I enjoy doing checklist with pastel bullet dots */}
-              <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <h4 className="text-xs font-mono uppercase tracking-wider text-blue-700 font-semibold mb-4 flex items-center gap-2">
+              <div className="p-6 rounded-2xl bg-white border border-pink-100/90 shadow-sm">
+                <h4 className="text-xs font-mono uppercase tracking-wider text-purple-800 font-semibold mb-4 flex items-center gap-2">
                   <span>WHAT DRIVES MY DAILY WORK</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-400 inline-block" />
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
                   <div className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-sky-400 mt-2 shrink-0 ring-4 ring-sky-100" />
+                    <span className="w-2 h-2 rounded-full bg-purple-500 mt-2 shrink-0 ring-4 ring-purple-100" />
                     <span>Building web-based applications</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0 ring-4 ring-purple-100" />
+                    <span className="w-2 h-2 rounded-full bg-pink-500 mt-2 shrink-0 ring-4 ring-pink-100" />
                     <span>Building AI-based projects & automations</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 mt-2 shrink-0 ring-4 ring-emerald-100" />
+                    <span className="w-2 h-2 rounded-full bg-fuchsia-500 mt-2 shrink-0 ring-4 ring-fuchsia-100" />
                     <span>Learning new engineering technologies</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-amber-400 mt-2 shrink-0 ring-4 ring-amber-100" />
+                    <span className="w-2 h-2 rounded-full bg-rose-400 mt-2 shrink-0 ring-4 ring-rose-100" />
                     <span>Participating in intensive hackathons</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-rose-400 mt-2 shrink-0 ring-4 ring-rose-100" />
+                    <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0 ring-4 ring-purple-100" />
                     <span>Contributing to open source software</span>
                   </div>
                   <div className="flex items-start gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-indigo-400 mt-2 shrink-0 ring-4 ring-indigo-100" />
+                    <span className="w-2 h-2 rounded-full bg-pink-400 mt-2 shrink-0 ring-4 ring-pink-100" />
                     <span>Solving real-world technological challenges</span>
                   </div>
                 </div>
               </div>
 
-              {/* Long-term goal statement with soft pastel lavender-to-sky gradient */}
-              <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-50 via-sky-50 to-blue-50/50 border-l-4 border-indigo-600 border-y border-r border-indigo-100 shadow-xs">
-                <div className="text-xs font-mono text-indigo-900 font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              {/* Long-term goal statement with soft pastel purple-to-pink gradient */}
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-50 via-pink-50/50 to-purple-50/30 border-l-4 border-purple-600 border-y border-r border-pink-100 shadow-xs">
+                <div className="text-xs font-mono text-purple-900 font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-pink-600" />
                   <span>LONG-TERM ASPIRATION</span>
                 </div>
                 <p className="text-sm sm:text-base text-slate-800 italic leading-relaxed">
@@ -171,16 +210,10 @@ export const AboutSection: React.FC = () => {
 
         </div>
 
-        {/* 4 Supporting Highlight Pillars with Distinct Pastel Themes */}
+        {/* 4 Supporting Highlight Pillars with Pastel Purple & Pastel Pink Themes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {aboutPillars.map((pillar, index) => {
             const pillarThemes = [
-              {
-                bg: 'bg-gradient-to-b from-sky-50/90 to-white',
-                border: 'border-sky-200/90 hover:border-sky-400',
-                badgeBg: 'bg-sky-100 text-sky-800 border-sky-200',
-                numColor: 'text-sky-600'
-              },
               {
                 bg: 'bg-gradient-to-b from-purple-50/90 to-white',
                 border: 'border-purple-200/90 hover:border-purple-400',
@@ -188,16 +221,22 @@ export const AboutSection: React.FC = () => {
                 numColor: 'text-purple-600'
               },
               {
-                bg: 'bg-gradient-to-b from-emerald-50/90 to-white',
-                border: 'border-emerald-200/90 hover:border-emerald-400',
-                badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-                numColor: 'text-emerald-600'
+                bg: 'bg-gradient-to-b from-pink-50/90 to-white',
+                border: 'border-pink-200/90 hover:border-pink-400',
+                badgeBg: 'bg-pink-100 text-pink-800 border-pink-200',
+                numColor: 'text-pink-600'
               },
               {
-                bg: 'bg-gradient-to-b from-amber-50/90 to-white',
-                border: 'border-amber-200/90 hover:border-amber-400',
-                badgeBg: 'bg-amber-100 text-amber-800 border-amber-200',
-                numColor: 'text-amber-600'
+                bg: 'bg-gradient-to-b from-fuchsia-50/90 to-white',
+                border: 'border-fuchsia-200/90 hover:border-fuchsia-400',
+                badgeBg: 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-200',
+                numColor: 'text-fuchsia-600'
+              },
+              {
+                bg: 'bg-gradient-to-b from-rose-50/90 to-white',
+                border: 'border-rose-200/90 hover:border-rose-400',
+                badgeBg: 'bg-rose-100 text-rose-800 border-rose-200',
+                numColor: 'text-rose-600'
               }
             ];
             const theme = pillarThemes[index % pillarThemes.length];
@@ -220,10 +259,10 @@ export const AboutSection: React.FC = () => {
                       </div>
                     </div>
                     
-                    <h3 className="text-lg font-bold font-display text-[#0a1128] mb-1 group-hover:text-blue-700 transition-colors">
+                    <h3 className="text-lg font-bold font-display text-[#0a1128] mb-1 group-hover:text-purple-700 transition-colors">
                       {pillar.title}
                     </h3>
-                    <p className="text-xs font-semibold text-blue-700 mb-3">
+                    <p className="text-xs font-semibold text-purple-700 mb-3">
                       {pillar.subtitle}
                     </p>
                     <p className="text-xs text-slate-600 leading-relaxed">
@@ -240,4 +279,3 @@ export const AboutSection: React.FC = () => {
     </section>
   );
 };
-

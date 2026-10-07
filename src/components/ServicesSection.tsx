@@ -11,13 +11,13 @@ export const ServicesSection: React.FC = () => {
   return (
     <section id="services" className="py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200">
       
-      {/* Background multi-tone pastel glows */}
+      {/* Background multi-tone pastel pink & purple glows */}
       <div 
-        className="absolute top-1/3 left-10 w-96 h-96 bg-sky-100/50 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute top-1/3 left-10 w-96 h-96 bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-1/4 right-10 w-96 h-96 bg-emerald-100/50 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute bottom-1/4 right-10 w-96 h-96 bg-pink-200/45 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -25,14 +25,14 @@ export const ServicesSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
             <span>SPECIALIZATIONS & VALUE OFFERING</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
             What I Do
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-sky-400 to-emerald-400 rounded-full mt-4" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 rounded-full mt-4" />
           <p className="text-sm text-slate-600 mt-4 max-w-2xl">
             Focusing on scalable full-stack web engineering and open-source software collaboration.
           </p>

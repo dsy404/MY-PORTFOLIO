@@ -73,11 +73,11 @@ ${resumeData.certifications.map(c => `● ${c.name} (${c.date})`).join('\n')}
       
       {/* Background Soft Pastel Ambient Glows */}
       <div 
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-100/40 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-sky-100/40 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-pink-200/45 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -85,16 +85,16 @@ ${resumeData.certifications.map(c => `● ${c.name} (${c.date})`).join('\n')}
         
         {/* Section Header */}
         <AnimatedSection className="mb-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-slate-200">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-pink-100">
             <div>
-              <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+              <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
                 <span>CURRICULUM VITAE & QUALIFICATIONS</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
+                <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
                 Resume
               </h2>
-              <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-sky-400 rounded-full mt-4" />
+              <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-400 rounded-full mt-4" />
               <p className="text-sm text-slate-600 mt-3 max-w-2xl">
                 Official academic and engineering resume highlighting multi-agent orchestration, reinforcement learning environments, and open-source contributions.
               </p>

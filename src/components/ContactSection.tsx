@@ -60,17 +60,17 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* Background multi-tone pastel glows */}
+      {/* Background multi-tone pastel pink & purple glows */}
       <div 
-        className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-purple-100/50 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute bottom-0 left-1/4 w-[500px] h-[400px] bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-10 right-1/4 w-[450px] h-[380px] bg-sky-100/45 rounded-full blur-[130px] pointer-events-none" 
+        className="absolute bottom-10 right-1/4 w-[450px] h-[380px] bg-pink-200/45 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-rose-100/35 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[300px] bg-fuchsia-100/35 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -78,14 +78,14 @@ export const ContactSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center justify-center gap-2">
+          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center justify-center gap-2">
             <span>START A CONVERSATION</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight mb-4 text-balance">
             Let's Build Something Meaningful Together.
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-rose-400 rounded-full mx-auto mb-4" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 rounded-full mx-auto mb-4" />
           <p className="text-base text-slate-600 leading-relaxed max-w-xl mx-auto">
             I'm always interested in learning, building, collaborating, contributing to open source, and exploring new technology.
           </p>

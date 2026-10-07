@@ -18,8 +18,8 @@ export const ProjectsSection: React.FC = () => {
   const getProjectPastelTheme = (id: string) => {
     if (id === 'phoenix-ai') {
       return {
-        topGradient: 'from-purple-500 via-indigo-400 to-sky-400',
-        badge: 'bg-purple-50 border-purple-200/80 text-purple-800',
+        topGradient: 'from-purple-600 via-pink-500 to-purple-400',
+        badge: 'bg-purple-50 border-purple-200/90 text-purple-900',
         cardBorder: 'hover:border-purple-300',
         quoteBg: 'bg-purple-50/80 border-purple-400 text-purple-900',
         innerFrameBorder: 'group-hover:border-purple-200',
@@ -28,38 +28,38 @@ export const ProjectsSection: React.FC = () => {
     }
     if (id === 'heart-disease-prediction') {
       return {
-        topGradient: 'from-rose-500 via-pink-400 to-emerald-400',
-        badge: 'bg-rose-50 border-rose-200/80 text-rose-800',
-        cardBorder: 'hover:border-rose-300',
-        quoteBg: 'bg-rose-50/80 border-rose-400 text-rose-900',
-        innerFrameBorder: 'group-hover:border-rose-200',
-        techHover: 'hover:text-rose-700'
+        topGradient: 'from-pink-500 via-rose-400 to-purple-400',
+        badge: 'bg-pink-50 border-pink-200/90 text-pink-900',
+        cardBorder: 'hover:border-pink-300',
+        quoteBg: 'bg-pink-50/80 border-pink-400 text-pink-900',
+        innerFrameBorder: 'group-hover:border-pink-200',
+        techHover: 'hover:text-pink-700'
       };
     }
     return {
-      topGradient: 'from-orange-400 via-amber-400 to-purple-400',
-      badge: 'bg-amber-50 border-amber-200/80 text-amber-800',
-      cardBorder: 'hover:border-amber-300',
-      quoteBg: 'bg-amber-50/80 border-amber-400 text-amber-900',
-      innerFrameBorder: 'group-hover:border-amber-200',
-      techHover: 'hover:text-amber-700'
+      topGradient: 'from-purple-400 via-pink-400 to-fuchsia-400',
+      badge: 'bg-fuchsia-50 border-fuchsia-200/90 text-fuchsia-900',
+      cardBorder: 'hover:border-fuchsia-300',
+      quoteBg: 'bg-fuchsia-50/80 border-fuchsia-400 text-fuchsia-900',
+      innerFrameBorder: 'group-hover:border-fuchsia-200',
+      techHover: 'hover:text-purple-700'
     };
   };
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* Background ambient multi-tone pastel lighting */}
+      {/* Background ambient multi-tone pastel pink & purple lighting */}
       <div 
-        className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-100/35 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-200/35 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-1/3 right-10 w-[450px] h-[450px] bg-sky-100/40 rounded-full blur-[130px] pointer-events-none" 
+        className="absolute bottom-1/3 right-10 w-[450px] h-[450px] bg-pink-200/40 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-rose-100/35 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-fuchsia-100/35 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -68,14 +68,14 @@ export const ProjectsSection: React.FC = () => {
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+            <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
               <span>FEATURED ENGINEERING WORK</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
               Highlighted Projects
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-rose-400 rounded-full mt-4" />
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 rounded-full mt-4" />
           </div>
 
           <p className="text-sm text-slate-600 max-w-md">

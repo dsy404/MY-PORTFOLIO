@@ -59,7 +59,7 @@ export const Footer: React.FC = () => {
 
             <button
               onClick={scrollToTop}
-              className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white transition-all cursor-pointer shadow-sm ml-2"
+              className="p-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white transition-all cursor-pointer shadow-sm shadow-purple-500/20 ml-2"
               title="Back to top"
               aria-label="Scroll to top"
             >
@@ -75,7 +75,7 @@ export const Footer: React.FC = () => {
             © 2026 Deepshikha Yadav. Built with curiosity and code.
           </div>
           <div className="flex items-center gap-1.5 text-slate-300">
-            <Code2 className="w-3.5 h-3.5 text-blue-400" />
+            <Code2 className="w-3.5 h-3.5 text-pink-400" />
             <span>Lucknow, Uttar Pradesh · SRMCEM '29</span>
           </div>
         </div>

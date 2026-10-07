@@ -7,9 +7,13 @@ export const EducationSection: React.FC = () => {
   return (
     <section id="education" className="py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200">
       
-      {/* Background radial */}
+      {/* Background radial pastel pink & purple */}
       <div 
-        className="absolute bottom-1/4 right-10 w-96 h-96 bg-blue-100/40 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute bottom-1/4 right-10 w-96 h-96 bg-pink-200/40 rounded-full blur-[130px] pointer-events-none" 
+        aria-hidden="true" 
+      />
+      <div 
+        className="absolute top-1/4 left-10 w-96 h-96 bg-purple-200/40 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -17,13 +21,14 @@ export const EducationSection: React.FC = () => {
         
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-blue-700 font-semibold mb-2">
-            ACADEMIC FOUNDATION
+          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
+            <span>ACADEMIC FOUNDATION</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
             Education
           </h2>
-          <div className="w-16 h-1 bg-blue-600 rounded-full mt-4" />
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-400 rounded-full mt-4" />
         </AnimatedSection>
 
         {/* Modern Academic Showcase Card with Pastel Accents */}

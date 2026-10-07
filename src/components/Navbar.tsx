@@ -68,9 +68,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
           {/* Zone 1: Single text element wordmark */}
           <a 
             href="#home" 
-            className="text-lg md:text-xl font-bold font-display tracking-tight text-[#0a1128] hover:text-blue-700 transition-colors flex items-center gap-2 group"
+            className="text-lg md:text-xl font-bold font-display tracking-tight text-[#0a1128] hover:text-purple-800 transition-colors flex items-center gap-2 group"
           >
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-600 group-hover:scale-125 transition-transform" />
+            <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 group-hover:scale-125 transition-transform" />
             <span>Deepshikha Yadav</span>
           </a>
 
@@ -84,13 +84,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className={`relative py-1 transition-colors hover:text-[#0a1128] ${
-                  activeSection === link.href.substring(1) ? 'text-blue-700 font-semibold' : 'text-slate-600'
+                className={`relative py-1 transition-colors hover:text-purple-900 ${
+                  activeSection === link.href.substring(1) ? 'text-purple-900 font-bold' : 'text-slate-600'
                 }`}
               >
                 {link.name}
                 {activeSection === link.href.substring(1) && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-600 rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-purple-600 to-pink-500 rounded-full" />
                 )}
               </a>
             ))}
@@ -104,9 +104,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
                 e.preventDefault();
                 handleNavClick('#resume');
               }}
-              className="px-3 py-1.5 text-xs font-mono font-semibold text-purple-900 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="px-3 py-1.5 text-xs font-mono font-semibold text-purple-950 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-pink-200/90 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
             >
-              <FileText className="w-3.5 h-3.5 text-purple-600" />
+              <FileText className="w-3.5 h-3.5 text-pink-600" />
               <span>Resume</span>
             </a>
 
@@ -115,17 +115,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub Profile"
-              className="p-2 text-slate-500 hover:text-[#0a1128] transition-colors hover:bg-slate-100 rounded-lg"
+              className="p-2 text-slate-500 hover:text-purple-900 transition-colors hover:bg-purple-50/70 rounded-lg"
             >
               <Github className="w-4 h-4" />
             </a>
 
             <button
               onClick={onContactClick}
-              className="px-4 py-2 text-xs md:text-sm font-medium text-white bg-[#0a1128] hover:bg-[#162a5c] active:bg-[#060c1d] rounded-lg transition-all shadow-sm flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+              className="px-4 py-2 text-xs md:text-sm font-semibold text-white bg-gradient-to-r from-[#0a1128] via-purple-950 to-pink-950 hover:from-purple-900 hover:to-pink-900 active:from-black active:to-black rounded-lg transition-all shadow-sm shadow-purple-500/10 flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
             >
               <span>Let's Connect</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-blue-300" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-pink-300" />
             </button>
           </div>
 

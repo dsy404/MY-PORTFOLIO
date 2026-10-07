@@ -56,34 +56,34 @@ export const SkillsSection: React.FC = () => {
   const getCategoryPastel = (cat: string) => {
     switch (cat) {
       case 'Languages':
-        return { badge: 'bg-sky-100 text-sky-800 border-sky-200', selectedBg: 'bg-sky-50/80 border-sky-400', dot: 'bg-sky-400' };
+        return { badge: 'bg-purple-100 text-purple-900 border-purple-200', selectedBg: 'bg-purple-50/90 border-purple-400', dot: 'bg-purple-500' };
       case 'AI / ML':
-        return { badge: 'bg-purple-100 text-purple-800 border-purple-200', selectedBg: 'bg-purple-50/80 border-purple-400', dot: 'bg-purple-400' };
+        return { badge: 'bg-pink-100 text-pink-900 border-pink-200', selectedBg: 'bg-pink-50/90 border-pink-400', dot: 'bg-pink-500' };
       case 'Database':
-        return { badge: 'bg-emerald-100 text-emerald-800 border-emerald-200', selectedBg: 'bg-emerald-50/80 border-emerald-400', dot: 'bg-emerald-400' };
+        return { badge: 'bg-fuchsia-100 text-fuchsia-900 border-fuchsia-200', selectedBg: 'bg-fuchsia-50/90 border-fuchsia-400', dot: 'bg-fuchsia-500' };
       case 'DevOps & Tools':
-        return { badge: 'bg-amber-100 text-amber-800 border-amber-200', selectedBg: 'bg-amber-50/80 border-amber-400', dot: 'bg-amber-400' };
+        return { badge: 'bg-rose-100 text-rose-900 border-rose-200', selectedBg: 'bg-rose-50/90 border-rose-400', dot: 'bg-rose-500' };
       case 'Soft Skills':
-        return { badge: 'bg-rose-100 text-rose-800 border-rose-200', selectedBg: 'bg-rose-50/80 border-rose-400', dot: 'bg-rose-400' };
+        return { badge: 'bg-pink-100 text-pink-900 border-pink-200', selectedBg: 'bg-pink-50/90 border-pink-400', dot: 'bg-pink-500' };
       default:
-        return { badge: 'bg-indigo-100 text-indigo-800 border-indigo-200', selectedBg: 'bg-indigo-50/80 border-indigo-400', dot: 'bg-indigo-400' };
+        return { badge: 'bg-purple-100 text-purple-900 border-purple-200', selectedBg: 'bg-purple-50/90 border-purple-400', dot: 'bg-purple-500' };
     }
   };
 
   return (
     <section id="skills" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
       
-      {/* Background multi-tone pastel glows */}
+      {/* Background multi-tone pastel pink & purple glows */}
       <div 
-        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-100/40 rounded-full blur-[130px] pointer-events-none" 
+        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-sky-100/40 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-pink-200/45 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-rose-100/35 rounded-full blur-[100px] pointer-events-none" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-fuchsia-100/40 rounded-full blur-[110px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -92,14 +92,14 @@ export const SkillsSection: React.FC = () => {
         {/* Section Header with Fade & Slide-up */}
         <AnimatedSection className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-indigo-700 font-semibold mb-2 flex items-center gap-2">
+            <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
               <span>TECHNICAL REPERTOIRE</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
               Skills & Technologies
             </h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 via-sky-400 to-purple-500 rounded-full mt-4" />
+            <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-400 rounded-full mt-4" />
           </div>
 
           <p className="text-sm text-slate-600 max-w-md">
@@ -109,15 +109,15 @@ export const SkillsSection: React.FC = () => {
 
         {/* Category Segmented Tabs (Functional filter controls with pastel hover) */}
         <AnimatedSection delay={0.1} className="mb-10">
-          <div className="flex items-center gap-1.5 p-1.5 bg-slate-100/90 border border-slate-200/90 rounded-2xl overflow-x-auto max-w-full shadow-2xs">
+          <div className="flex items-center gap-1.5 p-1.5 bg-gradient-to-r from-purple-50/70 to-pink-50/70 border border-pink-100 rounded-2xl overflow-x-auto max-w-full shadow-2xs">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 text-xs md:text-sm font-medium rounded-xl transition-all whitespace-nowrap cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-[#0a1128] text-white shadow-sm font-semibold'
-                    : 'text-slate-600 hover:text-[#0a1128] hover:bg-white/80'
+                    ? 'bg-gradient-to-r from-purple-900 to-pink-900 text-white shadow-sm font-semibold'
+                    : 'text-slate-600 hover:text-purple-900 hover:bg-white/80'
                 }`}
               >
                 {cat}

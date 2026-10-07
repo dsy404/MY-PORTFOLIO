@@ -17,7 +17,21 @@
   --color-navy-100: #dbeafe;
   --color-navy-50:  #eff6ff;
 
-  /* Beautiful Pastel Color Palette */
+  /* Pastel Pink Color Palette */
+  --color-pastel-pink-subtle: #fdf2f8;
+  --color-pastel-pink: #fce7f3;
+  --color-pastel-pink-border: #fbcfe8;
+  --color-pastel-pink-accent: #f472b6;
+  --color-pastel-pink-text: #be185d;
+
+  /* Pastel Purple Color Palette */
+  --color-pastel-purple-subtle: #faf5ff;
+  --color-pastel-purple: #f3e8ff;
+  --color-pastel-purple-border: #e9d5ff;
+  --color-pastel-purple-accent: #c084fc;
+  --color-pastel-purple-text: #6b21a8;
+
+  /* Complementary Soft Pastels */
   --color-pastel-lavender: #ede9fe;
   --color-pastel-lavender-border: #ddd6fe;
   --color-pastel-sky: #e0f2fe;
@@ -44,44 +58,44 @@
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(15, 28, 63, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 28, 63, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(147, 51, 234, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 72, 153, 0.04) 1px, transparent 1px);
 }
 
 .bg-dot-pattern {
   background-size: 24px 24px;
-  background-image: radial-gradient(rgba(30, 58, 138, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(168, 85, 247, 0.09) 1px, transparent 1px);
 }
 
-/* Beautiful soft pastel mesh backgrounds */
+/* Soft pastel mesh backgrounds featuring Pastel Pink and Pastel Purple */
 .bg-pastel-mesh-hero {
   background: 
-    radial-gradient(circle at 15% 20%, rgba(224, 242, 254, 0.7) 0%, transparent 45%),
-    radial-gradient(circle at 85% 25%, rgba(237, 233, 254, 0.65) 0%, transparent 45%),
-    radial-gradient(circle at 50% 85%, rgba(254, 243, 199, 0.45) 0%, transparent 40%),
-    radial-gradient(circle at 20% 80%, rgba(236, 253, 245, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 18% 18%, rgba(252, 231, 243, 0.85) 0%, transparent 48%), /* Pastel Pink */
+    radial-gradient(circle at 82% 22%, rgba(243, 232, 255, 0.9) 0%, transparent 50%),  /* Pastel Purple */
+    radial-gradient(circle at 50% 85%, rgba(254, 243, 199, 0.35) 0%, transparent 42%),
+    radial-gradient(circle at 15% 85%, rgba(245, 208, 254, 0.55) 0%, transparent 45%), /* Soft Lilac */
     #ffffff;
 }
 
 .bg-pastel-mesh-subtle {
   background: 
-    radial-gradient(circle at 10% 30%, rgba(224, 242, 254, 0.5) 0%, transparent 40%),
-    radial-gradient(circle at 90% 60%, rgba(237, 233, 254, 0.45) 0%, transparent 40%),
-    radial-gradient(circle at 50% 90%, rgba(255, 228, 230, 0.35) 0%, transparent 40%),
-    #f8fafc;
+    radial-gradient(circle at 12% 25%, rgba(253, 242, 248, 0.75) 0%, transparent 45%), /* Pastel Pink */
+    radial-gradient(circle at 88% 55%, rgba(250, 245, 255, 0.8) 0%, transparent 48%),  /* Pastel Purple */
+    radial-gradient(circle at 45% 90%, rgba(252, 231, 243, 0.5) 0%, transparent 42%),
+    #ffffff;
 }
 
-/* Custom sleek scrollbar for light mode */
+/* Custom sleek scrollbar with pastel purple & pink glow */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f8fafc;
+  background: #faf5ff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #e9d5ff;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #f472b6;
 }

@@ -19,21 +19,21 @@ export const Hero: React.FC = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-pastel-mesh-hero bg-grid-pattern"
     >
-      {/* Soft Multi-Tone Pastel Ambient Glows */}
+      {/* Soft Multi-Tone Pastel Pink & Pastel Purple Ambient Glows */}
       <div 
-        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-sky-200/45 rounded-full blur-[140px] pointer-events-none" 
+        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-pink-200/50 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-purple-200/40 rounded-full blur-[130px] pointer-events-none" 
+        className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-purple-200/50 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-10 right-10 w-[420px] h-[420px] bg-rose-100/50 rounded-full blur-[120px] pointer-events-none" 
+        className="absolute bottom-10 right-10 w-[420px] h-[420px] bg-fuchsia-100/50 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
       <div 
-        className="absolute bottom-16 left-12 w-[380px] h-[380px] bg-emerald-100/50 rounded-full blur-[110px] pointer-events-none" 
+        className="absolute bottom-16 left-12 w-[380px] h-[380px] bg-rose-100/50 rounded-full blur-[110px] pointer-events-none" 
         aria-hidden="true" 
       />
 
@@ -48,38 +48,38 @@ export const Hero: React.FC = () => {
             className="lg:col-span-7 flex flex-col items-start text-left"
           >
             
-            {/* Status & Identity Indicator with Pastel Mint & Sky Accents */}
+            {/* Status & Identity Indicator with Pastel Pink & Purple Accents */}
             <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-slate-600 mb-6 font-mono">
-              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/90 text-emerald-800 font-semibold shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block" />
-                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block -ml-3.5" />
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-pink-200/90 text-purple-900 font-semibold shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-pink-500 animate-ping inline-block" />
+                <span className="w-2 h-2 rounded-full bg-pink-500 inline-block -ml-3.5" />
                 Available for internships & projects
               </span>
               <span aria-hidden="true" className="text-slate-300">·</span>
-              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 border border-sky-200/80 text-sky-800 font-medium">
-                <GraduationCap className="w-3.5 h-3.5 text-sky-600" />
+              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-50 border border-purple-200/80 text-purple-800 font-medium">
+                <GraduationCap className="w-3.5 h-3.5 text-purple-600" />
                 SRMCEM '29
               </span>
               <span aria-hidden="true" className="text-slate-300">·</span>
               <span className="flex items-center gap-1 text-slate-600">
-                <MapPin className="w-3 h-3 text-slate-500" />
+                <MapPin className="w-3 h-3 text-pink-500" />
                 Lucknow, India
               </span>
             </div>
 
-            {/* Main Primary Heading in Deep Navy */}
+            {/* Main Primary Heading in Deep Navy with Pastel Purple to Pink Gradient */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-[#0a1128] leading-[1.08] mb-4 text-balance">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0a1128] via-blue-800 to-indigo-600">Deepshikha Yadav.</span>
+              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0a1128] via-purple-900 to-pink-600">Deepshikha Yadav.</span>
             </h1>
 
-            {/* Secondary Role Kicker with Soft Pastel Tinted Separation */}
-            <p className="text-base sm:text-lg md:text-xl font-semibold text-blue-800 mb-5 tracking-tight flex flex-wrap items-center gap-x-2 gap-y-1">
+            {/* Secondary Role Kicker with Soft Pastel Purple & Pink Separations */}
+            <p className="text-base sm:text-lg md:text-xl font-semibold text-purple-900 mb-5 tracking-tight flex flex-wrap items-center gap-x-2 gap-y-1">
               <span>B.Tech CSE Student</span>
-              <span className="text-purple-400 font-bold">·</span>
+              <span className="text-pink-400 font-bold">·</span>
               <span>Full-Stack Developer</span>
-              <span className="text-sky-400 font-bold">·</span>
+              <span className="text-purple-400 font-bold">·</span>
               <span>AI Enthusiast</span>
-              <span className="text-emerald-400 font-bold">·</span>
+              <span className="text-fuchsia-400 font-bold">·</span>
               <span>Open Source Contributor</span>
             </p>
 
@@ -88,11 +88,11 @@ export const Hero: React.FC = () => {
               {personalInfo.bio}
             </p>
 
-            {/* Primary Action Buttons with subtle pastel highlights */}
+            {/* Primary Action Buttons with Pastel Purple & Pink Accents */}
             <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
               <button
                 onClick={() => scrollTo('projects')}
-                className="px-6 py-3.5 text-sm font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] active:bg-[#060c1d] rounded-xl transition-all shadow-md shadow-navy-950/20 flex items-center gap-2 group cursor-pointer"
+                className="px-6 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-[#0a1128] via-purple-950 to-pink-950 hover:from-purple-900 hover:to-pink-900 active:from-black active:to-black rounded-xl transition-all shadow-md shadow-purple-500/10 flex items-center gap-2 group cursor-pointer"
               >
                 <span>View My Work</span>
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
@@ -100,7 +100,7 @@ export const Hero: React.FC = () => {
 
               <button
                 onClick={() => scrollTo('resume')}
-                className="px-5 py-3.5 text-sm font-semibold text-purple-950 bg-purple-50 hover:bg-purple-100 border border-purple-200/80 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-5 py-3.5 text-sm font-semibold text-purple-950 bg-purple-50 hover:bg-purple-100 border border-purple-200/90 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-purple-600" />
                 <span>View Resume</span>
@@ -108,39 +108,39 @@ export const Hero: React.FC = () => {
 
               <button
                 onClick={() => scrollTo('contact')}
-                className="px-6 py-3.5 text-sm font-semibold text-[#0a1128] bg-white hover:bg-purple-50/60 border border-slate-300 hover:border-purple-300 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
+                className="px-6 py-3.5 text-sm font-semibold text-pink-950 bg-white hover:bg-pink-50/70 border border-pink-200 hover:border-pink-300 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
               >
                 <span>Let's Connect</span>
-                <ArrowUpRight className="w-4 h-4 text-purple-600" />
+                <ArrowUpRight className="w-4 h-4 text-pink-600" />
               </button>
 
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noreferrer"
-                className="px-4 py-3.5 text-sm font-medium text-slate-700 hover:text-[#0a1128] bg-white hover:bg-sky-50/70 border border-slate-200 hover:border-sky-300 rounded-xl transition-all flex items-center gap-2 shadow-2xs"
+                className="px-4 py-3.5 text-sm font-medium text-slate-700 hover:text-purple-900 bg-white hover:bg-purple-50/70 border border-purple-100 hover:border-purple-300 rounded-xl transition-all flex items-center gap-2 shadow-2xs"
                 aria-label="GitHub Profile"
               >
-                <Github className="w-4 h-4 text-sky-600" />
+                <Github className="w-4 h-4 text-purple-600" />
                 <span className="font-mono text-xs">github.com/{personalInfo.githubUsername}</span>
               </a>
             </div>
 
-            {/* Quick Tech Highlights Bar with Pastel Accents */}
-            <div className="pt-6 border-t border-slate-200 w-full">
-              <div className="text-xs font-mono text-slate-500 font-semibold mb-2.5 flex items-center gap-2">
+            {/* Quick Tech Highlights Bar with Pastel Purple & Pink Accents */}
+            <div className="pt-6 border-t border-pink-100/90 w-full">
+              <div className="text-xs font-mono text-purple-900 font-semibold mb-2.5 flex items-center gap-2">
                 <span>CORE STACK & TOOLING</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block" />
+                <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
               </div>
               <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                <span className="px-2.5 py-1 rounded-lg bg-sky-50 text-sky-800 border border-sky-200/80 font-medium">Python</span>
-                <span className="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 border border-blue-200/80 font-medium">C++</span>
-                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">Pandas</span>
-                <span className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200/80 font-medium">NumPy</span>
-                <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-800 border border-indigo-200/80 font-medium">Scikit-Learn</span>
-                <span className="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200/80 font-medium">SQL</span>
+                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">Python</span>
+                <span className="px-2.5 py-1 rounded-lg bg-pink-50 text-pink-800 border border-pink-200/80 font-medium">Pandas</span>
+                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">C++</span>
+                <span className="px-2.5 py-1 rounded-lg bg-fuchsia-50 text-fuchsia-800 border border-fuchsia-200/80 font-medium">NumPy</span>
+                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">Scikit-Learn</span>
+                <span className="px-2.5 py-1 rounded-lg bg-pink-50 text-pink-800 border border-pink-200/80 font-medium">SQL</span>
                 <span className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-800 border border-rose-200/80 font-medium">Docker</span>
-                <span className="px-2.5 py-1 rounded-lg bg-teal-50 text-teal-800 border border-teal-200/80 font-medium">n8n</span>
+                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">n8n</span>
               </div>
             </div>
 
@@ -155,18 +155,18 @@ export const Hero: React.FC = () => {
           >
             
             {/* Developer Profile Card Frame with crisp light aesthetic and pastel borders */}
-            <div className="w-full relative rounded-3xl bg-white border border-slate-200 hover:border-purple-200 shadow-xl overflow-hidden transition-all duration-300">
+            <div className="w-full relative rounded-3xl bg-white border border-pink-200/80 hover:border-purple-300 shadow-xl shadow-purple-500/5 overflow-hidden transition-all duration-300">
               
               {/* Card Window Header Bar with Pastel Mac-Style Controls */}
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-50/90 border-b border-slate-200 text-xs font-mono text-slate-600">
+              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-purple-50/70 to-pink-50/70 border-b border-pink-100 text-xs font-mono text-slate-600">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-300 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-300 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 inline-block" />
-                  <span className="ml-2 text-slate-700 font-semibold text-[11px]">deepshikha_profile.tsx</span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-pink-300 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-purple-300 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-fuchsia-300 inline-block" />
+                  <span className="ml-2 text-purple-900 font-semibold text-[11px]">deepshikha_profile.tsx</span>
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-[11px] font-semibold shadow-2xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 text-purple-900 border border-pink-200/80 text-[11px] font-semibold shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
                   <span>Student & Developer</span>
                 </div>
               </div>
@@ -184,7 +184,7 @@ export const Hero: React.FC = () => {
                   <h3 className="text-xl sm:text-2xl font-bold font-display text-[#0a1128]">
                     Deepshikha Yadav
                   </h3>
-                  <p className="text-xs sm:text-sm text-indigo-700 font-semibold mt-0.5">
+                  <p className="text-xs sm:text-sm text-purple-800 font-semibold mt-0.5">
                     2nd-Year B.Tech Computer Science & Engineering
                   </p>
                   <p className="text-xs text-slate-600 mt-1 font-mono">
@@ -192,12 +192,12 @@ export const Hero: React.FC = () => {
                   </p>
                 </div>
 
-                {/* 4 Pastel Highlights Micro-Grid */}
+                {/* 4 Pastel Highlights Micro-Grid featuring Pastel Purple & Pink */}
                 <div className="grid grid-cols-2 gap-2.5 w-full text-left">
                   
                   {/* Focus */}
-                  <div className="p-3 rounded-2xl bg-sky-50/80 border border-sky-200/80 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-sky-800 font-bold tracking-wider mb-0.5">
+                  <div className="p-3 rounded-2xl bg-purple-50/90 border border-purple-200/90 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-purple-800 font-bold tracking-wider mb-0.5">
                       FOCUS DOMAIN
                     </div>
                     <div className="text-xs font-bold text-[#0a1128]">
@@ -206,8 +206,8 @@ export const Hero: React.FC = () => {
                   </div>
 
                   {/* Open Source */}
-                  <div className="p-3 rounded-2xl bg-purple-50/80 border border-purple-200/80 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-purple-800 font-bold tracking-wider mb-0.5">
+                  <div className="p-3 rounded-2xl bg-pink-50/90 border border-pink-200/90 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-pink-800 font-bold tracking-wider mb-0.5">
                       OPEN SOURCE
                     </div>
                     <div className="text-xs font-bold text-[#0a1128]">
@@ -216,8 +216,8 @@ export const Hero: React.FC = () => {
                   </div>
 
                   {/* Projects */}
-                  <div className="p-3 rounded-2xl bg-emerald-50/80 border border-emerald-200/80 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-emerald-800 font-bold tracking-wider mb-0.5">
+                  <div className="p-3 rounded-2xl bg-fuchsia-50/90 border border-fuchsia-200/90 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-fuchsia-800 font-bold tracking-wider mb-0.5">
                       PORTFOLIO WORK
                     </div>
                     <div className="text-xs font-bold text-[#0a1128]">
@@ -225,9 +225,9 @@ export const Hero: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Hackathons */}
-                  <div className="p-3 rounded-2xl bg-amber-50/80 border border-amber-200/80 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-amber-800 font-bold tracking-wider mb-0.5">
+                  {/* Competitions */}
+                  <div className="p-3 rounded-2xl bg-rose-50/90 border border-rose-200/90 shadow-2xs">
+                    <div className="text-[10px] font-mono uppercase text-rose-800 font-bold tracking-wider mb-0.5">
                       COMPETITIONS
                     </div>
                     <div className="text-xs font-bold text-[#0a1128]">
@@ -238,10 +238,10 @@ export const Hero: React.FC = () => {
                 </div>
 
                 {/* Current Active Focus Snippet */}
-                <div className="w-full p-3.5 rounded-2xl bg-slate-50/90 border border-slate-200 text-left">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 mb-1">
-                    <span className="font-semibold text-slate-700">// CURRENT DEV FOCUS</span>
-                    <span className="text-indigo-600 font-bold">Python · scikit-learn · SQL</span>
+                <div className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-purple-50/60 via-pink-50/40 to-white border border-pink-100 text-left">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-purple-900 mb-1">
+                    <span className="font-semibold text-purple-900">// CURRENT DEV FOCUS</span>
+                    <span className="text-pink-600 font-bold">Python · scikit-learn · SQL</span>
                   </div>
                   <p className="text-xs text-slate-700 leading-relaxed">
                     Building accessible AI learning companions and machine learning classification workflows.
@@ -252,13 +252,13 @@ export const Hero: React.FC = () => {
                 <div className="flex items-center justify-center gap-3 w-full pt-1">
                   <button
                     onClick={() => scrollTo('projects')}
-                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] transition-colors cursor-pointer shadow-sm"
+                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-900 to-pink-900 hover:from-purple-800 hover:to-pink-800 transition-colors cursor-pointer shadow-sm"
                   >
                     View Projects
                   </button>
                   <button
                     onClick={() => scrollTo('contact')}
-                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-[#0a1128] bg-purple-50/70 hover:bg-purple-100 text-purple-900 border border-purple-200 transition-colors cursor-pointer"
+                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-purple-950 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-pink-200 transition-colors cursor-pointer"
                   >
                     Get in Touch
                   </button>
