@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { 
   Code2, 
   Sparkles, 
@@ -8,8 +8,6 @@ import {
   GraduationCap, 
   Target,
   Compass,
-  Camera,
-  Upload
 } from 'lucide-react';
 import { personalInfo, aboutPillars } from '../data/portfolioData';
 import { ProfileAvatar } from './ProfileAvatar';
@@ -66,45 +64,8 @@ export const AboutSection: React.FC = () => {
               <div className="relative p-8 rounded-3xl bg-gradient-to-b from-white via-pink-50/25 to-purple-50/25 border border-pink-200/80 shadow-xl shadow-purple-500/5 w-full flex flex-col items-center text-center group">
                 
                 {/* Profile Avatar with Pastel Pink & Purple glow */}
-                <div className="mb-5">
+                <div className="mb-6">
                   <ProfileAvatar size="lg" showBadge={true} />
-                </div>
-
-                {/* Direct helper badge for user photo upload */}
-                <div className="mb-4">
-                  <label 
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-pink-200/80 text-[11px] font-mono text-purple-900 font-medium cursor-pointer transition shadow-2xs hover:scale-105 active:scale-95"
-                    title="Choose photo from device or drag & drop onto avatar"
-                  >
-                    <Camera className="w-3 h-3 text-pink-600" />
-                    <span>Upload & Set Photo</span>
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      className="hidden" 
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          const reader = new FileReader();
-                          reader.onload = (event) => {
-                            const result = event.target?.result as string;
-                            if (result) {
-                              try {
-                                localStorage.setItem('deepshikha_profile_photo', result);
-                                fetch('/api/save-photo', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ imageBase64: result })
-                                }).catch(() => {});
-                                window.location.reload();
-                              } catch {}
-                            }
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }}
-                    />
-                  </label>
                 </div>
 
                 <h3 className="text-xl font-bold font-display text-[#0a1128] mb-1">
