@@ -16,7 +16,6 @@ import { EducationSection } from './components/EducationSection';
 import { ResumeSection } from './components/ResumeSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ScrollTimelineScrubber } from './components/ScrollTimelineScrubber';
 import { SectionPopup } from './components/AnimatedSection';
 
 export default function App() {
@@ -28,7 +27,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-pink-500 selection:text-white pb-14 sm:pb-16 overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-pink-500 selection:text-white overflow-x-hidden">
       {/* Sticky Navigation Bar */}
       <Navbar onContactClick={handleScrollToContact} />
 
@@ -85,9 +84,6 @@ export default function App() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Persistent Bottom Scroll Timeline Chapter Scrubber */}
-      <ScrollTimelineScrubber />
     </div>
   );
 }

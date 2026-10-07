@@ -12,8 +12,8 @@ export const personalInfo = {
   cgpa: "7.75/10 (1st Year)",
   location: "Lucknow, Uttar Pradesh, India",
   email: "dy.deepshikha04aug@gmail.com",
-  github: "https://github.com/deeps0408",
-  githubUsername: "deeps0408",
+  github: "https://github.com/dsy404",
+  githubUsername: "dsy404",
   secondaryGithub: "https://github.com/dsy404",
   linkedin: "https://www.linkedin.com/in/deepshikha-yadav-586b723b6",
   linkedinName: "deepshikha-yadav-586b723b6",
@@ -396,8 +396,8 @@ export const resumeData: ResumeData = {
   email: "dy.deepshikha04aug@gmail.com",
   linkedin: "linkedin.com/in/deepshikha-yadav-586b723b6",
   linkedinUrl: "https://www.linkedin.com/in/deepshikha-yadav-586b723b6",
-  github: "github.com/deeps0408",
-  githubUrl: "https://github.com/deeps0408",
+  github: "github.com/dsy404",
+  githubUrl: "https://github.com/dsy404",
   objective: "Second-year B.Tech Computer Science student passionate about building reliable, user-focused AI applications, with hands-on experience developing LLM-powered agents, multi-agent orchestration (LangGraph), and Retrieval-Augmented Generation (RAG) systems. Strong foundation in Python, C++, and full-stack development, demonstrated through independent projects on reinforcement learning environments, responsible AI, and accessible education technology. Seeking a Software Engineering/AI internship at OpenAI to contribute to safe, impactful AI systems while learning from world-class researchers and engineers.",
   education: {
     institution: "Shri Ramswaroop Memorial College of Engineering and Management",
@@ -436,7 +436,7 @@ export const resumeData: ResumeData = {
     {
       title: "AI Customer Support Training Environment",
       techStack: "Python, Docker, FastAPI, OpenEnv",
-      githubUrl: "https://github.com/deeps0408/openenv-project",
+      githubUrl: "https://github.com/dsy404/openenv-project",
       highlights: [
         "Built an OpenEnv-compliant reinforcement learning environment that trains AI agents to resolve multi-turn customer support issues, from issue classification to full resolution",
         "Designed step-by-step, rule-based reward functions (issue identification, clarification, resolution) achieving a full 1.0 episode reward on sample multi-turn scenarios",
@@ -447,7 +447,7 @@ export const resumeData: ResumeData = {
     {
       title: "Phoenix AI — Multi-Agent Education Platform",
       techStack: "Next.js, TypeScript, FastAPI, LangGraph, OpenAI/Gemini API, ChromaDB",
-      githubUrl: "https://github.com/deeps0408/Phoenix-AI",
+      githubUrl: "https://github.com/dsy404/Phoenix-AI",
       highlights: [
         "Architected a LangGraph-powered orchestrator that routes student queries across 10 specialized AI agents (teaching, translation, mentoring, assessment, emotional support, offline sync) for underserved learners",
         "Solved offline access for low-bandwidth (2G) regions by implementing lesson caching, ensuring learning continuity without stable internet",
@@ -458,7 +458,7 @@ export const resumeData: ResumeData = {
     {
       title: "FAIRTRACE-AI — AI Fairness Analysis Platform",
       techStack: "React, FastAPI, Scikit-learn, AIF360, SHAP/LIME",
-      githubUrl: "https://github.com/deeps0408/FAIRTRACE-AI",
+      githubUrl: "https://github.com/dsy404/FAIRTRACE-AI",
       highlights: [
         "Built an AI fairness evaluation platform that detects and explains demographic bias in ML models using metrics such as Statistical Parity Difference and Disparate Impact",
         "Implemented explainable AI dashboards (SHAP/LIME) and automated bias-mitigation recommendations to support trustworthy AI deployment in hiring, healthcare, and finance",
@@ -473,7 +473,7 @@ export const resumeData: ResumeData = {
       period: "Jul 2026 (2 weeks)",
       highlights: [
         "Completed hands-on training in Python, NumPy, Pandas, Matplotlib, Scikit-learn, reinforcement learning, and classification algorithms (logistic regression, decision trees, KNN, random forest)",
-        "Built capstone project Heart Disease Prediction — a logistic regression classifier predicting heart disease risk from patient medical records (github.com/deeps0408/Heart_Disease_Prediction)"
+        "Built capstone project Heart Disease Prediction — a logistic regression classifier predicting heart disease risk from patient medical records (github.com/dsy404/Heart_Disease_Prediction)"
       ]
     }
   ],

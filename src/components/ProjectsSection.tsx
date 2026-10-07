@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  ArrowUpRight, 
   Github, 
-  BookOpen
+  BookOpen,
+  CheckCircle2
 } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import { Project } from '../types/portfolio';
 import { ProjectModal } from './ProjectModal';
-import { GenZifyPlayground } from './GenZifyPlayground';
-import { PhoenixAISandbox } from './PhoenixAISandbox';
-import { HeartDiseaseSandbox } from './HeartDiseaseSandbox';
 import { AnimatedSection } from './AnimatedSection';
 
 export const ProjectsSection: React.FC = () => {
@@ -22,8 +19,8 @@ export const ProjectsSection: React.FC = () => {
         badge: 'bg-purple-50 border-purple-200/90 text-purple-900',
         cardBorder: 'hover:border-purple-300',
         quoteBg: 'bg-purple-50/80 border-purple-400 text-purple-900',
-        innerFrameBorder: 'group-hover:border-purple-200',
-        techHover: 'hover:text-purple-700'
+        techHover: 'hover:text-purple-700',
+        numberColor: 'group-hover:text-purple-400'
       };
     }
     if (id === 'heart-disease-prediction') {
@@ -32,8 +29,8 @@ export const ProjectsSection: React.FC = () => {
         badge: 'bg-pink-50 border-pink-200/90 text-pink-900',
         cardBorder: 'hover:border-pink-300',
         quoteBg: 'bg-pink-50/80 border-pink-400 text-pink-900',
-        innerFrameBorder: 'group-hover:border-pink-200',
-        techHover: 'hover:text-pink-700'
+        techHover: 'hover:text-pink-700',
+        numberColor: 'group-hover:text-pink-400'
       };
     }
     return {
@@ -41,8 +38,8 @@ export const ProjectsSection: React.FC = () => {
       badge: 'bg-fuchsia-50 border-fuchsia-200/90 text-fuchsia-900',
       cardBorder: 'hover:border-fuchsia-300',
       quoteBg: 'bg-fuchsia-50/80 border-fuchsia-400 text-fuchsia-900',
-      innerFrameBorder: 'group-hover:border-fuchsia-200',
-      techHover: 'hover:text-purple-700'
+      techHover: 'hover:text-purple-700',
+      numberColor: 'group-hover:text-fuchsia-400'
     };
   };
 
@@ -84,9 +81,8 @@ export const ProjectsSection: React.FC = () => {
         </AnimatedSection>
 
         {/* Project Cards */}
-        <div className="space-y-16">
+        <div className="space-y-12">
           {projectsData.map((project, idx) => {
-            const isPhoenix = project.id === 'phoenix-ai';
             const theme = getProjectPastelTheme(project.id);
 
             return (
@@ -104,116 +100,95 @@ export const ProjectsSection: React.FC = () => {
                     aria-hidden="true" 
                   />
 
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-8 lg:p-10 items-center">
+                  <div className="p-6 sm:p-8 lg:p-10 flex flex-col items-start text-left">
                     
-                    {/* Left Column: Project Info & Narrative (6 cols) */}
-                    <div className="lg:col-span-6 flex flex-col items-start text-left">
-                      
-                      {/* Metadata line with pastel category badge */}
-                      <div className="flex items-center gap-2 mb-3">
+                    {/* Top Row: Focus area badge & index counter */}
+                    <div className="flex items-center justify-between w-full mb-3">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className={`text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border ${theme.badge}`}>
                           {project.focusArea}
                         </span>
                         <span aria-hidden="true" className="text-slate-300">·</span>
-                        <span className="text-xs font-mono text-slate-500">{project.category}</span>
+                        <span className="text-xs font-mono text-slate-500 font-medium">{project.category}</span>
                       </div>
+                      <span className={`text-2xl sm:text-3xl font-mono font-bold text-slate-200 ${theme.numberColor} transition-colors select-none`}>
+                        0{idx + 1}
+                      </span>
+                    </div>
 
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#0a1128] tracking-tight mb-2 group-hover:text-blue-700 transition-colors">
+                    {/* Title & Tagline */}
+                    <div className="mb-2">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#0a1128] tracking-tight mb-1 group-hover:text-purple-800 transition-colors">
                         {project.title}
                       </h3>
-
-                      <p className="text-sm sm:text-base font-semibold text-blue-800 mb-2">
+                      <p className="text-sm sm:text-base font-semibold text-purple-700">
                         {project.tagline}
                       </p>
+                    </div>
 
-                      {project.coreQuote && (
-                        <div className={`mb-4 text-xs font-semibold ${theme.quoteBg} border-l-2 px-3 py-1.5 rounded-r-lg italic`}>
-                          "{project.coreQuote}"
+                    {/* Core Quote */}
+                    {project.coreQuote && (
+                      <div className={`my-3 text-xs sm:text-sm font-semibold ${theme.quoteBg} border-l-2 px-3.5 py-2 rounded-r-xl italic max-w-3xl`}>
+                        "{project.coreQuote}"
+                      </div>
+                    )}
+
+                    {/* Summary */}
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-4xl mb-6">
+                      {project.summary}
+                    </p>
+
+                    {/* Key Capabilities Preview */}
+                    {project.features && project.features.length > 0 && (
+                      <div className="mb-6 w-full">
+                        <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2.5">
+                          CORE HIGHLIGHTS
                         </div>
-                      )}
-
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                        {project.summary}
-                      </p>
-
-                      {/* Tech Stack (Unboxed metadata with slashes) */}
-                      <div className="mb-8 w-full">
-                        <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2">
-                          TECHNOLOGIES APPLIED
-                        </div>
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-700">
-                          {project.techStack.map((tech, tIdx) => (
-                            <React.Fragment key={tech}>
-                              <span className={`${theme.techHover} transition-colors font-medium`}>{tech}</span>
-                              {tIdx < project.techStack.length - 1 && <span className="text-slate-300">/</span>}
-                            </React.Fragment>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-w-4xl">
+                          {project.features.slice(0, 3).map((feat, fIdx) => (
+                            <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-700 bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-2.5">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5" />
+                              <span className="line-clamp-2">{feat}</span>
+                            </div>
                           ))}
                         </div>
                       </div>
+                    )}
 
-                      {/* Action CTAs */}
-                      <div className="flex flex-wrap items-center gap-3">
-                        <button
-                          onClick={() => setSelectedProject(project)}
-                          className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] rounded-xl transition-all shadow-md shadow-navy-950/20 flex items-center gap-2 cursor-pointer"
-                        >
-                          <BookOpen className="w-4 h-4" />
-                          <span>Case Study & Breakdown</span>
-                        </button>
-
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-black bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-colors flex items-center gap-2 shadow-2xs"
-                        >
-                          <Github className="w-4 h-4 text-blue-700" />
-                          <span>GitHub Code</span>
-                        </a>
+                    {/* Tech Stack */}
+                    <div className="mb-8 w-full">
+                      <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2">
+                        TECHNOLOGIES APPLIED
                       </div>
-
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-mono text-slate-700">
+                        {project.techStack.map((tech, tIdx) => (
+                          <React.Fragment key={tech}>
+                            <span className={`${theme.techHover} transition-colors font-medium`}>{tech}</span>
+                            {tIdx < project.techStack.length - 1 && <span className="text-slate-300">/</span>}
+                          </React.Fragment>
+                        ))}
+                      </div>
                     </div>
 
-                    {/* Right Column: Visual Mockup / Interactive Snapshot (6 cols) */}
-                    <div className="lg:col-span-6 w-full">
-                      
-                      {/* Visual Card Frame */}
-                      <div className={`relative rounded-3xl bg-white border border-slate-200 p-4 shadow-lg overflow-hidden ${theme.innerFrameBorder} transition-colors`}>
-                        
-                        {/* Terminal-like Window Bar with Mac-style pastel dots */}
-                        <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 text-xs font-mono text-slate-600">
-                          <div className="flex items-center gap-2">
-                            <span className="w-2.5 h-2.5 rounded-full bg-rose-300 inline-block" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-amber-300 inline-block" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 inline-block" />
-                            <span className="ml-2 text-slate-700 text-[11px] font-semibold">{project.title.toLowerCase()}_preview.tsx</span>
-                          </div>
-                          <button
-                            onClick={() => setSelectedProject(project)}
-                            className="text-blue-700 hover:text-blue-900 font-semibold text-[11px] flex items-center gap-1 cursor-pointer"
-                          >
-                            <span>Full Modal</span>
-                            <ArrowUpRight className="w-3 h-3" />
-                          </button>
-                        </div>
+                    {/* Action CTAs */}
+                    <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-slate-100 w-full">
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] rounded-xl transition-all shadow-md shadow-navy-950/20 flex items-center gap-2 cursor-pointer"
+                      >
+                        <BookOpen className="w-4 h-4" />
+                        <span>Case Study & Breakdown</span>
+                      </button>
 
-                        {/* Live Interactive Snapshot Inside The Card */}
-                        {isPhoenix ? (
-                          <div className="relative">
-                            <PhoenixAISandbox />
-                          </div>
-                        ) : project.id === 'heart-disease-prediction' ? (
-                          <div className="relative">
-                            <HeartDiseaseSandbox />
-                          </div>
-                        ) : (
-                          <div className="relative">
-                            <GenZifyPlayground />
-                          </div>
-                        )}
-
-                      </div>
-
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-black bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-colors flex items-center gap-2 shadow-2xs"
+                      >
+                        <Github className="w-4 h-4 text-purple-700" />
+                        <span>GitHub Code</span>
+                      </a>
                     </div>
 
                   </div>
