@@ -354,93 +354,82 @@ export const ProjectsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* PROJECT 04 - OPEN-ENV (Code Editor / Terminal Design) */}
-      <div className="min-h-screen relative flex items-center py-20 px-6 md:px-12 lg:px-24 bg-[#0f172a]">
+      {/* PROJECT 04 - OPEN-ENV (Light Aesthetic Agent UI) */}
+      <div className="min-h-screen relative flex items-center py-20 px-6 md:px-12 lg:px-24 bg-[var(--color-cream)]">
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          {/* Left Code Editor Visualization Column */}
-          <div className="relative w-full h-[50vh] lg:h-[70vh] rounded-[32px] overflow-hidden group cursor-none shadow-[0_0_40px_rgba(16,185,129,0.15)] flex flex-col bg-[#1e293b] border border-slate-700" data-cursor="project">
+          {/* Left Visual Column - Light Glassmorphic Agent Simulation */}
+          <div className="relative w-full h-[50vh] lg:h-[70vh] rounded-[40px] overflow-hidden group cursor-none border border-[var(--color-lavender)] bg-gradient-to-br from-[#f0fdf4] to-white shadow-xl flex flex-col items-center justify-center p-6 md:p-12" data-cursor="project">
             
-            {/* Editor Header */}
-            <div className="bg-[#0f172a] px-4 py-3 flex items-center border-b border-slate-700">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-              </div>
-              <div className="mx-auto flex items-center gap-2 text-slate-400 font-mono text-xs">
-                <Code2 size={14} /> env.py — OpenEnv
-              </div>
-            </div>
+            {/* Background grid */}
+            <div className="absolute inset-0 bg-grid-pattern opacity-[0.15]" />
 
-            {/* Editor Body */}
-            <div className="flex-1 p-6 font-mono text-sm overflow-hidden relative">
-              {/* Line numbers */}
-              <div className="absolute left-0 top-0 bottom-0 w-12 bg-[#0f172a]/50 border-r border-slate-700 flex flex-col items-end pr-3 pt-6 text-slate-600 text-xs select-none">
-                {[1,2,3,4,5,6,7,8,9,10,11].map(n => <span key={n} className="h-[24px]">{n}</span>)}
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full max-w-sm flex flex-col gap-6"
+            >
+              {/* Customer Bubble */}
+              <div className="self-start bg-white p-4 rounded-2xl rounded-tl-sm shadow-sm border border-emerald-100 max-w-[85%] relative">
+                <div className="absolute -top-3 left-4 bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Customer</div>
+                <p className="text-sm font-sans text-gray-700 mt-2">I received the wrong item in my order #12345.</p>
               </div>
 
-              {/* Code Content */}
-              <div className="pl-10 text-slate-300 leading-[24px]">
-                <p><span className="text-pink-400">import</span> <span className="text-emerald-300">openenv</span></p>
-                <p><span className="text-pink-400">import</span> <span className="text-emerald-300">fastapi</span></p>
-                <br/>
-                <p><span className="text-pink-400">class</span> <span className="text-yellow-200">CustomerSupportEnv</span><span className="text-yellow-400">(</span><span className="text-emerald-300">openenv.Env</span><span className="text-yellow-400">):</span></p>
-                <p className="pl-4"><span className="text-pink-400">def</span> <span className="text-blue-300">__init__</span><span className="text-yellow-400">(</span><span className="text-blue-300">self</span><span className="text-yellow-400">):</span></p>
-                <p className="pl-8"><span className="text-blue-300">self</span>.<span className="text-blue-300">scenarios</span> = <span className="text-yellow-400">[</span><span className="text-amber-300">"Refund"</span>, <span className="text-amber-300">"Lost Item"</span><span className="text-yellow-400">]</span></p>
-                <p className="pl-8"><span className="text-blue-300">self</span>.<span className="text-blue-300">multi_turn</span> = <span className="text-orange-400">True</span></p>
-                <br/>
-                <p className="pl-4"><span className="text-pink-400">def</span> <span className="text-blue-300">step</span><span className="text-yellow-400">(</span><span className="text-blue-300">self</span>, <span className="text-emerald-300">action</span><span className="text-yellow-400">):</span></p>
-                <p className="pl-8"><span className="text-pink-400">return</span> <span className="text-emerald-300">reward_calculator</span>.<span className="text-blue-300">evaluate</span><span className="text-yellow-400">(</span><span className="text-emerald-300">action</span><span className="text-yellow-400">)</span></p>
-              </div>
-
-              {/* Animated Cursor */}
-              <motion.div animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 1 }} className="absolute bottom-12 left-20 w-2.5 h-5 bg-white/80" />
-            </div>
-
-            {/* Bottom Terminal Output */}
-            <div className="h-1/3 bg-black border-t border-slate-700 p-4 font-mono text-xs overflow-hidden relative">
-              <div className="text-emerald-400 mb-2">Terminal</div>
-              <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                className="space-y-1"
+              {/* Agent Bubble */}
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="self-end bg-emerald-500 text-white p-4 rounded-2xl rounded-tr-sm shadow-md max-w-[85%] relative"
               >
-                <p className="text-slate-400">$ python train_agent.py --env support</p>
-                <p className="text-slate-300">[INFO] Booting FastAPI Server...</p>
-                <p className="text-slate-300">[INFO] Generating diverse customer scenarios...</p>
-                <p className="text-amber-300">[ACTION] Agent requested missing order ID (Turn 1)</p>
-                <p className="text-emerald-400">[REWARD] +1.0 for optimal information gathering</p>
+                <div className="absolute -top-3 right-4 bg-emerald-700 text-emerald-100 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  RL Agent
+                </div>
+                <p className="text-sm font-sans mt-2">I apologize for the mix-up! I've initiated a replacement for order #12345.</p>
               </motion.div>
-            </div>
+
+              {/* Reward Pill (Reinforcement Learning) */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.5, y: -20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 1, type: "spring", bounce: 0.6 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 py-2 rounded-full border-2 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] z-10 flex items-center gap-2"
+              >
+                <span className="font-mono text-emerald-500 font-black text-lg">+1.0</span>
+                <span className="font-mono text-gray-400 text-xs uppercase tracking-widest font-bold">Optimal Resolution</span>
+              </motion.div>
+
+            </motion.div>
           </div>
 
           {/* Right Text Column */}
-          <div className="relative z-10">
+          <div className="relative z-10 order-first lg:order-last">
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <h4 className="text-emerald-400 font-mono text-sm font-bold mb-4 uppercase tracking-widest">
+              <h4 className="text-emerald-500 font-mono text-sm font-bold mb-4 uppercase tracking-widest">
                 04 — Reinforcement Learning
               </h4>
-              <h3 className="text-4xl md:text-6xl font-display font-black text-white mb-4 leading-tight">
+              <h3 className="text-4xl md:text-6xl font-display font-black text-[var(--color-plum)] mb-4 leading-tight">
                 {openEnvProject.title}
               </h3>
-              <p className="font-mono text-sm text-slate-400 font-bold mb-8">
+              <p className="font-mono text-sm text-[var(--color-plum)]/60 font-bold mb-8">
                 {openEnvProject.tagline}
               </p>
               
-              <div className="space-y-6 mb-10 border-l-2 border-emerald-500 pl-6">
+              <div className="space-y-6 mb-10 border-l-2 border-emerald-400 pl-6">
                 <div>
-                  <h5 className="font-mono text-xs text-slate-500 font-bold uppercase tracking-wider mb-3">Problem Solved</h5>
-                  <p className="font-sans text-slate-300 leading-relaxed font-medium mb-4">
+                  <h5 className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-3">Problem Solved</h5>
+                  <p className="font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium mb-4">
                     {openEnvProject.problem}
                   </p>
-                  <ul className="list-disc pl-5 font-sans text-slate-300 leading-relaxed font-medium space-y-2">
+                  <ul className="list-disc pl-5 font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium space-y-2">
                     {openEnvProject.features.map((feature, i) => (
                       <li key={i}>{feature}</li>
                     ))}
@@ -451,7 +440,7 @@ export const ProjectsSection: React.FC = () => {
               {/* Tech Stack Tags */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {openEnvProject.techStack.map(tag => (
-                  <span key={tag} className="px-3 py-1 bg-slate-800 text-slate-300 rounded-full font-mono text-xs font-bold border border-slate-700 hover:border-emerald-500 hover:text-emerald-400 transition-colors">
+                  <span key={tag} className="px-3 py-1 bg-white text-[var(--color-plum)] rounded-full font-mono text-xs font-bold border border-[var(--color-lavender)] hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-600 transition-colors">
                     {tag}
                   </span>
                 ))}
@@ -463,7 +452,7 @@ export const ProjectsSection: React.FC = () => {
                   href={openEnvProject.githubUrl} 
                   target="_blank" 
                   rel="noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-emerald-500 text-slate-900 rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                  className="flex items-center gap-2 px-6 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
                 >
                   <Github size={16} /> Repository
                 </a>
