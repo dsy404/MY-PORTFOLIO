@@ -12,7 +12,9 @@ const navLinks = [
   { name: 'About', target: 'about' },
   { name: 'Journey', target: 'journey' },
   { name: 'Skills', target: 'skills' },
-  { name: 'Projects', target: 'projects' }
+  { name: 'Projects', target: 'projects' },
+  { name: 'Certificates', target: 'certificates' },
+  { name: 'Resume', target: 'resume' }
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
@@ -68,7 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
             className="text-[var(--color-plum)] font-display font-black text-xl tracking-tighter cursor-none group"
             data-cursor="hover"
           >
-            DY<span className="text-[var(--color-rose)] group-hover:animate-pulse">.</span>
+            DSY<span className="text-[var(--color-rose)] group-hover:animate-pulse">.</span>
           </div>
 
           {/* Desktop Links */}
