@@ -106,8 +106,45 @@ export const ProjectsSection: React.FC = () => {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="absolute inset-0 w-full h-full"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-lavender)] to-[var(--color-rose)] w-full h-full flex items-center justify-center font-display text-4xl text-[var(--color-plum)]/20 font-black group-hover:scale-105 transition-transform duration-1000 ease-out">
-                {phoenixProject.title}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1e1b4b] to-[#4c1d95] w-full h-full group-hover:scale-105 transition-transform duration-1000 ease-out flex flex-col p-6 md:p-8 font-mono text-white/80">
+                {/* Simulated AI Terminal / Chat UI */}
+                <div className="flex items-center gap-2 mb-6 md:mb-8">
+                  <div className="w-3 h-3 rounded-full bg-rose-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
+                  <span className="ml-4 text-xs font-bold text-white/30 tracking-widest">PHOENIX_ORCHESTRATOR</span>
+                </div>
+                
+                <div className="space-y-4 md:space-y-6 flex-1 flex flex-col">
+                  {/* Student Input */}
+                  <div className="bg-white/10 rounded-2xl rounded-tl-sm p-4 w-[85%] backdrop-blur-sm border border-white/10 shadow-lg">
+                    <p className="text-[10px] text-white/50 mb-2 font-bold tracking-wider">STUDENT INPUT</p>
+                    <p className="text-sm md:text-base font-sans font-medium text-white">"मुझे गुरुत्वाकर्षण समझ नहीं आ रहा है।"</p>
+                  </div>
+                  
+                  {/* Language Agent Node */}
+                  <motion.div 
+                    initial={{ opacity: 0.5 }}
+                    whileInView={{ opacity: 1 }}
+                    className="bg-[#3b82f6]/20 rounded-2xl rounded-tr-sm p-4 w-[75%] self-end ml-auto backdrop-blur-md border border-[#3b82f6]/30 shadow-lg"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-2 h-2 rounded-full bg-[#60a5fa] animate-ping" />
+                      <p className="text-[10px] text-[#60a5fa] font-bold tracking-wider">LANGUAGE AGENT</p>
+                    </div>
+                    <p className="text-xs md:text-sm text-[#bfdbfe]">Translated query to English. Routing to Core Engine...</p>
+                  </motion.div>
+                  
+                  {/* Teacher Agent Node */}
+                  <div className="bg-[#10b981]/20 rounded-2xl rounded-bl-sm p-5 w-[90%] backdrop-blur-md border border-[#10b981]/30 shadow-lg relative overflow-hidden mt-auto">
+                    <motion.div animate={{ x: ['-100%', '200%'] }} transition={{ repeat: Infinity, duration: 3, ease: "linear" }} className="absolute inset-0 bg-gradient-to-r from-transparent via-[#34d399]/20 to-transparent pointer-events-none" />
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 rounded-full bg-[#34d399] shadow-[0_0_10px_#34d399]" />
+                      <p className="text-[10px] text-[#34d399] font-bold tracking-wider">TEACHER AGENT</p>
+                    </div>
+                    <p className="text-sm text-[#d1fae5] font-sans">Generating personalized analogy using "Magnetism" tailored for 8th-grade comprehension level.</p>
+                  </div>
+                </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cream)] via-transparent to-transparent opacity-60 lg:hidden" />
             </motion.div>
@@ -134,9 +171,37 @@ export const ProjectsSection: React.FC = () => {
               whileInView={{ rotate: 0, scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="absolute inset-0 w-full h-full bg-[var(--color-peach)] flex items-center justify-center font-display text-6xl text-[var(--color-plum)]/20 font-black group-hover:scale-110 transition-transform duration-700 ease-out"
+              className="absolute inset-0 w-full h-full"
             >
-              {genzifyProject.title}
+              <div className="absolute inset-0 w-full h-full bg-[#fdf2f8] group-hover:scale-110 transition-transform duration-700 ease-out p-6 md:p-10 flex flex-col justify-center gap-8">
+                {/* Formal Input Bubble */}
+                <div className="bg-white p-6 md:p-8 rounded-3xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black relative rotate-2 origin-bottom-left transition-transform hover:rotate-0">
+                  <p className="font-serif text-lg md:text-xl font-medium text-gray-500 italic">
+                    "I am currently extremely focused and working very hard on this project."
+                  </p>
+                  <div className="absolute -bottom-4 -left-4 bg-gray-200 border-2 border-black rounded-full px-3 py-1 text-xs font-mono font-bold rotate-[-10deg]">FORMAL</div>
+                </div>
+                
+                {/* Translation Indicator */}
+                <div className="flex justify-center z-20">
+                  <motion.div 
+                    animate={{ y: [0, 5, 0] }} 
+                    transition={{ repeat: Infinity, duration: 1 }} 
+                    className="bg-[#ec4899] text-white px-6 py-2 rounded-full font-mono font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black flex items-center gap-2"
+                  >
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                    GENZIFYING...
+                  </motion.div>
+                </div>
+
+                {/* GenZ Output Bubble */}
+                <div className="bg-[#facc15] p-6 md:p-8 rounded-3xl shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-4 border-black relative -rotate-3 origin-top-right transition-transform hover:rotate-0">
+                  <p className="font-display text-4xl md:text-5xl font-black text-black uppercase tracking-tighter leading-none">
+                    LOCKED IN. <br/>FR FR 🔒🔥
+                  </p>
+                  <div className="absolute -top-4 -right-4 bg-black text-white border-2 border-white rounded-full px-3 py-1 text-xs font-mono font-bold rotate-[10deg]">SLANG ENGAGED</div>
+                </div>
+              </div>
             </motion.div>
           </div>
 
