@@ -64,6 +64,8 @@ export interface CertificateItem {
   badgeColor?: 'purple' | 'pink' | 'amber' | 'emerald';
   imageUrl?: string;
   instructorOrSignatory?: string;
+  rank?: string;
+  platform?: string;
 }
 
 export interface ResumeData {

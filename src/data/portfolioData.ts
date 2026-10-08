@@ -338,88 +338,192 @@ export const hackathonsData: HackathonItem[] = [
 ];
 
 export const certificatesData: CertificateItem[] = [
+  // 1. TOP: Google Solution Challenge 2026
   {
     id: "google-solution-challenge-2026",
-    title: "Google Solution Challenge 2026",
-    issuer: "Google Developer Student Clubs / Google Developers",
-    date: "Jul 2026",
+    title: "Solution Challenge 2026: Build with AI",
+    issuer: "Google / Build with AI (Powered by H2S)",
+    date: "22/07/2026",
     category: "Cloud & Global Hackathons",
-    credentialId: "GSC-2026-DY-FAIRTRACE",
-    instructorOrSignatory: "Google Developers Global Community & GDSC Lead",
-    description: "Awarded for designing and engineering FAIRTRACE-AI, an automated AI fairness and demographic bias evaluation platform aligned with the United Nations Sustainable Development Goals (SDGs).",
-    skills: ["Responsible AI", "Scikit-learn", "AIF360", "SHAP / LIME", "FastAPI", "React"],
+    credentialId: "2026H2SO7SCBWAI-PS09169",
+    instructorOrSignatory: "Build with AI & Hack2Skill Global Jury",
+    description: "Awarded in recognition of successful prototype submission for Solution Challenge 2026: Build with AI and contribution to the spirit of innovation and problem-solving.",
+    skills: ["AI Prototyping", "Google Cloud", "Build with AI", "Responsible AI", "Innovation"],
     verificationUrl: "https://developers.google.com/community/gdsc-solution-challenge",
     status: "Honors",
-    badgeColor: "purple"
+    badgeColor: "purple",
+    platform: "Build with AI / H2S"
   },
+
+  // 2. 2ND: ELUSOC (Summer of Code 2026 - Rank 63)
   {
-    id: "microsoft-ai-skills",
-    title: "Microsoft AI Skills Certification",
-    issuer: "Microsoft Learn",
-    date: "Jun 2026",
+    id: "elusoc-2026-rank-63",
+    title: "ELUSOC 2026 — Summer of Code (Rank 63)",
+    issuer: "EduLinkUp / ELUSOC (Hosted on Unstop)",
+    date: "September 4, 2026",
+    category: "Open Source & Web",
+    credentialId: "ELUSOC-2026-CON-063",
+    instructorOrSignatory: "EduLinkUp Digital Records & Open Source Board",
+    rank: "Rank 63",
+    description: "Awarded to Deepshikha Yadav as Contributor with Achievement Tier: Rank 63 in ELUSOC 2026 (Summer of Code organized by EduLinkUp). Authenticity confirmed against official digital records.",
+    skills: ["Open Source", "Competitive Coding", "Git / GitHub", "Web Architecture", "Code Contribution"],
+    verificationUrl: "https://unstop.com",
+    status: "Honors",
+    badgeColor: "amber",
+    platform: "Unstop / EduLinkUp"
+  },
+
+  // 3. 3RD: CodeBlitz 2.0
+  {
+    id: "codeblitz-2026",
+    title: "CodeBlitz 2.0",
+    issuer: "Craftora & OSEN (Powered by ElevenLabs, Vakh, LPPGC)",
+    date: "October 3, 2026",
+    category: "Cloud & Global Hackathons",
+    credentialId: "Z2GH-MN3B-9PRE-PZFF",
+    instructorOrSignatory: "Vikash Kumar Yadav (Founder, OSEN) & Aryan Pandey (Programme Manager, OSEN)",
+    description: "Presented to Deepshikha Yadav for participating in CodeBlitz 2.0 in recognition of dedication, creativity, collaboration, and contribution throughout the event.",
+    skills: ["Full-Stack Engineering", "ElevenLabs Voice AI", "Collaboration", "Rapid Development", "Creativity"],
+    verificationUrl: "https://craftora.tech/verify/Z2GH-MN3B-9PRE-PZFF",
+    status: "Verified",
+    badgeColor: "pink",
+    platform: "Craftora / OSEN"
+  },
+
+  // 4. 4TH: Microsoft & EY AI Skills Passport
+  {
+    id: "ey-microsoft-ai-skills",
+    title: "AI Skills Passport",
+    issuer: "EY & Microsoft",
+    date: "2026",
     category: "AI & Machine Learning",
-    credentialId: "MS-AI-SKILLS-936953",
-    instructorOrSignatory: "Microsoft Worldwide Learning Accreditation Board",
-    description: "Demonstrated verified competency in generative artificial intelligence foundations, responsible AI principles, transformer architectures, prompt engineering, and Azure AI services.",
-    skills: ["Generative AI", "Responsible AI", "Prompt Engineering", "Large Language Models", "Azure AI"],
+    credentialId: "EY-MSFT-AIPASS-DY2026",
+    instructorOrSignatory: "EY & Microsoft Global Learning Accreditation",
+    description: "Successfully completed the AI Skills Passport course offered by EY and Microsoft, covering general AI foundations, employability, sustainability, business & technology.",
+    skills: ["Generative AI", "Microsoft AI", "Prompt Engineering", "Responsible AI", "Enterprise Technology"],
     verificationUrl: "https://learn.microsoft.com",
     status: "Verified",
-    badgeColor: "pink"
+    badgeColor: "purple",
+    platform: "Microsoft Learn / EY"
   },
+
+  // 5. 5TH: Kaggle & Google 5-Day AI Agents
   {
-    id: "google-vibe-coding-ai-intensive",
-    title: "Google 5-Day AI Intensive Vibe Coding Program",
-    issuer: "Google Developers & AI Studio",
-    date: "2026",
+    id: "kaggle-google-ai-agents",
+    title: "5-Day AI Agents: Intensive Vibe Coding Course",
+    issuer: "Kaggle & Google",
+    date: "July 30, 2026",
     category: "AI & Machine Learning",
-    credentialId: "GOOGLE-AI-INT-2026-PHOENIX",
-    instructorOrSignatory: "Google AI Intensive Program Directors",
-    description: "Completed an intensive program focusing on building multi-agent systems and full-stack AI-first architectures, culminating in the development of Phoenix AI, an education platform for underserved learners.",
-    skills: ["Gemini API", "Multi-Agent Systems", "LangGraph", "Vector Databases", "TypeScript"],
-    verificationUrl: "https://ai.google.dev",
+    credentialId: "KAGGLE-GOOGLE-AI-AGENTS-2026",
+    instructorOrSignatory: "Kaggle & Google AI Education Teams",
+    description: "Successfully earned the official badge for completing the intensive 5-Day AI Agents: Intensive Vibe Coding Course exploring autonomous agents, multi-agent workflows, and prompt engineering.",
+    skills: ["AI Agents", "Multi-Agent Systems", "Google Gemini API", "Kaggle Notebooks", "Vibe Coding"],
+    verificationUrl: "https://www.kaggle.com/learn",
     status: "Honors",
-    badgeColor: "purple"
+    badgeColor: "purple",
+    platform: "Kaggle / Google"
   },
+
+  // 6. Coderush 2.0 Hackathon (BBDNIIT)
   {
-    id: "srmcem-ai-ml-training",
-    title: "AI & Machine Learning Specialization",
-    issuer: "Shri Ramswaroop Memorial College of Engineering & Management",
-    date: "Jul 2026",
-    category: "Academic & Specialization",
-    credentialId: "SRMCEM-AIML-2026-04",
-    instructorOrSignatory: "Head of Department, Computer Science & Engineering",
-    description: "Intensive 2-week hands-on training program in Python, NumPy, Pandas, Matplotlib, Scikit-learn, reinforcement learning, and supervised classification algorithms. Built the Heart Disease Prediction logistic regression model.",
-    skills: ["Python", "Scikit-Learn", "Data Science", "Supervised Learning", "Classification Models"],
-    status: "Completed",
-    badgeColor: "pink"
-  },
-  {
-    id: "gssoc-2026-contributor",
-    title: "GirlScript Summer of Code (GSSoC '26) Contributor",
-    issuer: "GirlScript Foundation",
-    date: "2026",
-    category: "Open Source & Web",
-    credentialId: "GSSOC-2026-DSY404",
-    instructorOrSignatory: "GirlScript Summer of Code Organizing Committee",
-    description: "Recognized contributor to open-source repositories across web development and developer tooling, resolving critical issues and delivering feature pull requests to community projects.",
-    skills: ["Open Source", "Git & GitHub", "Code Review", "React", "JavaScript", "Community Collaboration"],
-    verificationUrl: "https://github.com/dsy404",
-    status: "Verified",
-    badgeColor: "emerald"
-  },
-  {
-    id: "et-ai-hackathon-cert",
-    title: "The Economic Times AI Hackathon Finalist",
-    issuer: "The Economic Times & Hack2Skill",
-    date: "2025 – 2026",
+    id: "coderush-2026",
+    title: "Coderush 2.0 Hackathon",
+    issuer: "BBDNIIT (AICTE, NBA, CSI, GeeksforGeeks)",
+    date: "13th April, 2026",
     category: "Cloud & Global Hackathons",
-    credentialId: "ET-AI-HACK-2026-DY",
-    instructorOrSignatory: "The Economic Times Innovation Jury & Hack2Skill",
-    description: "Recognized for building innovative enterprise AI solutions under strict sprint timelines during the national-level Economic Times AI Hackathon.",
-    skills: ["Rapid Prototyping", "Team Engineering", "AI Problem Solving", "System Design"],
-    verificationUrl: "https://hack2skill.com",
-    status: "Honors",
-    badgeColor: "amber"
+    credentialId: "CODER-PK7NCB",
+    instructorOrSignatory: "Dr. Anurag Srivastava (HOD), Dr. Laxmi Vajpeyi (IIC President), Dr. VK Singh (Director Engineering)",
+    description: "Successfully participated in Coderush 2.0 Hackathon organized by BBDNIIT. Commended for enthusiasm, dedication, and innovative spirit.",
+    skills: ["Hackathon Prototyping", "CSI & GfK Problem Solving", "Algorithms", "Software Engineering"],
+    verificationUrl: "https://bbdniit.ac.in",
+    status: "Verified",
+    badgeColor: "amber",
+    platform: "BBDNIIT / CSI"
+  },
+
+  // 7. AttentionX AI Hackathon (UnsaidTalks)
+  {
+    id: "attentionx-ai-hackathon",
+    title: "AttentionX AI Hackathon",
+    issuer: "UnsaidTalks Education Pvt. Ltd.",
+    date: "18/04/2026",
+    category: "Cloud & Global Hackathons",
+    credentialId: "UT-ATTNX-AIHACK-2026",
+    instructorOrSignatory: "Raghav Chopra (Founder, CEO UnsaidTalks Education Pvt. Ltd.)",
+    description: "Successfully attended and participated in the AttentionX AI Hackathon conducted by UnsaidTalks Education, tackling artificial intelligence innovation challenges.",
+    skills: ["Artificial Intelligence", "Attention Mechanisms", "Prototyping", "Pitching"],
+    verificationUrl: "https://unsaidtalks.com",
+    status: "Verified",
+    badgeColor: "amber",
+    platform: "UnsaidTalks"
+  },
+
+  // 8. Adivya 2.0 - Developer Hackathon (Enginow)
+  {
+    id: "adivya-2026-hackathon",
+    title: "Adivya 2.0 — Developer Hackathon",
+    issuer: "Enginow",
+    date: "2026",
+    category: "Cloud & Global Hackathons",
+    credentialId: "ENGINOW-ADIVYA-2-TEAM-DY",
+    instructorOrSignatory: "Enginow Developer Hackathon Organizing Committee",
+    description: "Certified for participating in Adivya 2.0 - Developer Hackathon organized by Enginow as Team dy.deepshikha04aug from SRMCEM.",
+    skills: ["Full-Stack Prototyping", "Developer Tooling", "Team Coordination", "Rapid Hackathon Sprints"],
+    verificationUrl: "https://enginow.in",
+    status: "Verified",
+    badgeColor: "pink",
+    platform: "Enginow"
+  },
+
+  // 9. CodeStrike 2026 (Bytebattle Global Community & Unstop)
+  {
+    id: "codestrike-2026",
+    title: "CodeStrike 2026 — Official Coding Championship",
+    issuer: "Bytebattle Global Community (Hosted on Unstop)",
+    date: "2026",
+    category: "Cloud & Global Hackathons",
+    credentialId: "UNSTOP-CODESTRIKE-SRMCEM-2026",
+    instructorOrSignatory: "Bytebattle Global Community & Unstop Jury",
+    description: "Represented SRMCEM and participated in CodeStrike 2026 — Official Coding Championship organized by Bytebattle Global Community.",
+    skills: ["Competitive Programming", "Data Structures", "Speed Coding", "Algorithmic Analysis"],
+    verificationUrl: "https://unstop.com",
+    status: "Verified",
+    badgeColor: "purple",
+    platform: "Unstop / Bytebattle"
+  },
+
+  // 10. Tech Talk: Generative AI and LLMs (CSI SRMCEM x D'CODERS)
+  {
+    id: "srmcem-genai-llm-techtalk",
+    title: "Tech Talk: Generative AI & Large Language Models",
+    issuer: "CSI_SRMCEM × D'CODERS & Dept of CSE, SRMCEM",
+    date: "13th November 2025",
+    category: "Academic & Specialization",
+    credentialId: "SRMCEM-CSI-DCODERS-LLM-2025",
+    instructorOrSignatory: "Dr. Sandeep Dubey (HOD AIML & DS), Dr. Pankaj Kumar (HOD CSE), Er. Akhil Pandey (IIC President)",
+    description: "Actively participated in Tech Talk with guest speaker Arjit Verma, showcasing enthusiasm and interest in Generative AI, LLMs, and real-world AI applications.",
+    skills: ["Generative AI", "Large Language Models (LLMs)", "Deep Learning", "Applied AI Architecture"],
+    verificationUrl: "https://srmcem.ac.in",
+    status: "Completed",
+    badgeColor: "pink",
+    platform: "SRMCEM / CSI / IIC"
+  },
+
+  // 11. QuizOff 2026: India's Biggest AI Quiz (CampusCrew & Unstop)
+  {
+    id: "quizoff-2026-ai-quiz",
+    title: "QuizOff 2026: India's Biggest AI Quiz",
+    issuer: "CampusCrew (Hosted on Unstop)",
+    date: "19-JULY-2026",
+    category: "AI & Machine Learning",
+    credentialId: "QUIZOFF-2026-CC-UNSTOP-DY",
+    instructorOrSignatory: "Aaradhya Gupta (Founder, CampusCrew)",
+    description: "Recognized among select students who competed in QuizOff 2026: India's Biggest AI Quiz where 5,25,000+ students from 48,500+ institutions across 35+ countries participated.",
+    skills: ["AI Fundamentals", "Machine Learning Theory", "Global Competitive AI Quiz", "Speed Assessment"],
+    verificationUrl: "https://unstop.com",
+    status: "Verified",
+    badgeColor: "purple",
+    platform: "Unstop / CampusCrew"
   }
 ];
 
