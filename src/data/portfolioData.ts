@@ -267,6 +267,37 @@ export const projectsData: Project[] = [
     outcome: "Successfully implemented a complete, transparent machine learning classification pipeline from raw tabular data ingestion to exploratory visualization, model evaluation, and patient risk prediction.",
     githubUrl: "https://github.com/dsy404/Heart_Disease_Prediction",
     accentColor: "#e11d48"
+  },
+  {
+    id: "open-env",
+    title: "AI Customer Support Training Environment",
+    tagline: "Open-Env Compliant Reinforcement Learning Simulation",
+    focusArea: "Reinforcement Learning · Python · FastAPI",
+    category: "Machine Learning / RL",
+    summary: "An OpenEnv-compliant reinforcement-learning environment that trains AI agents to resolve real-world customer support issues — from issue classification to full multi-turn resolution.",
+    coreQuote: "Training agents for real-world scenarios through step-by-step reinforcement.",
+    targetAudience: [
+      "AI Engineers & Researchers",
+      "Enterprise Customer Support Platforms",
+      "Reinforcement Learning Students"
+    ],
+    problem: "Companies rely on AI agents to handle thousands of customer interactions daily. Training such agents requires a controlled, replayable environment that supports multi-turn interactions where the agent must gather information before acting.",
+    idea: "Provides a gym-style environment your agent can learn from by rewarding correct behavior step-by-step and evaluating responses objectively via rule-based graders.",
+    features: [
+      "Generates diverse customer scenarios",
+      "Rewards correct behaviour step-by-step (not just at the end)",
+      "Evaluates responses objectively via rule-based graders",
+      "Supports multi-turn interactions where the agent must gather information before acting"
+    ],
+    techStack: ["OpenEnv", "Python 3.11", "FastAPI"],
+    developmentHighlights: [
+      "Implemented a Gym-style interface for agent interaction",
+      "Designed rule-based objective graders for performance evaluation",
+      "Configured multi-turn conversational state tracking"
+    ],
+    outcome: "Delivered a robust environment enabling reinforcement learning agents to systematically improve conversational resolution skills.",
+    githubUrl: "https://github.com/dsy404",
+    accentColor: "#10b981"
   }
 ];
 
