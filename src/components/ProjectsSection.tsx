@@ -4,8 +4,9 @@ import { ExternalLink, Github } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 
 export const ProjectsSection: React.FC = () => {
-  const phoenixProject = projectsData.find(p => p.id === 'phoenix-ai-assistant') || projectsData[0];
-  const genzifyProject = projectsData.find(p => p.id === 'genzify-chrome-extension') || projectsData[1];
+  const phoenixProject = projectsData.find(p => p.id === 'phoenix-ai') || projectsData[0];
+  const genzifyProject = projectsData.find(p => p.id === 'genzify') || projectsData[1];
+  const heartProject = projectsData.find(p => p.id === 'heart-disease-prediction') || projectsData[2];
   
   return (
     <section id="projects" className="relative bg-[var(--color-cream)] overflow-hidden">
@@ -24,7 +25,7 @@ export const ProjectsSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-5xl md:text-7xl font-display font-black text-[var(--color-plum)] uppercase tracking-tighter"
         >
-          Selected Works
+          Highlighted Projects
         </motion.h2>
         <p className="text-[var(--color-plum)]/60 font-mono text-sm mt-4 uppercase tracking-widest">
           Scroll to explore case studies
@@ -178,6 +179,106 @@ export const ProjectsSection: React.FC = () => {
             </motion.div>
           </div>
 
+        </div>
+      </div>
+
+      {/* PROJECT 03 - HEART DISEASE PREDICTION (Analytical / Clinical Design) */}
+      <div className="min-h-screen relative flex items-center py-20 px-6 md:px-12 lg:px-24 bg-[var(--color-cream)]">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Text Column */}
+          <div className="order-2 lg:order-1 relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <h4 className="text-[var(--color-rose)] font-mono text-sm font-bold mb-4 uppercase tracking-widest">
+                03 — Machine Learning Pipeline
+              </h4>
+              <h3 className="text-4xl md:text-6xl font-display font-black text-[var(--color-plum)] mb-4 leading-tight">
+                {heartProject.title}
+              </h3>
+              <p className="font-mono text-sm text-[var(--color-plum)]/60 font-bold mb-8">
+                {heartProject.tagline}
+              </p>
+              
+              <div className="space-y-6 mb-10 border-l-2 border-[var(--color-rose)] pl-6">
+                <div>
+                  <h5 className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-3">Core Highlights</h5>
+                  <ul className="list-disc pl-5 font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium space-y-2">
+                    {heartProject.features.slice(0, 3).map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Tech Stack Tags */}
+              <div className="flex flex-wrap gap-2 mb-10">
+                {heartProject.techStack.map(tag => (
+                  <span key={tag} className="px-3 py-1 bg-white text-[var(--color-plum)] rounded-full font-mono text-xs font-bold border border-[var(--color-lavender)] hover:border-[var(--color-rose)] hover:bg-[var(--color-rose)] hover:text-white transition-colors">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-4 cursor-none" data-cursor="hover">
+                <a 
+                  href={heartProject.githubUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                >
+                  <Github size={16} /> Repository
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Analytical Visualization Column */}
+          <div className="order-1 lg:order-2 relative w-full h-[50vh] lg:h-[70vh] rounded-[40px] overflow-hidden group cursor-none border border-[var(--color-lavender)] bg-white shadow-xl flex items-center justify-center p-8" data-cursor="project">
+            
+            {/* Background grid */}
+            <div className="absolute inset-0 bg-grid-pattern opacity-50" />
+            
+            {/* Abstract Data Visualization */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="relative z-10 w-full h-full flex flex-col justify-between"
+            >
+              {/* Top stats bar */}
+              <div className="flex justify-between items-center border-b border-[var(--color-lavender)] pb-4">
+                <div className="font-mono text-xs text-[var(--color-plum)] font-bold">ACCURACY: <span className="text-[var(--color-rose)]">85.2%</span></div>
+                <div className="font-mono text-xs text-[var(--color-plum)] font-bold">MODEL: <span className="text-[var(--color-rose)]">LogReg</span></div>
+              </div>
+              
+              {/* Central Chart Simulation */}
+              <div className="flex-1 flex items-end justify-center gap-2 md:gap-4 py-8">
+                {[40, 70, 45, 90, 65, 85, 30].map((height, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    whileInView={{ height: `${height}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: i * 0.1, type: "spring" }}
+                    className="w-8 md:w-12 bg-gradient-to-t from-[var(--color-plum)] to-[var(--color-rose)] rounded-t-sm"
+                  />
+                ))}
+              </div>
+              
+              {/* Bottom label */}
+              <div className="text-center font-mono text-[10px] text-[var(--color-plum)]/50 tracking-widest uppercase border-t border-[var(--color-lavender)] pt-4">
+                Clinical Risk Classification Distribution
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </div>
       
