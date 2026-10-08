@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, BookOpen, Languages, Brain, Activity } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 
 export const ProjectsSection: React.FC = () => {
@@ -106,44 +106,50 @@ export const ProjectsSection: React.FC = () => {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="absolute inset-0 w-full h-full"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1e1b4b] to-[#4c1d95] w-full h-full group-hover:scale-105 transition-transform duration-1000 ease-out flex flex-col p-6 md:p-8 font-mono text-white/80">
-                {/* Simulated AI Terminal / Chat UI */}
-                <div className="flex items-center gap-2 mb-6 md:mb-8">
-                  <div className="w-3 h-3 rounded-full bg-rose-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-amber-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                  <span className="ml-4 text-xs font-bold text-white/30 tracking-widest">PHOENIX_ORCHESTRATOR</span>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#eff6ff] to-[#f8fafc] w-full h-full group-hover:scale-105 transition-transform duration-1000 ease-out flex items-center justify-center overflow-hidden">
+                {/* Abstract Node Network representing Multi-Agent Architecture */}
                 
-                <div className="space-y-4 md:space-y-6 flex-1 flex flex-col">
-                  {/* Student Input */}
-                  <div className="bg-white/10 rounded-2xl rounded-tl-sm p-4 w-[85%] backdrop-blur-sm border border-white/10 shadow-lg">
-                    <p className="text-[10px] text-white/50 mb-2 font-bold tracking-wider">STUDENT INPUT</p>
-                    <p className="text-sm md:text-base font-sans font-medium text-white">"मुझे गुरुत्वाकर्षण समझ नहीं आ रहा है।"</p>
+                {/* Center Core (Orchestrator) */}
+                <div className="relative z-20 w-24 h-24 md:w-32 md:h-32 rounded-full bg-white shadow-2xl flex items-center justify-center border-4 border-blue-500/20">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 animate-[pulse_3s_ease-in-out_infinite] flex items-center justify-center text-white">
+                    <Activity size={32} />
+                  </div>
+                  <div className="absolute -bottom-6 text-[10px] font-mono font-bold tracking-widest text-blue-600/60 uppercase">
+                    Orchestrator
+                  </div>
+                </div>
+
+                {/* Orbiting Nodes (Agents) */}
+                <motion.div 
+                  animate={{ rotate: 360 }} 
+                  transition={{ repeat: Infinity, duration: 25, ease: "linear" }} 
+                  className="absolute z-10 w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full border border-blue-400/20 border-dashed"
+                >
+                  {/* Teacher Agent */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-emerald-100 border-2 border-emerald-400 flex items-center justify-center shadow-lg text-emerald-600 rotate-[-0deg]">
+                    <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }}>
+                      <BookOpen size={20} />
+                    </motion.div>
                   </div>
                   
-                  {/* Language Agent Node */}
-                  <motion.div 
-                    initial={{ opacity: 0.5 }}
-                    whileInView={{ opacity: 1 }}
-                    className="bg-[#3b82f6]/20 rounded-2xl rounded-tr-sm p-4 w-[75%] self-end ml-auto backdrop-blur-md border border-[#3b82f6]/30 shadow-lg"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 rounded-full bg-[#60a5fa] animate-ping" />
-                      <p className="text-[10px] text-[#60a5fa] font-bold tracking-wider">LANGUAGE AGENT</p>
-                    </div>
-                    <p className="text-xs md:text-sm text-[#bfdbfe]">Translated query to English. Routing to Core Engine...</p>
-                  </motion.div>
-                  
-                  {/* Teacher Agent Node */}
-                  <div className="bg-[#10b981]/20 rounded-2xl rounded-bl-sm p-5 w-[90%] backdrop-blur-md border border-[#10b981]/30 shadow-lg relative overflow-hidden mt-auto">
-                    <motion.div animate={{ x: ['-100%', '200%'] }} transition={{ repeat: Infinity, duration: 3, ease: "linear" }} className="absolute inset-0 bg-gradient-to-r from-transparent via-[#34d399]/20 to-transparent pointer-events-none" />
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-2 h-2 rounded-full bg-[#34d399] shadow-[0_0_10px_#34d399]" />
-                      <p className="text-[10px] text-[#34d399] font-bold tracking-wider">TEACHER AGENT</p>
-                    </div>
-                    <p className="text-sm text-[#d1fae5] font-sans">Generating personalized analogy using "Magnetism" tailored for 8th-grade comprehension level.</p>
+                  {/* Language Agent */}
+                  <div className="absolute bottom-[15%] right-[-5%] w-12 h-12 md:w-16 md:h-16 rounded-full bg-amber-100 border-2 border-amber-400 flex items-center justify-center shadow-lg text-amber-600">
+                    <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }}>
+                      <Languages size={20} />
+                    </motion.div>
                   </div>
+                  
+                  {/* Mentor Agent */}
+                  <div className="absolute bottom-[15%] left-[-5%] w-12 h-12 md:w-16 md:h-16 rounded-full bg-rose-100 border-2 border-rose-400 flex items-center justify-center shadow-lg text-rose-600">
+                    <motion.div animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 25, ease: "linear" }}>
+                      <Brain size={20} />
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                {/* Floating particles/connections */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                  <div className="w-full h-full max-w-[400px] max-h-[400px] rounded-full bg-blue-400/5 animate-ping" style={{ animationDuration: '4s' }} />
                 </div>
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cream)] via-transparent to-transparent opacity-60 lg:hidden" />
