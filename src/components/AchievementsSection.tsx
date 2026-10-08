@@ -1,140 +1,117 @@
 import React from 'react';
-import { 
-  Trophy, 
-  Calendar, 
-  CheckCircle2, 
-} from 'lucide-react';
+import { motion } from 'motion/react';
+import { Terminal, Code2, Zap, CheckCircle2 } from 'lucide-react';
 import { hackathonsData } from '../data/portfolioData';
-import { AnimatedSection } from './AnimatedSection';
 
 export const AchievementsSection: React.FC = () => {
   return (
-    <section id="achievements" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
+    <section id="achievements" className="relative py-32 bg-[var(--color-plum)] overflow-hidden selection:bg-[var(--color-rose)] selection:text-[var(--color-cream)]">
       
-      {/* Background multi-tone pastel pink & purple glows */}
-      <div 
-        className="absolute top-1/3 left-1/4 w-96 h-96 bg-pink-200/40 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
-      />
+      {/* Background terminal grid / noise */}
+      <div className="absolute inset-0 opacity-[0.02] mix-blend-screen pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--color-rose)]/50 to-transparent opacity-50" />
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--color-rose)]/50 to-transparent opacity-50" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Section Header with Fade & Slide-up */}
-        <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
-            <span>HACKATHONS & TECHNICAL EVENTS</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
+        {/* Section Header */}
+        <div className="mb-20 text-center lg:text-left flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div>
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: 60 }}
+              viewport={{ once: true }}
+              className="h-1 bg-[var(--color-rose)] mb-6 mx-auto lg:mx-0"
+            />
+            <h2 className="text-4xl md:text-6xl font-display font-black text-[var(--color-cream)] uppercase tracking-tighter">
+              Hackathons
+            </h2>
+            <p className="text-[var(--color-rose)] font-mono text-sm mt-4 uppercase tracking-widest flex items-center justify-center lg:justify-start gap-2">
+              <Zap size={16} className="animate-pulse" />
+              Built Under Pressure
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
-            Hackathons & Achievements
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-amber-400 rounded-full mt-4" />
-          <p className="text-sm text-slate-600 mt-4 max-w-2xl">
-            Practical competitive engineering, rapid prototyping sprints, and collaborative problem solving under time constraints.
-          </p>
-        </AnimatedSection>
-
-        {/* Hackathons Cards Grid with Pastel Themes */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {hackathonsData.map((hackathon, index) => {
-            const isET = hackathon.id === 'et-ai-hackathon';
-            const theme = isET
-              ? {
-                  cardBorder: 'hover:border-amber-300',
-                  bg: 'bg-gradient-to-b from-amber-50/50 via-white to-white',
-                  iconBadge: 'bg-amber-100 text-amber-800 border-amber-200',
-                  subColor: 'text-amber-800',
-                  dateBadge: 'bg-amber-50 border-amber-200 text-amber-800'
-                }
-              : {
-                  cardBorder: 'hover:border-purple-300',
-                  bg: 'bg-gradient-to-b from-purple-50/50 via-white to-white',
-                  iconBadge: 'bg-purple-100 text-purple-800 border-purple-200',
-                  subColor: 'text-purple-800',
-                  dateBadge: 'bg-purple-50 border-purple-200 text-purple-800'
-                };
-
-            return (
-              <AnimatedSection 
-                key={hackathon.id} 
-                direction="up" 
-                delay={0.15 * index}
-                className="h-full"
-              >
-                <div className={`p-8 rounded-3xl ${theme.bg} border border-slate-200 ${theme.cardBorder} transition-all duration-300 shadow-md hover:shadow-xl flex flex-col justify-between h-full group`}>
-                  <div>
-                    {/* Header row */}
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className={`p-3 rounded-2xl border ${theme.iconBadge} group-hover:scale-105 transition-transform shadow-2xs`}>
-                          <Trophy className="w-6 h-6" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl sm:text-2xl font-bold font-display text-[#0a1128] group-hover:text-blue-700 transition-colors">
-                            {hackathon.title}
-                          </h3>
-                          <div className={`text-xs font-bold ${theme.subColor} mt-0.5`}>
-                            {hackathon.organizer}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Clean date with subtle pastel container */}
-                      <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-mono font-medium shrink-0 ${theme.dateBadge}`}>
-                        <Calendar className="w-3.5 h-3.5" />
-                        <span>{hackathon.date}</span>
-                      </div>
-                    </div>
-
-                    {/* Category tag */}
-                    <div className="text-xs font-mono text-slate-500 mb-4">
-                      <span className="font-semibold text-slate-700">Category:</span> {hackathon.category}
-                    </div>
-
-                    {/* Summary */}
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                      {hackathon.summary}
-                    </p>
-
-                    {/* Learnings and takeaways */}
-                    <div className="space-y-2.5 mb-6">
-                      <div className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-2">
-                        CORE TAKEAWAYS & COMPETITIVE EXPERIENCE
-                      </div>
-                      {hackathon.learnings.map((item, idx) => (
-                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Skills Applied Strip */}
-                  <div className="pt-5 border-t border-slate-200">
-                    <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2">
-                      SKILLS APPLIED UNDER DEADLINE
-                    </div>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-700">
-                      {hackathon.skillsApplied.map((skill, sIdx) => (
-                        <React.Fragment key={skill}>
-                          <span className="text-[#0a1128] font-medium hover:text-blue-700 transition-colors">{skill}</span>
-                          {sIdx < hackathon.skillsApplied.length - 1 && <span className="text-slate-300">/</span>}
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-
-                </div>
-              </AnimatedSection>
-            );
-          })}
+          
+          <div className="hidden lg:flex items-center gap-4 bg-[var(--color-cream)]/5 px-6 py-3 rounded-full border border-[var(--color-rose)]/20 text-[var(--color-cream)] font-mono text-xs">
+            <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-rose)] animate-pulse" /> SYSTEM: ONLINE</span>
+            <span className="text-[var(--color-rose)]">|</span>
+            <span>ENV: HACKATHON</span>
+          </div>
         </div>
 
+        {/* Hackathons Terminal Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {hackathonsData.map((hackathon, index) => (
+            <motion.div
+              key={hackathon.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              className="group relative bg-[#1c1423] rounded-2xl border border-[var(--color-rose)]/20 hover:border-[var(--color-rose)]/60 transition-colors overflow-hidden flex flex-col cursor-none"
+              data-cursor="hover"
+            >
+              {/* Fake Terminal Header */}
+              <div className="h-10 bg-[#2d1b36] border-b border-[var(--color-rose)]/20 flex items-center px-4 justify-between">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-500/50 group-hover:bg-rose-500 transition-colors" />
+                  <div className="w-3 h-3 rounded-full bg-amber-500/50 group-hover:bg-amber-500 transition-colors" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/50 group-hover:bg-emerald-500 transition-colors" />
+                </div>
+                <div className="font-mono text-[10px] text-[var(--color-rose)]/50 tracking-widest uppercase">
+                  {hackathon.date}
+                </div>
+              </div>
+
+              {/* Terminal Body */}
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-rose)]/10 text-[var(--color-rose)] flex items-center justify-center border border-[var(--color-rose)]/30 group-hover:scale-110 transition-transform">
+                    <Terminal size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-bold text-2xl text-[var(--color-cream)]">{hackathon.title}</h3>
+                    <p className="font-mono text-xs text-[var(--color-rose)] mt-2">
+                      &gt; {hackathon.organizer}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="font-sans text-[var(--color-cream)]/70 leading-relaxed font-medium mb-8">
+                  {hackathon.summary}
+                </p>
+
+                <div className="mt-auto space-y-3 mb-8">
+                  {hackathon.learnings.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle2 size={16} className="text-[var(--color-rose)] mt-0.5 shrink-0" />
+                      <p className="font-sans text-sm text-[var(--color-cream)]/80">{item}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tech Stack Array */}
+                <div className="pt-6 border-t border-[var(--color-rose)]/20">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Code2 size={14} className="text-[var(--color-rose)]/70" />
+                    <span className="font-mono text-[10px] text-[var(--color-cream)]/50 uppercase tracking-widest">Dependencies Executed</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {hackathon.skillsApplied.map(skill => (
+                      <span key={skill} className="px-3 py-1 bg-[var(--color-rose)]/10 text-[var(--color-rose)] rounded-md font-mono text-xs border border-[var(--color-rose)]/20 group-hover:bg-[var(--color-rose)] group-hover:text-[var(--color-cream)] transition-colors">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-rose)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+            </motion.div>
+          ))}
+        </div>
+        
       </div>
     </section>
   );
