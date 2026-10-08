@@ -78,14 +78,7 @@ export const ProjectsSection: React.FC = () => {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-4 cursor-none" data-cursor="hover">
-                <a 
-                  href={phoenixProject.demoUrl || phoenixProject.githubUrl} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
-                >
-                  <ExternalLink size={16} /> Live Demo
-                </a>
+
                 <a 
                   href={phoenixProject.githubUrl} 
                   target="_blank" 
