@@ -1,240 +1,163 @@
 import React, { useState } from 'react';
-import { 
-  Code2, 
-  Binary, 
-  FileCode, 
-  Cpu, 
-  Table, 
-  BarChart3, 
-  Sparkles, 
-  Workflow, 
-  Database, 
-  Box, 
-  GitBranch, 
-  PieChart, 
-  Lightbulb, 
-  Clock, 
-  Terminal,
-  ChevronRight,
-  Layers
-} from 'lucide-react';
-import { skillsData } from '../data/portfolioData';
-import { SkillItem } from '../types/portfolio';
-import { AnimatedSection } from './AnimatedSection';
+import { motion, AnimatePresence } from 'motion/react';
+
+type SkillNode = {
+  id: string;
+  name: string;
+  category: 'language' | 'frontend' | 'backend' | 'tool' | 'ai';
+  description: string;
+  related: string[];
+  angle: number; // For circular positioning
+  distance: number; // From center
+};
+
+const skills: SkillNode[] = [
+  { id: 'python', name: 'Python', category: 'language', description: 'Primary language for ML, scripting, and backend.', related: ['sql', 'huggingface', 'n8n'], angle: 0, distance: 35 },
+  { id: 'c', name: 'C', category: 'language', description: 'Low-level memory management and systems.', related: ['cpp'], angle: 25, distance: 45 },
+  { id: 'cpp', name: 'C++', category: 'language', description: 'High-performance algorithms and competitive programming.', related: ['c'], angle: 50, distance: 38 },
+  { id: 'javascript', name: 'JavaScript', category: 'language', description: 'Core language for interactive web experiences.', related: ['react', 'nodejs', 'html', 'css'], angle: 75, distance: 32 },
+  { id: 'react', name: 'React', category: 'frontend', description: 'Building dynamic and complex UI components.', related: ['javascript', 'html', 'css'], angle: 105, distance: 36 },
+  { id: 'html', name: 'HTML', category: 'frontend', description: 'Semantic web structure.', related: ['css', 'javascript', 'react'], angle: 135, distance: 42 },
+  { id: 'css', name: 'CSS', category: 'frontend', description: 'Modern aesthetic styling and animations.', related: ['html', 'javascript', 'react'], angle: 165, distance: 35 },
+  { id: 'nodejs', name: 'Node.js', category: 'backend', description: 'Scalable server-side runtime.', related: ['javascript', 'expressjs', 'sql', 'docker'], angle: 195, distance: 30 },
+  { id: 'expressjs', name: 'Express.js', category: 'backend', description: 'Robust RESTful API architecture.', related: ['nodejs', 'sql'], angle: 225, distance: 40 },
+  { id: 'sql', name: 'SQL', category: 'backend', description: 'Relational database design and complex queries.', related: ['python', 'nodejs', 'expressjs'], angle: 255, distance: 38 },
+  { id: 'docker', name: 'Docker', category: 'tool', description: 'Containerization and deployment pipelines.', related: ['nodejs', 'github'], angle: 285, distance: 45 },
+  { id: 'github', name: 'GitHub', category: 'tool', description: 'Version control and CI/CD actions.', related: ['docker'], angle: 315, distance: 35 },
+  { id: 'huggingface', name: 'Hugging Face', category: 'ai', description: 'Implementing and fine-tuning open-source LLMs.', related: ['python', 'n8n'], angle: 340, distance: 42 },
+  { id: 'n8n', name: 'n8n', category: 'ai', description: 'Workflow automation and AI agent orchestration.', related: ['python', 'huggingface'], angle: 350, distance: 28 },
+];
 
 export const SkillsSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [selectedSkill, setSelectedSkill] = useState<SkillItem>(skillsData[2]); // Python by default
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
-  const categories = ['All', 'Languages', 'AI / ML', 'Database', 'DevOps & Tools', 'Soft Skills'];
-
-  const filteredSkills = activeCategory === 'All' 
-    ? skillsData 
-    : skillsData.filter(s => s.category === activeCategory);
-
-  const getIcon = (iconName: string) => {
-    const props = { className: "w-5 h-5" };
-    switch (iconName) {
-      case 'Code2': return <Code2 {...props} />;
-      case 'Binary': return <Binary {...props} />;
-      case 'FileCode': return <FileCode {...props} />;
-      case 'Cpu': return <Cpu {...props} />;
-      case 'Table': return <Table {...props} />;
-      case 'BarChart3': return <BarChart3 {...props} />;
-      case 'Sparkles': return <Sparkles {...props} />;
-      case 'Workflow': return <Workflow {...props} />;
-      case 'Database': return <Database {...props} />;
-      case 'Box': return <Box {...props} />;
-      case 'GitBranch': return <GitBranch {...props} />;
-      case 'PieChart': return <PieChart {...props} />;
-      case 'Lightbulb': return <Lightbulb {...props} />;
-      case 'Clock': return <Clock {...props} />;
-      default: return <Code2 {...props} />;
-    }
-  };
-
-  const getCategoryPastel = (cat: string) => {
-    switch (cat) {
-      case 'Languages':
-        return { badge: 'bg-purple-100 text-purple-900 border-purple-200', selectedBg: 'bg-purple-50/90 border-purple-400', dot: 'bg-purple-500' };
-      case 'AI / ML':
-        return { badge: 'bg-pink-100 text-pink-900 border-pink-200', selectedBg: 'bg-pink-50/90 border-pink-400', dot: 'bg-pink-500' };
-      case 'Database':
-        return { badge: 'bg-fuchsia-100 text-fuchsia-900 border-fuchsia-200', selectedBg: 'bg-fuchsia-50/90 border-fuchsia-400', dot: 'bg-fuchsia-500' };
-      case 'DevOps & Tools':
-        return { badge: 'bg-rose-100 text-rose-900 border-rose-200', selectedBg: 'bg-rose-50/90 border-rose-400', dot: 'bg-rose-500' };
-      case 'Soft Skills':
-        return { badge: 'bg-pink-100 text-pink-900 border-pink-200', selectedBg: 'bg-pink-50/90 border-pink-400', dot: 'bg-pink-500' };
-      default:
-        return { badge: 'bg-purple-100 text-purple-900 border-purple-200', selectedBg: 'bg-purple-50/90 border-purple-400', dot: 'bg-purple-500' };
-    }
+  const activeSkill = skills.find(s => s.id === hoveredSkill);
+  
+  // Determine if a skill should be highlighted based on the currently hovered skill
+  const isHighlighted = (skillId: string) => {
+    if (!hoveredSkill) return true; // Show all normally if none hovered
+    if (hoveredSkill === skillId) return true;
+    if (activeSkill?.related.includes(skillId)) return true;
+    return false;
   };
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
+    <section id="skills" className="relative min-h-screen py-32 bg-[var(--color-cream)] overflow-hidden flex flex-col items-center justify-center">
       
-      {/* Background multi-tone pastel pink & purple glows */}
-      <div 
-        className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-pink-200/45 rounded-full blur-[130px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-fuchsia-100/40 rounded-full blur-[110px] pointer-events-none" 
-        aria-hidden="true" 
-      />
+      <div className="absolute inset-0 bg-pastel-mesh-subtle opacity-70 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="text-center mb-16 relative z-10 px-6">
+        <h2 className="text-4xl md:text-5xl font-display font-black text-[var(--color-plum)] uppercase tracking-tighter">
+          Technology Constellation
+        </h2>
+        <p className="text-[var(--color-plum)]/60 font-mono text-sm mt-4 uppercase tracking-widest">
+          Hover to explore connections
+        </p>
+      </div>
+
+      <div className="relative w-full max-w-4xl aspect-square md:aspect-[4/3] flex items-center justify-center z-10">
         
-        {/* Section Header with Fade & Slide-up */}
-        <AnimatedSection className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
-              <span>TECHNICAL REPERTOIRE</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
-              Skills & Technologies
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-400 rounded-full mt-4" />
+        {/* Central Core Element */}
+        <div className="absolute z-20 w-32 h-32 rounded-full bg-[var(--color-plum)] flex items-center justify-center shadow-2xl shadow-[var(--color-rose)]/50 border-4 border-[var(--color-cream)]">
+          <div className="text-center">
+            <span className="block text-[var(--color-cream)] font-display font-bold text-lg leading-tight">DEEPSHIKHA</span>
+            <span className="block text-[var(--color-rose)] font-mono text-[10px] tracking-widest mt-1">STACK</span>
           </div>
-
-          <p className="text-sm text-slate-600 max-w-md">
-            Organized across core languages, machine learning libraries, workflow automation, and dev tools without arbitrary percentage bars.
-          </p>
-        </AnimatedSection>
-
-        {/* Category Segmented Tabs (Functional filter controls with pastel hover) */}
-        <AnimatedSection delay={0.1} className="mb-10">
-          <div className="flex items-center gap-1.5 p-1.5 bg-gradient-to-r from-purple-50/70 to-pink-50/70 border border-pink-100 rounded-2xl overflow-x-auto max-w-full shadow-2xs">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 text-xs md:text-sm font-medium rounded-xl transition-all whitespace-nowrap cursor-pointer ${
-                  activeCategory === cat
-                    ? 'bg-gradient-to-r from-purple-900 to-pink-900 text-white shadow-sm font-semibold'
-                    : 'text-slate-600 hover:text-purple-900 hover:bg-white/80'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        {/* Main Grid: Interactive Skill Cards & Live Practical Context Pane */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Skill Cards Grid (7 cols) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {filteredSkills.map((skill, index) => {
-              const isSelected = selectedSkill.name === skill.name;
-              const pastel = getCategoryPastel(skill.category);
-
-              return (
-                <AnimatedSection 
-                  key={skill.name}
-                  direction="up" 
-                  delay={0.04 * (index % 6)}
-                >
-                  <div
-                    onClick={() => setSelectedSkill(skill)}
-                    className={`p-4 rounded-2xl transition-all duration-200 cursor-pointer text-left border ${
-                      isSelected
-                        ? `${pastel.selectedBg} shadow-md scale-[1.01]`
-                        : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm hover:bg-slate-50/50'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-2.5">
-                        <div className={`p-2.5 rounded-xl border ${isSelected ? 'bg-[#0a1128] text-white border-[#0a1128]' : `${pastel.badge}`}`}>
-                          {getIcon(skill.iconName)}
-                        </div>
-                        <div>
-                          <h4 className="text-sm font-bold text-[#0a1128] font-display">
-                            {skill.name}
-                          </h4>
-                          <div className="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
-                            <span className={`w-1.5 h-1.5 rounded-full ${pastel.dot} inline-block`} />
-                            <span>{skill.category}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <ChevronRight className={`w-4 h-4 transition-transform ${isSelected ? 'text-indigo-600 translate-x-0.5' : 'text-slate-400'}`} />
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed line-clamp-2">
-                      {skill.description}
-                    </p>
-                  </div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
-
-          {/* Right Column: Practical Application Inspector Pane (5 cols) */}
-          <div className="lg:col-span-5 sticky top-24">
-            <AnimatedSection direction="up" delay={0.2}>
-              <div className="p-6 rounded-3xl bg-slate-50/90 border border-slate-200 shadow-xl relative overflow-hidden backdrop-blur-sm">
-                
-                {/* Pastel accent glow inside pane */}
-                <div 
-                  className="absolute -top-10 -right-10 w-48 h-48 bg-purple-100/50 rounded-full blur-2xl pointer-events-none" 
-                  aria-hidden="true" 
-                />
-
-                {/* Window header with pastel Mac-style controls */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200 text-xs font-mono text-slate-500 relative z-10">
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-rose-300 inline-block" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-amber-300 inline-block" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-300 inline-block" />
-                    </div>
-                    <span className="text-[#0a1128] font-semibold ml-1">{selectedSkill.name.toLowerCase()}_context.sh</span>
-                  </div>
-                  <span className={`text-[11px] px-2.5 py-0.5 rounded-full font-bold font-mono border ${getCategoryPastel(selectedSkill.category).badge}`}>
-                    {selectedSkill.category}
-                  </span>
-                </div>
-
-                {/* Selected Skill Overview */}
-                <div className="flex items-center gap-3.5 mb-4 relative z-10">
-                  <div className={`p-3 rounded-2xl border shadow-xs ${getCategoryPastel(selectedSkill.category).badge}`}>
-                    {getIcon(selectedSkill.iconName)}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold font-display text-[#0a1128]">
-                      {selectedSkill.name}
-                    </h3>
-                    <p className="text-xs text-indigo-700 font-semibold font-mono">
-                      Deepshikha's Practical Application
-                    </p>
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-600 mb-6 leading-relaxed relative z-10">
-                  {selectedSkill.description}
-                </p>
-
-                {/* Practical Takeaway Footnote */}
-                <div className="pt-4 border-t border-slate-200 flex items-center gap-2 text-xs text-slate-600 relative z-10">
-                  <Layers className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
-                  <span>Applied in Phoenix AI, GenZify, Heart Disease Prediction, and open source contributions.</span>
-                </div>
-
-              </div>
-            </AnimatedSection>
-          </div>
-
         </div>
 
+        {/* Constellation Lines (SVG) - Drawn dynamically based on relations */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
+          {hoveredSkill && activeSkill && activeSkill.related.map((relatedId) => {
+            const targetSkill = skills.find(s => s.id === relatedId);
+            if (!targetSkill) return null;
+            
+            // Calculate coordinates (approximate relative to center 50%,50%)
+            // Distance is roughly % of container
+            const getCoords = (angle: number, distance: number) => {
+              const rad = (angle * Math.PI) / 180;
+              const x = 50 + (distance * Math.cos(rad));
+              const y = 50 + (distance * Math.sin(rad));
+              return { x, y };
+            };
+
+            const start = getCoords(activeSkill.angle, activeSkill.distance);
+            const end = getCoords(targetSkill.angle, targetSkill.distance);
+
+            return (
+              <motion.line
+                key={`${activeSkill.id}-${targetSkill.id}`}
+                x1={`${start.x}%`} y1={`${start.y}%`}
+                x2={`${end.x}%`} y2={`${end.y}%`}
+                stroke="var(--color-rose)"
+                strokeWidth="2"
+                strokeDasharray="4 4"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.6 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+              />
+            );
+          })}
+        </svg>
+
+        {/* Orbiting Skill Nodes */}
+        {skills.map((skill) => {
+          const rad = (skill.angle * Math.PI) / 180;
+          const x = `${Math.cos(rad) * skill.distance}%`;
+          const y = `${Math.sin(rad) * skill.distance}%`;
+          
+          const highlighted = isHighlighted(skill.id);
+          const isDirectlyHovered = hoveredSkill === skill.id;
+
+          return (
+            <motion.div
+              key={skill.id}
+              className="absolute z-10 flex flex-col items-center justify-center cursor-none"
+              style={{ x, y }}
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: skill.angle / 1000 }}
+              onMouseEnter={() => setHoveredSkill(skill.id)}
+              onMouseLeave={() => setHoveredSkill(null)}
+              data-cursor="explore"
+            >
+              <motion.div 
+                animate={{ 
+                  scale: isDirectlyHovered ? 1.2 : (highlighted ? 1 : 0.9),
+                  opacity: highlighted ? 1 : 0.3,
+                  backgroundColor: isDirectlyHovered ? 'var(--color-plum)' : 'var(--color-cream)',
+                  color: isDirectlyHovered ? 'var(--color-cream)' : 'var(--color-plum)',
+                  borderColor: isDirectlyHovered ? 'var(--color-plum)' : 'var(--color-lavender)'
+                }}
+                className="px-4 py-2 rounded-full border shadow-lg font-mono text-sm font-bold transition-colors"
+              >
+                {skill.name}
+              </motion.div>
+              
+              {/* Tooltip Description */}
+              <AnimatePresence>
+                {isDirectlyHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 5, scale: 0.9 }}
+                    className="absolute top-full mt-3 w-48 bg-white/90 backdrop-blur-md border border-[var(--color-blush)] p-3 rounded-xl shadow-xl text-center pointer-events-none z-30"
+                  >
+                    <p className="text-[10px] uppercase font-mono font-bold text-[var(--color-rose)] mb-1">
+                      {skill.category}
+                    </p>
+                    <p className="text-xs font-sans text-[var(--color-plum)] leading-snug font-medium">
+                      {skill.description}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          );
+        })}
       </div>
+
     </section>
   );
 };

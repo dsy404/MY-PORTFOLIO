@@ -8,7 +8,8 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
 import { SkillsSection } from './components/SkillsSection';
-import { ExperienceSection } from './components/ExperienceSection';
+import { JourneySection } from './components/JourneySection';
+import { HackathonSection } from './components/HackathonSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { AchievementsSection } from './components/AchievementsSection';
@@ -50,10 +51,11 @@ export default function App() {
           <SkillsSection />
         </SectionPopup>
 
-        {/* 4. Experience & Open Source Section - Pops up on scroll */}
-        <SectionPopup id="experience-popup" amount={0.06}>
-          <ExperienceSection />
-        </SectionPopup>
+        {/* 4. My Journey Timeline Section - Horizontal Scroll Experience */}
+        <JourneySection />
+
+        {/* 4.5 Built Under Pressure - Hackathons */}
+        <HackathonSection />
 
         {/* 5. Projects Section with Live Demos & Modals - Pops up on scroll */}
         <SectionPopup id="projects-popup" amount={0.06}>

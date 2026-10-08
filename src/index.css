@@ -1,55 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Syne", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", "Manrope", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Playfair Display", "Cormorant Garamond", "DM Serif Display", serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
   
-  --color-navy-950: #0a1128;
-  --color-navy-900: #0f1c3f;
-  --color-navy-800: #162a5c;
-  --color-navy-700: #1e3a8a;
-  --color-navy-600: #1d4ed8;
-  --color-navy-500: #2563eb;
-  --color-navy-400: #3b82f6;
-  --color-navy-300: #60a5fa;
-  --color-navy-200: #bfdbfe;
-  --color-navy-100: #dbeafe;
-  --color-navy-50:  #eff6ff;
-
-  /* Pastel Pink Color Palette */
-  --color-pastel-pink-subtle: #fdf2f8;
-  --color-pastel-pink: #fce7f3;
-  --color-pastel-pink-border: #fbcfe8;
-  --color-pastel-pink-accent: #f472b6;
-  --color-pastel-pink-text: #be185d;
-
-  /* Pastel Purple Color Palette */
-  --color-pastel-purple-subtle: #faf5ff;
-  --color-pastel-purple: #f3e8ff;
-  --color-pastel-purple-border: #e9d5ff;
-  --color-pastel-purple-accent: #c084fc;
-  --color-pastel-purple-text: #6b21a8;
-
-  /* Complementary Soft Pastels */
-  --color-pastel-lavender: #ede9fe;
-  --color-pastel-lavender-border: #ddd6fe;
-  --color-pastel-sky: #e0f2fe;
-  --color-pastel-sky-border: #bae6fd;
-  --color-pastel-mint: #ecfdf5;
-  --color-pastel-mint-border: #a7f3d0;
-  --color-pastel-rose: #ffe4e6;
-  --color-pastel-rose-border: #fecdd3;
-  --color-pastel-peach: #fff1f2;
-  --color-pastel-amber: #fef3c7;
-  --color-pastel-amber-border: #fde68a;
+  /* Sophisticated Pastel Color Palette */
+  --color-cream: #FFF8F5;
+  --color-peach: #F8DDE5;
+  --color-blush: #F6C9D8;
+  --color-lavender: #E8DDF2;
+  --color-rose: #D9B8C4;
+  --color-plum: #4A3540;
+  
+  /* Map Tailwind colors to our custom palette for easier utility usage */
+  --color-primary-50: var(--color-cream);
+  --color-primary-100: var(--color-peach);
+  --color-primary-200: var(--color-lavender);
+  --color-primary-300: var(--color-blush);
+  --color-primary-400: var(--color-rose);
+  --color-primary-900: var(--color-plum);
 }
 
 @layer base {
   body {
     font-family: var(--font-sans);
-    background-color: #ffffff;
-    color: #0f172a;
+    background-color: var(--color-cream);
+    color: var(--color-plum);
     overflow-x: hidden;
   }
 
@@ -65,44 +42,44 @@
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(147, 51, 234, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(236, 72, 153, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(74, 53, 64, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(74, 53, 64, 0.03) 1px, transparent 1px);
 }
 
 .bg-dot-pattern {
   background-size: 24px 24px;
-  background-image: radial-gradient(rgba(168, 85, 247, 0.09) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(74, 53, 64, 0.05) 1px, transparent 1px);
 }
 
-/* Soft pastel mesh backgrounds featuring Pastel Pink and Pastel Purple */
+/* Soft pastel mesh backgrounds */
 .bg-pastel-mesh-hero {
   background: 
-    radial-gradient(circle at 18% 18%, rgba(252, 231, 243, 0.85) 0%, transparent 48%), /* Pastel Pink */
-    radial-gradient(circle at 82% 22%, rgba(243, 232, 255, 0.9) 0%, transparent 50%),  /* Pastel Purple */
-    radial-gradient(circle at 50% 85%, rgba(254, 243, 199, 0.35) 0%, transparent 42%),
-    radial-gradient(circle at 15% 85%, rgba(245, 208, 254, 0.55) 0%, transparent 45%), /* Soft Lilac */
-    #ffffff;
+    radial-gradient(circle at 18% 18%, rgba(248, 221, 229, 0.6) 0%, transparent 48%), /* Peach */
+    radial-gradient(circle at 82% 22%, rgba(232, 221, 242, 0.6) 0%, transparent 50%),  /* Lavender */
+    radial-gradient(circle at 50% 85%, rgba(246, 201, 216, 0.4) 0%, transparent 42%), /* Blush */
+    radial-gradient(circle at 15% 85%, rgba(217, 184, 196, 0.3) 0%, transparent 45%), /* Rose */
+    var(--color-cream);
 }
 
 .bg-pastel-mesh-subtle {
   background: 
-    radial-gradient(circle at 12% 25%, rgba(253, 242, 248, 0.75) 0%, transparent 45%), /* Pastel Pink */
-    radial-gradient(circle at 88% 55%, rgba(250, 245, 255, 0.8) 0%, transparent 48%),  /* Pastel Purple */
-    radial-gradient(circle at 45% 90%, rgba(252, 231, 243, 0.5) 0%, transparent 42%),
-    #ffffff;
+    radial-gradient(circle at 12% 25%, rgba(248, 221, 229, 0.4) 0%, transparent 45%),
+    radial-gradient(circle at 88% 55%, rgba(232, 221, 242, 0.4) 0%, transparent 48%),
+    radial-gradient(circle at 45% 90%, rgba(246, 201, 216, 0.3) 0%, transparent 42%),
+    var(--color-cream);
 }
 
-/* Custom sleek scrollbar with pastel purple & pink glow */
+/* Custom sleek scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #faf5ff;
+  background: var(--color-cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: #e9d5ff;
+  background: var(--color-lavender);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #f472b6;
+  background: var(--color-rose);
 }

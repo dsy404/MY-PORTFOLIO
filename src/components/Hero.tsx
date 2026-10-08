@@ -1,288 +1,148 @@
-import React from 'react';
-import { ArrowDown, ArrowUpRight, Github, MapPin, GraduationCap, FileText } from 'lucide-react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { personalInfo } from '../data/portfolioData';
-import { ProfileAvatar } from './ProfileAvatar';
 
 export const Hero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
 
-  const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -150]);
-  const y3 = useTransform(scrollY, [0, 1000], [0, 200]);
-  const y4 = useTransform(scrollY, [0, 1000], [0, -250]);
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // Parallax effects
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  
+  // Fade out hero content slightly on scroll
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section 
+      ref={containerRef}
       id="home" 
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-pastel-mesh-hero bg-grid-pattern"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-pastel-mesh-hero pt-20"
     >
-      {/* Soft Multi-Tone Pastel Pink & Pastel Purple Ambient Glows with Parallax */}
+      {/* Decorative blurred orb in background - representing the "3D glass orb" conceptually until WebGL is added */}
       <motion.div 
         style={{ y: shouldReduceMotion ? 0 : y1 }}
-        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-pink-200/50 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
+        className="absolute top-[10%] left-[15%] w-[45vw] h-[45vw] max-w-[600px] max-h-[600px] bg-[var(--color-blush)] rounded-full blur-[140px] mix-blend-multiply opacity-50 pointer-events-none animate-[pulse_8s_ease-in-out_infinite]"
       />
       <motion.div 
         style={{ y: shouldReduceMotion ? 0 : y2 }}
-        className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-purple-200/50 rounded-full blur-[130px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <motion.div 
-        style={{ y: shouldReduceMotion ? 0 : y3 }}
-        className="absolute bottom-10 right-10 w-[420px] h-[420px] bg-fuchsia-100/50 rounded-full blur-[120px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <motion.div 
-        style={{ y: shouldReduceMotion ? 0 : y4 }}
-        className="absolute bottom-16 left-12 w-[380px] h-[380px] bg-rose-100/50 rounded-full blur-[110px] pointer-events-none" 
-        aria-hidden="true" 
+        className="absolute bottom-[10%] right-[15%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-[var(--color-lavender)] rounded-full blur-[120px] mix-blend-multiply opacity-60 pointer-events-none animate-[pulse_10s_ease-in-out_infinite]"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Column: Hero Typography & CTAs (7 cols) with Motion Entrance */}
-          <motion.div 
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
+      <motion.div style={{ opacity }} className="relative z-10 w-full max-w-7xl px-6 flex flex-col items-center justify-center">
+        
+        {/* Main Immersive Typography */}
+        <div className="relative text-center w-full mt-10 md:mt-16">
+          <motion.h1 
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[14vw] sm:text-[12vw] md:text-[10vw] lg:text-[9vw] font-display font-black leading-[0.85] text-[var(--color-plum)] tracking-tighter mix-blend-color-burn"
           >
-            
-            {/* Status & Identity Indicator with Pastel Pink & Purple Accents */}
-            <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-slate-600 mb-6 font-mono">
-              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 border border-pink-200/90 text-purple-900 font-semibold shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-pink-500 animate-ping inline-block" />
-                <span className="w-2 h-2 rounded-full bg-pink-500 inline-block -ml-3.5" />
-                Available for internships & projects
-              </span>
-              <span aria-hidden="true" className="text-slate-300">·</span>
-              <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-50 border border-purple-200/80 text-purple-800 font-medium">
-                <GraduationCap className="w-3.5 h-3.5 text-purple-600" />
-                SRMCEM '29
-              </span>
-              <span aria-hidden="true" className="text-slate-300">·</span>
-              <span className="flex items-center gap-1 text-slate-600">
-                <MapPin className="w-3 h-3 text-pink-500" />
-                Lucknow, India
-              </span>
-            </div>
+            DEEPSHIKHA<br/>YADAV
+          </motion.h1>
 
-            {/* Main Primary Heading in Deep Navy with Pastel Purple to Pink Gradient */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight text-[#0a1128] leading-[1.08] mb-4 text-balance">
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0a1128] via-purple-900 to-pink-600">Deepshikha Yadav.</span>
-            </h1>
-
-            {/* Secondary Role Kicker with Soft Pastel Purple & Pink Separations */}
-            <p className="text-base sm:text-lg md:text-xl font-semibold text-purple-900 mb-5 tracking-tight flex flex-wrap items-center gap-x-2 gap-y-1">
-              <span>B.Tech CSE Student</span>
-              <span className="text-pink-400 font-bold">·</span>
-              <span>Full-Stack Developer</span>
-              <span className="text-purple-400 font-bold">·</span>
-              <span>AI Enthusiast</span>
-              <span className="text-fuchsia-400 font-bold">·</span>
-              <span>Open Source Contributor</span>
-            </p>
-
-            {/* Introduction paragraph */}
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mb-8">
-              {personalInfo.bio}
-            </p>
-
-            {/* Primary Action Buttons with Pastel Purple & Pink Accents */}
-            <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
-              <button
-                onClick={() => scrollTo('projects')}
-                className="px-6 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-[#0a1128] via-purple-950 to-pink-950 hover:from-purple-900 hover:to-pink-900 active:from-black active:to-black rounded-xl transition-all shadow-md shadow-purple-500/10 flex items-center gap-2 group cursor-pointer"
-              >
-                <span>View My Work</span>
-                <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-              </button>
-
-              <button
-                onClick={() => scrollTo('resume')}
-                className="px-5 py-3.5 text-sm font-semibold text-purple-950 bg-purple-50 hover:bg-purple-100 border border-purple-200/90 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
-              >
-                <FileText className="w-4 h-4 text-purple-600" />
-                <span>View Resume</span>
-              </button>
-
-              <button
-                onClick={() => scrollTo('contact')}
-                className="px-6 py-3.5 text-sm font-semibold text-pink-950 bg-white hover:bg-pink-50/70 border border-pink-200 hover:border-pink-300 rounded-xl transition-all flex items-center gap-2 shadow-xs cursor-pointer"
-              >
-                <span>Let's Connect</span>
-                <ArrowUpRight className="w-4 h-4 text-pink-600" />
-              </button>
-
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noreferrer"
-                className="px-4 py-3.5 text-sm font-medium text-slate-700 hover:text-purple-900 bg-white hover:bg-purple-50/70 border border-purple-100 hover:border-purple-300 rounded-xl transition-all flex items-center gap-2 shadow-2xs"
-                aria-label="GitHub Profile"
-              >
-                <Github className="w-4 h-4 text-purple-600" />
-                <span className="font-mono text-xs">github.com/{personalInfo.githubUsername}</span>
-              </a>
-            </div>
-
-            {/* Quick Tech Highlights Bar with Pastel Purple & Pink Accents */}
-            <div className="pt-6 border-t border-pink-100/90 w-full">
-              <div className="text-xs font-mono text-purple-900 font-semibold mb-2.5 flex items-center gap-2">
-                <span>CORE STACK & TOOLING</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
-              </div>
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
-                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">Python</span>
-                <span className="px-2.5 py-1 rounded-lg bg-pink-50 text-pink-800 border border-pink-200/80 font-medium">Pandas</span>
-                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">C++</span>
-                <span className="px-2.5 py-1 rounded-lg bg-fuchsia-50 text-fuchsia-800 border border-fuchsia-200/80 font-medium">NumPy</span>
-                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">Scikit-Learn</span>
-                <span className="px-2.5 py-1 rounded-lg bg-pink-50 text-pink-800 border border-pink-200/80 font-medium">SQL</span>
-                <span className="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-800 border border-rose-200/80 font-medium">Docker</span>
-                <span className="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-800 border border-purple-200/80 font-medium">n8n</span>
-              </div>
-            </div>
-
-          </motion.div>
-
-          {/* Right Column: Developer Profile Showcase Card with Motion Entrance & Parallax */}
+          {/* Floating Tags (Animated & Parallax) */}
           <motion.div 
-            initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: shouldReduceMotion ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ y: shouldReduceMotion ? 0 : y2 }}
-            className="lg:col-span-5 relative flex flex-col items-center justify-center w-full"
+            transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+            className="absolute top-[0%] left-[5%] md:left-[10%] flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:scale-105 transition-transform"
           >
-            
-            {/* Developer Profile Card Frame with crisp light aesthetic and pastel borders */}
-            <div className="w-full relative rounded-3xl bg-white border border-pink-200/80 hover:border-purple-300 shadow-xl shadow-purple-500/5 overflow-hidden transition-all duration-300">
-              
-              {/* Card Window Header Bar with Pastel Mac-Style Controls */}
-              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-purple-50/70 to-pink-50/70 border-b border-pink-100 text-xs font-mono text-slate-600">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-pink-300 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-purple-300 inline-block" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-fuchsia-300 inline-block" />
-                  <span className="ml-2 text-purple-900 font-semibold text-[11px]">deepshikha_profile.tsx</span>
-                </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-purple-50 to-pink-50 text-purple-900 border border-pink-200/80 text-[11px] font-semibold shadow-2xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
-                  <span>Student & Developer</span>
-                </div>
-              </div>
-
-              {/* Card Main Body */}
-              <div className="p-6 sm:p-7 flex flex-col items-center text-center space-y-5">
-                
-                {/* Profile Avatar with Pastel Ring */}
-                <div className="pt-1">
-                  <ProfileAvatar size="md" showBadge={true} />
-                </div>
-
-                {/* Identity & Academic Info */}
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold font-display text-[#0a1128]">
-                    Deepshikha Yadav
-                  </h3>
-                  <p className="text-xs sm:text-sm text-purple-800 font-semibold mt-0.5">
-                    2nd-Year B.Tech Computer Science & Engineering
-                  </p>
-                  <p className="text-xs text-slate-600 mt-1 font-mono">
-                    SRMCEM, Lucknow · Class of 2029
-                  </p>
-                </div>
-
-                {/* 4 Pastel Highlights Micro-Grid featuring Pastel Purple & Pink */}
-                <div className="grid grid-cols-2 gap-2.5 w-full text-left">
-                  
-                  {/* Focus */}
-                  <div className="p-3 rounded-2xl bg-purple-50/90 border border-purple-200/90 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-purple-800 font-bold tracking-wider mb-0.5">
-                      FOCUS DOMAIN
-                    </div>
-                    <div className="text-xs font-bold text-[#0a1128]">
-                      Full-Stack & AI/ML
-                    </div>
-                  </div>
-
-                  {/* Open Source */}
-                  <div className="p-3 rounded-2xl bg-pink-50/90 border border-pink-200/90 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-pink-800 font-bold tracking-wider mb-0.5">
-                      OPEN SOURCE
-                    </div>
-                    <div className="text-xs font-bold text-[#0a1128]">
-                      GSSoC '26 Contributor
-                    </div>
-                  </div>
-
-                  {/* Projects */}
-                  <div className="p-3 rounded-2xl bg-fuchsia-50/90 border border-fuchsia-200/90 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-fuchsia-800 font-bold tracking-wider mb-0.5">
-                      PORTFOLIO WORK
-                    </div>
-                    <div className="text-xs font-bold text-[#0a1128]">
-                      Phoenix AI & ML Models
-                    </div>
-                  </div>
-
-                  {/* Competitions */}
-                  <div className="p-3 rounded-2xl bg-rose-50/90 border border-rose-200/90 shadow-2xs">
-                    <div className="text-[10px] font-mono uppercase text-rose-800 font-bold tracking-wider mb-0.5">
-                      COMPETITIONS
-                    </div>
-                    <div className="text-xs font-bold text-[#0a1128]">
-                      ET AI Hackathon
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Current Active Focus Snippet */}
-                <div className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-purple-50/60 via-pink-50/40 to-white border border-pink-100 text-left">
-                  <div className="flex items-center justify-between text-[11px] font-mono text-purple-900 mb-1">
-                    <span className="font-semibold text-purple-900">// CURRENT DEV FOCUS</span>
-                    <span className="text-pink-600 font-bold">Python · scikit-learn · SQL</span>
-                  </div>
-                  <p className="text-xs text-slate-700 leading-relaxed">
-                    Building accessible AI learning companions and machine learning classification workflows.
-                  </p>
-                </div>
-
-                {/* Quick Profile Action Buttons */}
-                <div className="flex items-center justify-center gap-3 w-full pt-1">
-                  <button
-                    onClick={() => scrollTo('projects')}
-                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-900 to-pink-900 hover:from-purple-800 hover:to-pink-800 transition-colors cursor-pointer shadow-sm"
-                  >
-                    View Projects
-                  </button>
-                  <button
-                    onClick={() => scrollTo('contact')}
-                    className="flex-1 py-2.5 px-4 rounded-xl text-xs font-semibold text-purple-950 bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 border border-pink-200 transition-colors cursor-pointer"
-                  >
-                    Get in Touch
-                  </button>
-                </div>
-
-              </div>
-
-            </div>
-
+            <span className="w-2 h-2 rounded-full bg-[var(--color-rose)] animate-pulse" />
+            FULL STACK DEVELOPER
           </motion.div>
 
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
+            className="absolute bottom-[5%] right-[5%] md:right-[10%] flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:scale-105 transition-transform"
+          >
+            AI EXPLORER
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: -5 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="absolute top-[45%] left-[2%] hidden lg:flex items-center gap-2 px-4 py-2 bg-[var(--color-cream)]/70 backdrop-blur-md rounded-full border border-[var(--color-lavender)] shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:rotate-0 transition-transform"
+          >
+            HACKATHON BUILDER
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 5 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute top-[35%] right-[2%] hidden lg:flex items-center gap-2 px-4 py-2 bg-[var(--color-peach)]/70 backdrop-blur-md rounded-full border border-[var(--color-blush)] shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:rotate-0 transition-transform"
+          >
+            B.TECH CSE '29
+          </motion.div>
         </div>
-      </div>
+
+        {/* Artistic Profile Image Composition */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          style={{ y: y3 }}
+          className="relative mt-16 md:mt-20 mb-8 z-20 group cursor-none interactive"
+        >
+          {/* Subtle 3D Glass Aura effect behind image */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-blush)] via-[var(--color-rose)] to-[var(--color-lavender)] rounded-[40px] rotate-3 group-hover:rotate-6 group-hover:scale-105 transition-all duration-700 ease-out opacity-80 blur-xl" />
+          
+          <div className="relative w-56 h-72 sm:w-72 sm:h-96 rounded-[32px] overflow-hidden border-4 border-white/60 bg-white/20 backdrop-blur-sm shadow-2xl shadow-[var(--color-plum)]/20 transition-transform duration-700 ease-out group-hover:scale-[1.03] group-hover:-translate-y-3 flex items-center justify-center">
+            {/* Grain texture overlay */}
+            <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay z-20 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
+            
+            <img 
+              src="/photo.jpg" 
+              alt="Deepshikha Yadav" 
+              className="w-full h-full object-cover object-top grayscale-[30%] contrast-[1.1] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
+            />
+          </div>
+          
+          {/* Orbiting text / badge */}
+          <div className="absolute -bottom-8 -right-8 w-28 h-28 bg-white/90 backdrop-blur-xl rounded-full border border-white/60 shadow-2xl flex items-center justify-center animate-[spin_12s_linear_infinite] z-30 pointer-events-none">
+            <div className="text-[10px] font-mono text-[var(--color-plum)] font-bold text-center leading-[1.2] tracking-widest animate-[spin_12s_linear_infinite_reverse]">
+              OPEN<br/>SOURCE<br/>CONTRIBUTOR
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Small introduction text below image */}
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 1 }}
+          className="text-center text-sm md:text-base font-sans max-w-lg text-[var(--color-plum)]/80 mt-6 leading-relaxed font-medium"
+        >
+          {personalInfo.bio}
+        </motion.p>
+        
+        {/* Scroll down indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--color-plum)]/60 text-[10px] font-mono font-bold tracking-widest uppercase"
+        >
+          <span>Scroll to explore</span>
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            className="w-px h-10 bg-gradient-to-b from-[var(--color-plum)]/40 to-transparent"
+          />
+        </motion.div>
+
+      </motion.div>
     </section>
   );
 };

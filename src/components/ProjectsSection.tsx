@@ -1,212 +1,192 @@
-import React, { useState } from 'react';
-import { 
-  Github, 
-  BookOpen,
-  CheckCircle2
-} from 'lucide-react';
+import React from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { ExternalLink, Github } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
-import { Project } from '../types/portfolio';
-import { ProjectModal } from './ProjectModal';
-import { AnimatedSection } from './AnimatedSection';
 
 export const ProjectsSection: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const getProjectPastelTheme = (id: string) => {
-    if (id === 'phoenix-ai') {
-      return {
-        topGradient: 'from-purple-600 via-pink-500 to-purple-400',
-        badge: 'bg-purple-50 border-purple-200/90 text-purple-900',
-        cardBorder: 'hover:border-purple-300',
-        quoteBg: 'bg-purple-50/80 border-purple-400 text-purple-900',
-        techHover: 'hover:text-purple-700',
-        numberColor: 'group-hover:text-purple-400'
-      };
-    }
-    if (id === 'heart-disease-prediction') {
-      return {
-        topGradient: 'from-pink-500 via-rose-400 to-purple-400',
-        badge: 'bg-pink-50 border-pink-200/90 text-pink-900',
-        cardBorder: 'hover:border-pink-300',
-        quoteBg: 'bg-pink-50/80 border-pink-400 text-pink-900',
-        techHover: 'hover:text-pink-700',
-        numberColor: 'group-hover:text-pink-400'
-      };
-    }
-    return {
-      topGradient: 'from-purple-400 via-pink-400 to-fuchsia-400',
-      badge: 'bg-fuchsia-50 border-fuchsia-200/90 text-fuchsia-900',
-      cardBorder: 'hover:border-fuchsia-300',
-      quoteBg: 'bg-fuchsia-50/80 border-fuchsia-400 text-fuchsia-900',
-      techHover: 'hover:text-purple-700',
-      numberColor: 'group-hover:text-fuchsia-400'
-    };
-  };
-
+  const phoenixProject = projectsData.find(p => p.id === 'phoenix-ai-assistant') || projectsData[0];
+  const genzifyProject = projectsData.find(p => p.id === 'genzify-chrome-extension') || projectsData[1];
+  
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-white border-t border-slate-200">
+    <section id="projects" className="relative bg-[var(--color-cream)] overflow-hidden">
       
-      {/* Background ambient multi-tone pastel pink & purple lighting */}
-      <div 
-        className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-purple-200/35 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute bottom-1/3 right-10 w-[450px] h-[450px] bg-pink-200/40 rounded-full blur-[130px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-fuchsia-100/35 rounded-full blur-[120px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header with Fade & Slide-up */}
-        <AnimatedSection className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
-              <span>FEATURED ENGINEERING WORK</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
-              Highlighted Projects
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 rounded-full mt-4" />
-          </div>
-
-          <p className="text-sm text-slate-600 max-w-md">
-            Built with focused intentionality — combining machine learning models, workflow automation, and creative web engineering.
-          </p>
-        </AnimatedSection>
-
-        {/* Project Cards */}
-        <div className="space-y-12">
-          {projectsData.map((project, idx) => {
-            const theme = getProjectPastelTheme(project.id);
-
-            return (
-              <AnimatedSection 
-                key={project.id} 
-                direction="up" 
-                delay={0.15 * idx}
-                className="w-full"
-              >
-                <div className={`group relative rounded-3xl bg-white border border-slate-200 ${theme.cardBorder} transition-all duration-300 shadow-xl hover:shadow-2xl overflow-hidden`}>
-                  
-                  {/* Subtle top accent gradient */}
-                  <div 
-                    className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${theme.topGradient}`} 
-                    aria-hidden="true" 
-                  />
-
-                  <div className="p-6 sm:p-8 lg:p-10 flex flex-col items-start text-left">
-                    
-                    {/* Top Row: Focus area badge & index counter */}
-                    <div className="flex items-center justify-between w-full mb-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className={`text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border ${theme.badge}`}>
-                          {project.focusArea}
-                        </span>
-                        <span aria-hidden="true" className="text-slate-300">·</span>
-                        <span className="text-xs font-mono text-slate-500 font-medium">{project.category}</span>
-                      </div>
-                      <span className={`text-2xl sm:text-3xl font-mono font-bold text-slate-200 ${theme.numberColor} transition-colors select-none`}>
-                        0{idx + 1}
-                      </span>
-                    </div>
-
-                    {/* Title & Tagline */}
-                    <div className="mb-2">
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-display text-[#0a1128] tracking-tight mb-1 group-hover:text-purple-800 transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm sm:text-base font-semibold text-purple-700">
-                        {project.tagline}
-                      </p>
-                    </div>
-
-                    {/* Core Quote */}
-                    {project.coreQuote && (
-                      <div className={`my-3 text-xs sm:text-sm font-semibold ${theme.quoteBg} border-l-2 px-3.5 py-2 rounded-r-xl italic max-w-3xl`}>
-                        "{project.coreQuote}"
-                      </div>
-                    )}
-
-                    {/* Summary */}
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-4xl mb-6">
-                      {project.summary}
-                    </p>
-
-                    {/* Key Capabilities Preview */}
-                    {project.features && project.features.length > 0 && (
-                      <div className="mb-6 w-full">
-                        <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2.5">
-                          CORE HIGHLIGHTS
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 max-w-4xl">
-                          {project.features.slice(0, 3).map((feat, fIdx) => (
-                            <div key={fIdx} className="flex items-start gap-2 text-xs text-slate-700 bg-slate-50 border border-slate-200/80 rounded-xl px-3 py-2.5">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-purple-600 shrink-0 mt-0.5" />
-                              <span className="line-clamp-2">{feat}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Tech Stack */}
-                    <div className="mb-8 w-full">
-                      <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2">
-                        TECHNOLOGIES APPLIED
-                      </div>
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-mono text-slate-700">
-                        {project.techStack.map((tech, tIdx) => (
-                          <React.Fragment key={tech}>
-                            <span className={`${theme.techHover} transition-colors font-medium`}>{tech}</span>
-                            {tIdx < project.techStack.length - 1 && <span className="text-slate-300">/</span>}
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Action CTAs */}
-                    <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-slate-100 w-full">
-                      <button
-                        onClick={() => setSelectedProject(project)}
-                        className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-[#0a1128] hover:bg-[#162a5c] rounded-xl transition-all shadow-md shadow-navy-950/20 flex items-center gap-2 cursor-pointer"
-                      >
-                        <BookOpen className="w-4 h-4" />
-                        <span>Case Study & Breakdown</span>
-                      </button>
-
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-700 hover:text-black bg-white hover:bg-slate-50 border border-slate-300 rounded-xl transition-colors flex items-center gap-2 shadow-2xs"
-                      >
-                        <Github className="w-4 h-4 text-purple-700" />
-                        <span>GitHub Code</span>
-                      </a>
-                    </div>
-
-                  </div>
-
-                </div>
-              </AnimatedSection>
-            );
-          })}
-        </div>
-
+      {/* Section Header */}
+      <div className="py-32 px-6 flex flex-col items-center justify-center text-center">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 60 }}
+          viewport={{ once: true }}
+          className="h-1 bg-[var(--color-rose)] mb-6"
+        />
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-5xl md:text-7xl font-display font-black text-[var(--color-plum)] uppercase tracking-tighter"
+        >
+          Selected Works
+        </motion.h2>
+        <p className="text-[var(--color-plum)]/60 font-mono text-sm mt-4 uppercase tracking-widest">
+          Scroll to explore case studies
+        </p>
       </div>
 
-      {/* Project Breakdown Modal */}
-      <ProjectModal 
-        project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
-      />
+      {/* PROJECT 01 - PHOENIX AI (Editorial / Technical Case Study) */}
+      <div className="min-h-screen relative flex items-center py-20 px-6 md:px-12 lg:px-24">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Text Column */}
+          <div className="order-2 lg:order-1 relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <h4 className="text-[var(--color-rose)] font-mono text-sm font-bold mb-4 uppercase tracking-widest">
+                01 — Featured Case Study
+              </h4>
+              <h3 className="text-5xl md:text-7xl font-display font-black text-[var(--color-plum)] mb-8 leading-tight">
+                {phoenixProject.title}
+              </h3>
+              
+              <div className="space-y-6 mb-10">
+                <div>
+                  <h5 className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-2">The Problem</h5>
+                  <p className="font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium">
+                    Traditional AI assistants lack accessible local integration for non-technical users and require constant cloud dependency.
+                  </p>
+                </div>
+                <div>
+                  <h5 className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-2">The Solution</h5>
+                  <p className="font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium">
+                    {phoenixProject.description}
+                  </p>
+                </div>
+              </div>
 
+              {/* Tech Stack Tags */}
+              <div className="flex flex-wrap gap-2 mb-10">
+                {phoenixProject.tags.map(tag => (
+                  <span key={tag} className="px-3 py-1 bg-[var(--color-lavender)]/50 text-[var(--color-plum)] rounded-full font-mono text-xs font-bold border border-[var(--color-lavender)]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-4 cursor-none" data-cursor="hover">
+                <a 
+                  href={phoenixProject.liveUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                >
+                  <ExternalLink size={16} /> Live Demo
+                </a>
+                <a 
+                  href={phoenixProject.githubUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-transparent border border-[var(--color-plum)] text-[var(--color-plum)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:bg-[var(--color-plum)]/5 transition-colors"
+                >
+                  <Github size={16} /> Source Code
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Image Column (Parallax & Scale) */}
+          <div className="order-1 lg:order-2 relative w-full h-[50vh] lg:h-[80vh] rounded-[40px] overflow-hidden group cursor-none" data-cursor="project">
+            <motion.div
+              initial={{ scale: 1.1, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <img 
+                src={phoenixProject.image} 
+                alt={phoenixProject.title}
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000 ease-out grayscale-[20%] group-hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cream)] via-transparent to-transparent opacity-60 lg:hidden" />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* PROJECT 02 - GENZIFY (Playful Experimental Design) */}
+      <div className="min-h-screen relative flex items-center py-20 px-6 md:px-12 lg:px-24 bg-[var(--color-lavender)]/30 overflow-hidden">
+        {/* Playful Floating Slang Elements */}
+        <motion.div animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute top-[10%] right-[15%] px-4 py-2 bg-yellow-300 text-black font-display font-black text-2xl -rotate-12 border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          FR FR 🧢
+        </motion.div>
+        <motion.div animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 5 }} className="absolute bottom-[20%] left-[10%] px-4 py-2 bg-pink-400 text-white font-display font-black text-2xl rotate-6 border-2 border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-20">
+          NO CAP
+        </motion.div>
+
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Image Column */}
+          <div className="relative w-full h-[50vh] lg:h-[70vh] rounded-[40px] overflow-hidden group cursor-none border-4 border-[var(--color-plum)] shadow-2xl z-10" data-cursor="project">
+            <motion.div
+              initial={{ rotate: -5, scale: 0.9, opacity: 0 }}
+              whileInView={{ rotate: 0, scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 100, damping: 20 }}
+              className="absolute inset-0 w-full h-full bg-[var(--color-peach)]"
+            >
+              <img 
+                src={genzifyProject.image} 
+                alt={genzifyProject.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              />
+            </motion.div>
+          </div>
+
+          {/* Right Text Column */}
+          <div className="relative z-10 text-right flex flex-col items-end">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h4 className="text-[var(--color-plum)] font-mono text-sm font-bold mb-4 uppercase tracking-widest">
+                02 — Experimental Extension
+              </h4>
+              <h3 className="text-6xl md:text-8xl font-display font-black text-[var(--color-plum)] mb-6 leading-[0.8] tracking-tighter">
+                {genzifyProject.title.split(' ')[0].toUpperCase()}
+              </h3>
+              
+              <div className="bg-white/60 backdrop-blur-md p-8 rounded-3xl border border-[var(--color-plum)]/20 shadow-xl mb-8 text-left max-w-md ml-auto">
+                <p className="font-sans text-[var(--color-plum)] leading-relaxed font-medium text-lg">
+                  {genzifyProject.description}
+                </p>
+                <div className="mt-4 pt-4 border-t border-[var(--color-plum)]/10">
+                  <p className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-2">Stack</p>
+                  <p className="font-mono text-sm text-[var(--color-plum)] font-bold">{genzifyProject.tags.join(' • ')}</p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center justify-end gap-4 cursor-none" data-cursor="hover">
+                <a 
+                  href={genzifyProject.githubUrl} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                >
+                  <Github size={16} /> Source
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+        </div>
+      </div>
+      
     </section>
   );
 };
