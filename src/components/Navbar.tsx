@@ -13,6 +13,8 @@ const navLinks = [
   { name: 'Journey', target: 'journey' },
   { name: 'Skills', target: 'skills' },
   { name: 'Projects', target: 'projects' },
+  { name: 'Services', target: 'services' },
+  { name: 'Education', target: 'education' },
   { name: 'Certificates', target: 'certificates' },
   { name: 'Resume', target: 'resume' }
 ];

@@ -50,11 +50,11 @@ export default function App() {
         {/* 2. About Me Section */}
         <AboutSection />
 
-        {/* 3. Skills Section */}
-        <SkillsSection />
-
-        {/* 4. My Journey Timeline Section - Horizontal Scroll Experience */}
+        {/* 3. My Journey Timeline Section */}
         <JourneySection />
+
+        {/* 4. Skills Section */}
+        <SkillsSection />
 
         {/* 5. Projects Section with Live Demos & Modals */}
         <ProjectsSection />
