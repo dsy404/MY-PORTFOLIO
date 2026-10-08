@@ -57,6 +57,7 @@ export interface CertificateItem {
   date: string;
   category: 'AI & Machine Learning' | 'Cloud & Global Hackathons' | 'Open Source & Web' | 'Academic & Specialization';
   credentialId?: string;
+  image?: string;
   description: string;
   skills: string[];
   verificationUrl?: string;

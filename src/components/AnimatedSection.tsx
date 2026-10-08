@@ -117,8 +117,7 @@ export const SectionPopup: React.FC<SectionPopupProps> = ({
         ease: [0.16, 1, 0.3, 1], // Cinematic presentation showcase curve
       }}
       style={{
-        transformOrigin: "center top",
-        willChange: "transform, opacity, filter"
+        transformOrigin: "center top"
       }}
       className={`w-full relative transition-all ${className}`}
     >

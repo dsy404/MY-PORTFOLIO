@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   Award, 
   CheckCircle2, 
@@ -39,6 +40,20 @@ export const CertificateVisualDocument: React.FC<{
   cert: CertificateItem;
   expanded?: boolean;
 }> = ({ cert, expanded = false }) => {
+
+  // Render the original attached certificate image if it exists
+  if (cert.image) {
+    const isPdf = cert.image.toLowerCase().endsWith('.pdf');
+    return (
+      <div className={`relative w-full aspect-[1.414/1] rounded-2xl md:rounded-3xl shadow-xl overflow-hidden select-none bg-slate-900 border border-slate-700/50 flex items-center justify-center ${expanded ? 'max-w-3xl mx-auto' : ''}`}>
+        {isPdf ? (
+          <embed src={`${cert.image}#toolbar=0&navpanes=0&scrollbar=0`} type="application/pdf" className="w-full h-full" />
+        ) : (
+          <img src={cert.image} alt={cert.title} className="w-full h-full object-contain" />
+        )}
+      </div>
+    );
+  }
 
   // 1. Google Solution Challenge 2026: Build with AI (Dark theme)
   if (cert.id === 'google-solution-challenge-2026') {
@@ -91,7 +106,7 @@ export const CertificateVisualDocument: React.FC<{
           <div className={`font-display font-black text-white tracking-wide border-b border-slate-700/80 inline-block ${
             expanded ? 'text-xl sm:text-3xl md:text-4xl pb-1.5 px-6' : 'text-sm sm:text-base pb-0.5 px-3'
           }`}>
-            Deepshikha
+            Deepshikha Yadav
           </div>
 
           <p className={`text-slate-300 max-w-lg mx-auto font-sans leading-tight ${
@@ -107,12 +122,12 @@ export const CertificateVisualDocument: React.FC<{
         }`}>
           <div className={`flex items-center gap-1 rounded-full bg-slate-900 border border-slate-700 ${expanded ? 'px-2.5 py-1' : 'px-1.5 py-0.5'}`}>
             <Globe className={expanded ? 'w-3.5 h-3.5 text-blue-400' : 'w-2.5 h-2.5 text-blue-400'} />
-            <span>Dated: 22/07/2026</span>
+            <span>Dated: {cert.date}</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             <span className={`rounded-full bg-rose-500 ${expanded ? 'w-2 h-2' : 'w-1.5 h-1.5'}`} />
-            <span className="text-slate-300 font-semibold">ID: 2026H2SO7SCBWAI-PS09169</span>
+            <span className="text-slate-300 font-semibold">ID: {cert.credentialId}</span>
           </div>
         </div>
       </div>
@@ -165,13 +180,13 @@ export const CertificateVisualDocument: React.FC<{
               <span className={`text-amber-800 block uppercase font-black ${expanded ? 'text-[9px]' : 'text-[6px]'}`}>Achievement</span>
               <span className={`font-black flex items-center gap-0.5 text-amber-900 ${expanded ? 'text-xs sm:text-sm' : 'text-[8px]'}`}>
                 <Trophy className={expanded ? 'w-3 h-3 text-amber-700' : 'w-2 h-2 text-amber-700'} />
-                <span>Rank 63</span>
+                <span>{cert.rank}</span>
               </span>
             </div>
 
             <div className={`rounded-lg bg-amber-50/70 border border-amber-200/80 ${expanded ? 'p-2' : 'p-1'}`}>
               <span className={`text-slate-500 block uppercase font-bold ${expanded ? 'text-[9px]' : 'text-[6px]'}`}>Issue Date</span>
-              <span className={`font-black text-slate-900 ${expanded ? 'text-xs' : 'text-[8px]'}`}>Sep 4, 2026</span>
+              <span className={`font-black text-slate-900 ${expanded ? 'text-xs' : 'text-[8px]'}`}>{cert.date}</span>
             </div>
           </div>
         </div>
@@ -234,9 +249,9 @@ export const CertificateVisualDocument: React.FC<{
           </div>
 
           <p className={`text-slate-700 font-sans max-w-md mx-auto leading-tight ${
-            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px]'
+            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px] line-clamp-2'
           }`}>
-            for participating in <strong className="text-rose-600 font-bold">CodeBlitz 2.0</strong>, held on October 3, 2026.
+            {cert.description}
           </p>
           <p className={`text-slate-500 max-w-sm mx-auto leading-tight ${
             expanded ? 'text-[10px] sm:text-xs mt-1' : 'text-[7px] sm:text-[8px] mt-0.5'
@@ -256,7 +271,7 @@ export const CertificateVisualDocument: React.FC<{
           </div>
 
           <div className="text-center">
-            <span className={`text-slate-400 ${expanded ? 'text-[9px]' : 'text-[7px]'}`}>ID: Z2GH-MN3B-9PRE-PZFF</span>
+            <span className={`text-slate-400 ${expanded ? 'text-[9px]' : 'text-[7px]'}`}>ID: {cert.credentialId}</span>
           </div>
 
           <div className="text-right">
@@ -322,10 +337,10 @@ export const CertificateVisualDocument: React.FC<{
           </p>
 
           <div className={`font-bold font-display text-blue-950 ${expanded ? 'text-sm sm:text-lg md:text-xl' : 'text-xs'}`}>
-            AI Skills Passport
+            {cert.title}
           </div>
           <div className={`text-slate-500 ${expanded ? 'text-xs' : 'text-[8px]'}`}>
-            offered by EY and Microsoft
+            offered by {cert.issuer}
           </div>
         </div>
 
@@ -377,7 +392,7 @@ export const CertificateVisualDocument: React.FC<{
           </p>
 
           <div className={`font-display font-black text-slate-950 mb-0.5 ${expanded ? 'text-xl sm:text-3xl md:text-4xl' : 'text-xs sm:text-sm'}`}>
-            Deepshikha
+            Deepshikha Yadav
           </div>
 
           <p className={`font-mono text-slate-500 uppercase tracking-wider mb-1 ${expanded ? 'text-[9px] sm:text-[11px]' : 'text-[6px] sm:text-[7px]'}`}>
@@ -387,12 +402,12 @@ export const CertificateVisualDocument: React.FC<{
           <div className={`font-display font-black text-slate-900 border-b-2 border-slate-900 pb-0.5 inline-block ${
             expanded ? 'text-sm sm:text-lg md:text-xl' : 'text-[9px] sm:text-[10px]'
           }`}>
-            5-Day AI Agents: Intensive Vibe Coding
+            {cert.title}
           </div>
         </div>
 
         <div className={`font-mono text-slate-500 ${expanded ? 'text-[9px] sm:text-[11px]' : 'text-[7px] sm:text-[8px]'}`}>
-          ON JULY 30, 2026 • VERIFIED KAGGLE ID
+          ON {cert.date.toUpperCase()} • VERIFIED KAGGLE ID: {cert.credentialId}
         </div>
       </div>
     );
@@ -445,9 +460,9 @@ export const CertificateVisualDocument: React.FC<{
           </div>
 
           <p className={`text-slate-700 font-sans max-w-md mx-auto leading-tight ${
-            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px]'
+            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px] line-clamp-2'
           }`}>
-            for active participation in <strong className="text-amber-950 font-bold">Coderush 2.0 Hackathon</strong>, showcasing exceptional programming prowess.
+            {cert.description}
           </p>
         </div>
 
@@ -516,9 +531,9 @@ export const CertificateVisualDocument: React.FC<{
             Deepshikha Yadav
           </div>
           <p className={`text-slate-300 max-w-md mx-auto leading-tight ${
-            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px]'
+            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px] line-clamp-2'
           }`}>
-            for actively participating in <strong className="text-amber-400 font-semibold">AttentionX AI Hackathon</strong> and developing impactful AI prototypes.
+            {cert.description}
           </p>
         </div>
 
@@ -527,8 +542,8 @@ export const CertificateVisualDocument: React.FC<{
           expanded ? 'pt-2.5 text-xs' : 'pt-1.5 text-[8px]'
         }`}>
           <div>
-            <span className="block text-slate-500">Date: 18/04/2026</span>
-            <span className="text-amber-400">ID: UT-ATTNX-AIHACK-2026</span>
+            <span className="block text-slate-500">Date: {cert.date}</span>
+            <span className="text-amber-400">ID: {cert.credentialId}</span>
           </div>
           <div className="text-right">
             <div className={`font-serif italic text-amber-300 ${expanded ? 'text-sm' : 'text-[9px]'}`}>Raghav Chopra</div>
@@ -582,9 +597,9 @@ export const CertificateVisualDocument: React.FC<{
             Deepshikha Yadav
           </div>
           <p className={`text-slate-300 max-w-md mx-auto leading-tight ${
-            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px]'
+            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px] line-clamp-2'
           }`}>
-            in recognition of exceptional creativity and contribution at <strong className="text-pink-300 font-semibold">Adivya 2.0 Developer Hackathon</strong>.
+            {cert.description}
           </p>
         </div>
 
@@ -593,7 +608,7 @@ export const CertificateVisualDocument: React.FC<{
           expanded ? 'pt-2.5 text-xs' : 'pt-1.5 text-[8px]'
         }`}>
           <span>SRMCEM Representative</span>
-          <span className="text-pink-300 font-semibold">ID: ENGINOW-ADIVYA-2-TEAM-DY</span>
+          <span className="text-pink-300 font-semibold">ID: {cert.credentialId}</span>
         </div>
       </div>
     );
@@ -638,9 +653,9 @@ export const CertificateVisualDocument: React.FC<{
             Deepshikha Yadav
           </div>
           <p className={`text-slate-300 max-w-md mx-auto leading-tight ${
-            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px]'
+            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px] line-clamp-2'
           }`}>
-            representing <strong className="text-cyan-300">SRMCEM</strong> in <strong className="text-white font-semibold">CodeStrike 2026</strong> coding championship.
+            {cert.description}
           </p>
         </div>
 
@@ -648,8 +663,8 @@ export const CertificateVisualDocument: React.FC<{
         <div className={`flex items-center justify-between border-t border-slate-700 text-slate-400 font-mono ${
           expanded ? 'pt-2.5 text-xs' : 'pt-1.5 text-[8px]'
         }`}>
-          <span>Year: 2026</span>
-          <span className="text-cyan-300 font-bold">UNSTOP-CODESTRIKE-SRMCEM-2026</span>
+          <span>Date: {cert.date}</span>
+          <span className="text-cyan-300 font-bold">{cert.credentialId}</span>
         </div>
       </div>
     );
@@ -761,9 +776,9 @@ export const CertificateVisualDocument: React.FC<{
             Deepshikha Yadav
           </div>
           <p className={`text-slate-700 font-sans max-w-md mx-auto leading-tight ${
-            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px]'
+            expanded ? 'text-xs sm:text-sm' : 'text-[8px] sm:text-[9px] line-clamp-2'
           }`}>
-            for participating in <strong className="text-sky-900 font-bold">QuizOff 2026: India's Biggest AI Quiz</strong> alongside 5,25,000+ national competitors.
+            {cert.description}
           </p>
         </div>
 
@@ -772,8 +787,8 @@ export const CertificateVisualDocument: React.FC<{
           expanded ? 'pt-2 text-xs' : 'pt-1 text-[8px]'
         }`}>
           <div>
-            <div className="text-slate-500">Date: 19-JULY-2026</div>
-            <div className="text-sky-800 font-bold">ID: QUIZOFF-2026-CC-UNSTOP-DY</div>
+            <div className="text-slate-500">Date: {cert.date}</div>
+            <div className="text-sky-800 font-bold">ID: {cert.credentialId}</div>
           </div>
           <div className="text-right">
             <div className={`font-serif italic font-bold text-sky-900 ${expanded ? 'text-sm' : 'text-[9px]'}`}>Aaradhya Gupta</div>
@@ -1178,14 +1193,16 @@ export const CertificatesSection: React.FC = () => {
 
       </div>
 
-      {/* Expanded Certificate Modal View */}
-      {activeCertificate && (
+      {/* Expanded Certificate Modal View — rendered via portal to escape SectionPopup CSS transform stacking context */}
+      {activeCertificate && createPortal(
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-5 md:p-6 bg-slate-950/80 backdrop-blur-md overflow-y-auto"
+          style={{ animation: 'fadeInModal 0.2s ease' }}
           onClick={() => setActiveCertificate(null)}
           role="dialog"
           aria-modal="true"
         >
+          <style>{`@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }`}</style>
           <div 
             className="bg-white rounded-3xl border border-purple-200 max-w-4xl w-full my-auto shadow-2xl relative overflow-hidden flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
@@ -1339,7 +1356,8 @@ export const CertificatesSection: React.FC = () => {
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </section>

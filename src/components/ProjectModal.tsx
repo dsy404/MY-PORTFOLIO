@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Github, CheckCircle2, Cpu, Code2, ArrowRight, Heart, Users, Sparkles } from 'lucide-react';
 import { Project } from '../types/portfolio';
 import { PhoenixAISandbox } from './PhoenixAISandbox';
@@ -27,11 +28,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   if (!project) return null;
 
-  return (
+  return createPortal(
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-slate-900/60 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-slate-900/60 backdrop-blur-sm overflow-y-auto"
+      style={{ animation: 'fadeInModal 0.2s ease' }}
       onClick={onClose}
     >
+      <style>{`@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }`}</style>
       <div 
         className="relative w-full max-w-4xl my-auto rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden text-left"
         onClick={(e) => e.stopPropagation()}
@@ -228,6 +231,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

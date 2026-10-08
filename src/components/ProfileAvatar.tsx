@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { ShieldCheck, Sparkles, Camera, CheckCircle2, X } from 'lucide-react';
 
 interface ProfileAvatarProps {
@@ -169,12 +170,14 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
         )}
       </div>
 
-      {/* Profile Photo Modal with Full High-Res View */}
-      {showModal && (
+      {/* Profile Photo Modal — portal to escape motion.div transform stacking context */}
+      {showModal && createPortal(
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md"
+          style={{ animation: 'fadeInModal 0.2s ease' }}
           onClick={() => setShowModal(false)}
         >
+          <style>{`@keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }`}</style>
           <div 
             className="bg-white rounded-3xl border border-purple-200 max-w-md w-full shadow-2xl overflow-hidden relative"
             onClick={(e) => e.stopPropagation()}
@@ -258,7 +261,8 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
