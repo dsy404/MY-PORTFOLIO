@@ -46,7 +46,7 @@ export const SkillsSection: React.FC = () => {
       
       <div className="absolute inset-0 bg-pastel-mesh-subtle opacity-70 pointer-events-none" />
 
-      <div className="text-center mb-16 relative z-10 px-6">
+      <div className="text-center mb-4 relative z-10 px-6">
         <h2 className="text-4xl md:text-5xl font-display font-black text-[var(--color-plum)] uppercase tracking-tighter">
           Technology Constellation
         </h2>
@@ -55,10 +55,15 @@ export const SkillsSection: React.FC = () => {
         </p>
       </div>
 
-      <div className="relative w-full max-w-4xl aspect-square md:aspect-[4/3] flex items-center justify-center z-10">
+      <div className="relative w-full h-[600px] md:h-[800px] max-w-6xl flex items-center justify-center z-10">
         
+        {/* Decorative Orbit Rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] rounded-full border border-[var(--color-lavender)]/50 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] h-[55%] rounded-full border border-[var(--color-lavender)]/30 border-dashed pointer-events-none animate-[spin_60s_linear_infinite]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full border border-[var(--color-blush)]/20 pointer-events-none animate-[spin_40s_linear_infinite_reverse]" />
+
         {/* Central Core Element */}
-        <div className="absolute z-20 w-32 h-32 rounded-full bg-[var(--color-plum)] flex items-center justify-center shadow-2xl shadow-[var(--color-rose)]/50 border-4 border-[var(--color-cream)]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-24 h-24 md:w-32 md:h-32 rounded-full bg-[var(--color-plum)] flex items-center justify-center shadow-2xl shadow-[var(--color-rose)]/50 border-4 border-[var(--color-cream)]">
           <div className="text-center">
             <span className="block text-[var(--color-cream)] font-display font-bold text-lg leading-tight">DEEPSHIKHA</span>
             <span className="block text-[var(--color-rose)] font-mono text-[10px] tracking-widest mt-1">STACK</span>
@@ -103,8 +108,8 @@ export const SkillsSection: React.FC = () => {
         {/* Orbiting Skill Nodes */}
         {skills.map((skill) => {
           const rad = (skill.angle * Math.PI) / 180;
-          const x = `${Math.cos(rad) * skill.distance}%`;
-          const y = `${Math.sin(rad) * skill.distance}%`;
+          const left = `${50 + (Math.cos(rad) * skill.distance)}%`;
+          const top = `${50 + (Math.sin(rad) * skill.distance)}%`;
           
           const highlighted = isHighlighted(skill.id);
           const isDirectlyHovered = hoveredSkill === skill.id;
@@ -113,7 +118,7 @@ export const SkillsSection: React.FC = () => {
             <motion.div
               key={skill.id}
               className="absolute z-10 flex flex-col items-center justify-center cursor-none"
-              style={{ x, y }}
+              style={{ left, top, x: "-50%", y: "-50%" }}
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
