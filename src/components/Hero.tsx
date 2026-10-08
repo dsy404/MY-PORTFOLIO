@@ -87,18 +87,18 @@ export const Hero: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Artistic Profile Image Composition */}
+        {/* Artistic Profile Image Composition and Quote Wrapper */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{ y: y3 }}
-          className="relative mt-16 md:mt-20 mb-8 z-20 group cursor-none interactive"
+          className="relative flex flex-col items-center mt-16 md:mt-20 mb-8 z-20 group"
         >
           {/* Subtle 3D Glass Aura effect behind image */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-blush)] via-[var(--color-rose)] to-[var(--color-lavender)] rounded-[40px] rotate-3 group-hover:rotate-6 group-hover:scale-105 transition-all duration-700 ease-out opacity-80 blur-xl" />
+          <div className="absolute inset-0 top-0 w-56 h-72 sm:w-72 sm:h-96 bg-gradient-to-tr from-[var(--color-blush)] via-[var(--color-rose)] to-[var(--color-lavender)] rounded-[40px] rotate-3 group-hover:rotate-6 group-hover:scale-105 transition-all duration-700 ease-out opacity-80 blur-xl pointer-events-none" />
           
-          <div className="relative w-56 h-72 sm:w-72 sm:h-96 rounded-[32px] overflow-hidden border-4 border-white/60 bg-white/20 backdrop-blur-sm shadow-2xl shadow-[var(--color-plum)]/20 transition-transform duration-700 ease-out group-hover:scale-[1.03] group-hover:-translate-y-3 flex items-center justify-center">
+          <div className="relative w-56 h-72 sm:w-72 sm:h-96 rounded-[32px] overflow-hidden border-4 border-white/60 bg-white/20 backdrop-blur-sm shadow-2xl shadow-[var(--color-plum)]/20 transition-transform duration-700 ease-out group-hover:scale-[1.03] group-hover:-translate-y-3 flex items-center justify-center cursor-none interactive">
             {/* Grain texture overlay */}
             <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay z-20 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
             
@@ -107,25 +107,25 @@ export const Hero: React.FC = () => {
               alt="Deepshikha Yadav" 
               className="w-full h-full object-cover object-top grayscale-[30%] contrast-[1.1] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000 ease-out"
             />
-          </div>
-          
-          {/* Orbiting text / badge */}
-          <div className="absolute -bottom-8 -right-8 w-28 h-28 bg-white/90 backdrop-blur-xl rounded-full border border-white/60 shadow-2xl flex items-center justify-center animate-[spin_12s_linear_infinite] z-30 pointer-events-none">
-            <div className="text-[10px] font-mono text-[var(--color-plum)] font-bold text-center leading-[1.2] tracking-widest animate-[spin_12s_linear_infinite_reverse]">
-              OPEN<br/>SOURCE<br/>CONTRIBUTOR
+            
+            {/* Orbiting text / badge */}
+            <div className="absolute -bottom-8 -right-8 w-28 h-28 bg-white/90 backdrop-blur-xl rounded-full border border-white/60 shadow-2xl flex items-center justify-center animate-[spin_12s_linear_infinite] z-30 pointer-events-none">
+              <div className="text-[10px] font-mono text-[var(--color-plum)] font-bold text-center leading-[1.2] tracking-widest animate-[spin_12s_linear_infinite_reverse]">
+                OPEN<br/>SOURCE<br/>CONTRIBUTOR
+              </div>
             </div>
           </div>
+          
+          {/* Small introduction text below image */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 1 }}
+            className="text-center text-sm md:text-base font-sans max-w-lg text-[var(--color-plum)]/80 mt-10 leading-relaxed font-medium relative z-20"
+          >
+            {personalInfo.bio}
+          </motion.p>
         </motion.div>
-
-        {/* Small introduction text below image */}
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.4, duration: 1 }}
-          className="text-center text-sm md:text-base font-sans max-w-lg text-[var(--color-plum)]/80 mt-6 leading-relaxed font-medium"
-        >
-          {personalInfo.bio}
-        </motion.p>
         
         {/* Scroll down indicator */}
         <motion.div 

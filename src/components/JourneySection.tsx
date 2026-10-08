@@ -50,6 +50,7 @@ export const JourneySection: React.FC = () => {
   
   const { scrollYProgress } = useScroll({
     target: targetRef,
+    offset: ["start start", "end end"]
   });
 
   // Transform vertical scroll progress into horizontal translation

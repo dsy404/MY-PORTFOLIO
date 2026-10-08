@@ -34,7 +34,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[var(--color-rose)] selection:text-white overflow-x-hidden cursor-none">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[var(--color-rose)] selection:text-white cursor-none">
       <CustomCursor />
       
       <AnimatePresence mode="wait">
