@@ -117,6 +117,18 @@ export const AboutSection: React.FC = () => {
             I don't just want to learn technology. <br className="hidden md:block"/>
             <span className="font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-plum)] to-[var(--color-rose)]">I want to build with it.</span>
           </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            className="mt-8 text-lg md:text-xl font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium"
+          >
+            I am a 2nd-year B.Tech Computer Science student at Shri Ram Swaroop Memorial College of Engineering and Management, dedicated to building software that bridges computational theory with practical real-world impact.
+            <br/><br/>
+            My engineering journey is driven by hands-on experimentation. From developing responsive full-stack web applications to training predictive machine learning models with Python, scikit-learn, and NumPy, I enjoy understanding how systems work under the hood and crafting solutions that make tasks easier for people.
+          </motion.p>
         </div>
 
         {/* 4 Interactive Cards Grid */}
@@ -146,6 +158,22 @@ export const AboutSection: React.FC = () => {
             delay={0.4}
           />
         </div>
+
+        {/* Long-Term Aspiration */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="mt-24 max-w-4xl mx-auto text-center border-t border-[var(--color-plum)]/10 pt-16 relative z-10"
+        >
+          <h4 className="text-[var(--color-rose)] font-mono text-sm font-bold mb-6 uppercase tracking-widest">
+            Long-Term Aspiration
+          </h4>
+          <p className="text-xl md:text-3xl font-display font-medium text-[var(--color-plum)] leading-snug italic">
+            "Second-year B.Tech Computer Science student passionate about building reliable, user-focused AI applications, with hands-on experience developing LLM-powered agents, multi-agent orchestration (LangGraph), and Retrieval-Augmented Generation (RAG) systems."
+          </p>
+        </motion.div>
 
       </div>
     </section>
