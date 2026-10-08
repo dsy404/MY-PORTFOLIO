@@ -52,6 +52,13 @@
     color: #0f172a;
     overflow-x: hidden;
   }
+
+  /* Hide default cursor on desktop since we have a custom animated one */
+  @media (pointer: fine) {
+    *, a, button {
+      cursor: none !important;
+    }
+  }
 }
 
 /* Subtle background grid pattern for light mode */

@@ -18,6 +18,7 @@ import { ResumeSection } from './components/ResumeSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { SectionPopup } from './components/AnimatedSection';
+import { CustomCursor } from './components/CustomCursor';
 
 export default function App() {
   const handleScrollToContact = () => {
@@ -28,7 +29,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-pink-500 selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-pink-500 selection:text-white overflow-x-hidden cursor-none">
+      <CustomCursor />
+      
       {/* Sticky Navigation Bar */}
       <Navbar onContactClick={handleScrollToContact} />
 

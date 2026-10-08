@@ -1,11 +1,17 @@
 import React from 'react';
 import { ArrowDown, ArrowUpRight, Github, MapPin, GraduationCap, FileText } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { personalInfo } from '../data/portfolioData';
 import { ProfileAvatar } from './ProfileAvatar';
 
 export const Hero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
+
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -150]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, 200]);
+  const y4 = useTransform(scrollY, [0, 1000], [0, -250]);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -19,20 +25,24 @@ export const Hero: React.FC = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-pastel-mesh-hero bg-grid-pattern"
     >
-      {/* Soft Multi-Tone Pastel Pink & Pastel Purple Ambient Glows */}
-      <div 
+      {/* Soft Multi-Tone Pastel Pink & Pastel Purple Ambient Glows with Parallax */}
+      <motion.div 
+        style={{ y: shouldReduceMotion ? 0 : y1 }}
         className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-pink-200/50 rounded-full blur-[140px] pointer-events-none" 
         aria-hidden="true" 
       />
-      <div 
+      <motion.div 
+        style={{ y: shouldReduceMotion ? 0 : y2 }}
         className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-purple-200/50 rounded-full blur-[130px] pointer-events-none" 
         aria-hidden="true" 
       />
-      <div 
+      <motion.div 
+        style={{ y: shouldReduceMotion ? 0 : y3 }}
         className="absolute bottom-10 right-10 w-[420px] h-[420px] bg-fuchsia-100/50 rounded-full blur-[120px] pointer-events-none" 
         aria-hidden="true" 
       />
-      <div 
+      <motion.div 
+        style={{ y: shouldReduceMotion ? 0 : y4 }}
         className="absolute bottom-16 left-12 w-[380px] h-[380px] bg-rose-100/50 rounded-full blur-[110px] pointer-events-none" 
         aria-hidden="true" 
       />
@@ -146,11 +156,12 @@ export const Hero: React.FC = () => {
 
           </motion.div>
 
-          {/* Right Column: Developer Profile Showcase Card with Motion Entrance */}
+          {/* Right Column: Developer Profile Showcase Card with Motion Entrance & Parallax */}
           <motion.div 
             initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: shouldReduceMotion ? 0 : 0.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ y: shouldReduceMotion ? 0 : y2 }}
             className="lg:col-span-5 relative flex flex-col items-center justify-center w-full"
           >
             
