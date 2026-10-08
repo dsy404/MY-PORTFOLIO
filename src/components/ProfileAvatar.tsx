@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Sparkles, Code2 } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ShieldCheck, Sparkles, Camera, CheckCircle2, X } from 'lucide-react';
 
 interface ProfileAvatarProps {
   size?: 'sm' | 'md' | 'lg';
@@ -13,109 +13,253 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
   className = ''
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [imageSrc, setImageSrc] = useState<string>('/profile-picture.jpg');
+  const [imageSrc, setImageSrc] = useState<string>('/photo.jpg');
   const [imageError, setImageError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Initialize and load profile photo from localStorage or default asset
+  // Initialize and load profile photo from localStorage or default /photo.jpg
   useEffect(() => {
     try {
       const saved = localStorage.getItem('deepshikha_profile_photo');
       if (saved) {
         setImageSrc(saved);
+      } else {
+        setImageSrc('/photo.jpg');
       }
-    } catch {}
+    } catch {
+      setImageSrc('/photo.jpg');
+    }
   }, []);
 
   const sizeClasses = {
-    sm: 'w-24 h-24',
-    md: 'w-36 h-36 md:w-44 md:h-44',
-    lg: 'w-48 h-48 md:w-56 md:h-56'
+    sm: 'w-24 h-24 rounded-2xl',
+    md: 'w-44 h-44 sm:w-48 sm:h-48 rounded-2xl',
+    lg: 'w-52 h-52 sm:w-60 sm:h-60 rounded-3xl'
+  };
+
+  const innerRadiusClasses = {
+    sm: 'rounded-[14px]',
+    md: 'rounded-[14px]',
+    lg: 'rounded-[20px]'
+  };
+
+  // Helper to persist updated photo to disk and localStorage
+  const savePhotoPermanently = (dataUrl: string) => {
+    setImageSrc(dataUrl);
+    setImageError(false);
+    try {
+      localStorage.setItem('deepshikha_profile_photo', dataUrl);
+    } catch (e) {
+      console.warn('localStorage error:', e);
+    }
+
+    // Persist to disk via backend endpoint
+    fetch('/api/save-photo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ imageBase64: dataUrl })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setSaveSuccess(true);
+          setTimeout(() => setSaveSuccess(false), 3000);
+        }
+      })
+      .catch(err => console.error('Failed to save to disk:', err));
+  };
+
+  const handleFile = (file: File) => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      if (result) {
+        savePhotoPermanently(result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
   };
 
   return (
-    <div 
-      className={`relative group inline-block select-none ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Outer ambient glow ring with Pastel Pink and Pastel Purple gradient */}
+    <>
       <div 
-        className="absolute -inset-3 rounded-full bg-gradient-to-tr from-pink-300 via-purple-300 to-fuchsia-300 transition duration-500 blur-md opacity-65 group-hover:opacity-100 group-hover:scale-105"
-        aria-hidden="true"
-      />
+        className={`relative group inline-block select-none cursor-pointer ${className}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={() => setShowModal(true)}
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
+        title="Deepshikha Yadav — Professional Portrait"
+      >
+        {/* Hidden file input for changing photo */}
+        <input 
+          ref={fileInputRef}
+          type="file" 
+          accept="image/*" 
+          className="hidden" 
+          onChange={(e) => {
+            if (e.target.files && e.target.files[0]) {
+              handleFile(e.target.files[0]);
+            }
+          }}
+        />
 
-      {/* Rotating orbit ring in pastel purple and pink */}
-      <div 
-        className="absolute -inset-3.5 rounded-full border border-pink-200/80 border-t-purple-500 group-hover:border-t-pink-500 animate-[spin_10s_linear_infinite]"
-        aria-hidden="true"
-      />
+        {/* Ambient subtle warm glow beneath photo */}
+        <div 
+          className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-pink-300 via-purple-300 to-indigo-300 transition duration-500 blur-md opacity-50 group-hover:opacity-85 group-hover:scale-102"
+          aria-hidden="true" 
+        />
 
-      {/* Main Portrait Frame with pastel pink and purple borders */}
-      <div className={`relative ${sizeClasses[size]} rounded-full p-1.5 bg-gradient-to-b from-white via-pink-50/50 to-purple-50/50 border-2 border-pink-200 group-hover:border-purple-300 shadow-xl overflow-hidden backdrop-blur-sm transition-all duration-300`}>
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0a1128] via-[#162a5c] to-[#0f1c3f] flex flex-col items-center justify-center relative overflow-hidden">
-          
-          {/* Subtle grid backdrop */}
-          <div className="absolute inset-0 bg-grid-pattern opacity-15 pointer-events-none" />
-
-          {/* Portrait Photo Display */}
-          {!imageError ? (
-            <div className="w-full h-full relative">
+        {/* Professional Portrait Photo Frame */}
+        <div className={`relative ${sizeClasses[size]} p-1.5 bg-gradient-to-b from-white via-pink-50/60 to-purple-50/60 border-2 border-pink-200/90 group-hover:border-purple-300 shadow-xl overflow-hidden backdrop-blur-sm transition-all duration-300`}>
+          <div className={`w-full h-full ${innerRadiusClasses[size]} bg-slate-900 overflow-hidden relative shadow-inner`}>
+            
+            {/* Real Photograph Display */}
+            {!imageError ? (
               <img 
                 src={imageSrc} 
                 alt="Deepshikha Yadav" 
-                className="w-full h-full object-cover object-top rounded-full transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 onError={() => {
-                  if (imageSrc !== '/profile.png') {
-                    setImageSrc('/profile.png');
+                  if (imageSrc !== '/profile-picture.jpg') {
+                    setImageSrc('/profile-picture.jpg');
                   } else {
                     setImageError(true);
                   }
                 }}
               />
-              {/* Soft bottom vignette for depth */}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a1128]/60 to-transparent pointer-events-none" />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center text-center p-4 bg-gradient-to-br from-slate-900 to-purple-950 text-white">
+                <span className="font-display font-bold text-2xl text-pink-300">DY</span>
+                <span className="text-xs font-mono text-purple-200 mt-1">Deepshikha Yadav</span>
+              </div>
+            )}
+
+            {/* Subtle bottom info bar on hover */}
+            <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 via-slate-950/50 to-transparent p-2.5 pt-6 flex items-center justify-between transition-opacity duration-300 z-10 ${
+              isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}>
+              <div className="text-left">
+                <p className="text-[11px] font-bold text-white leading-tight">Deepshikha Yadav</p>
+                <p className="text-[9px] font-mono text-pink-200">SRMCEM '29</p>
+              </div>
+              <Sparkles className="w-3.5 h-3.5 text-pink-300 shrink-0" />
             </div>
-          ) : (
-            /* Fallback Stylized Monogram in Pastel Purple & Pink */
-            <div className="relative z-10 flex flex-col items-center justify-center text-center">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-pink-300 via-purple-300 to-fuchsia-300 p-[1.5px] shadow-lg flex items-center justify-center mb-1 group-hover:rotate-3 transition-transform duration-300">
-                <div className="w-full h-full rounded-2xl bg-[#0a1128] flex items-center justify-center">
-                  <span className="font-display font-bold text-2xl md:text-3xl text-white tracking-wider">
-                    DY
-                  </span>
+
+          </div>
+        </div>
+
+        {/* Verified Status Tag with Pastel Accents */}
+        {showBadge && (
+          <div className="absolute -bottom-2 -right-2 z-20 bg-white border border-pink-200/90 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md">
+            <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
+            <span className="text-[10px] font-mono text-purple-950 font-semibold">B.Tech CSE</span>
+            <ShieldCheck className="w-3 h-3 text-purple-600" />
+          </div>
+        )}
+      </div>
+
+      {/* Profile Photo Modal with Full High-Res View */}
+      {showModal && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setShowModal(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl border border-purple-200 max-w-md w-full shadow-2xl overflow-hidden relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-gradient-to-r from-purple-50 via-white to-pink-50">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-purple-600" />
+                <h3 className="font-display font-bold text-base text-[#0a1128]">Profile Portrait</h3>
+              </div>
+              <button 
+                onClick={() => setShowModal(false)}
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100 transition cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 text-center space-y-4">
+              {/* Photo Frame */}
+              <div className="w-64 h-64 mx-auto rounded-2xl p-1 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-300 shadow-xl overflow-hidden">
+                <img 
+                  src={imageSrc} 
+                  alt="Deepshikha Yadav" 
+                  className="w-full h-full object-cover rounded-[14px]"
+                />
+              </div>
+
+              <div>
+                <h4 className="text-xl font-bold font-display text-[#0a1128]">Deepshikha Yadav</h4>
+                <p className="text-xs font-mono text-purple-800 font-semibold mt-0.5">
+                  Full-Stack & Applied AI Engineer • SRMCEM '29
+                </p>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-mono font-semibold mt-2">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Verified Identity & Credentials</span>
                 </div>
               </div>
 
-              <div className="text-[10px] md:text-xs font-mono text-pink-200 tracking-wider uppercase font-semibold">
-                Deepshikha
-              </div>
-              <div className="text-[9px] font-mono text-purple-200 flex items-center gap-1 mt-0.5">
-                <Code2 className="w-2.5 h-2.5 text-pink-300" />
-                <span>SRMCEM '29</span>
+              {saveSuccess && (
+                <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-mono flex items-center justify-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Photo saved permanently!</span>
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="pt-2 border-t border-slate-100 flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="py-2 px-3.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-900 font-mono text-[11px] font-medium transition flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Camera className="w-3.5 h-3.5 text-purple-600" />
+                  <span>Change photo</span>
+                </button>
+                {imageSrc !== '/photo.jpg' && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      localStorage.removeItem('deepshikha_profile_photo');
+                      setImageSrc('/photo.jpg');
+                    }}
+                    className="py-2 px-3 rounded-xl text-slate-500 hover:text-slate-800 font-mono text-[11px] transition cursor-pointer"
+                  >
+                    Reset default
+                  </button>
+                )}
               </div>
             </div>
-          )}
 
-          {/* Interactive hover overlay with profile info */}
-          <div className={`absolute inset-0 bg-[#0a1128]/85 backdrop-blur-xs flex flex-col items-center justify-center text-white transition-opacity duration-300 p-2 text-center z-10 ${
-            isHovered ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}>
-            <Sparkles className="w-4 h-4 text-pink-300 mb-1 animate-bounce" />
-            <span className="text-xs font-semibold text-white">Deepshikha Yadav</span>
-            <span className="text-[10px] text-purple-200 mt-0.5">B.Tech CSE · SRMCEM '29</span>
+            {/* Footer */}
+            <div className="px-6 py-3 bg-slate-50 border-t border-slate-100 flex justify-end">
+              <button 
+                type="button"
+                onClick={() => setShowModal(false)}
+                className="px-4 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 rounded-xl hover:bg-slate-200 transition cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
           </div>
-
-        </div>
-      </div>
-
-      {/* Verified Status Tag with Pastel Accents */}
-      {showBadge && (
-        <div className="absolute -bottom-2 -right-1 z-20 bg-white border border-pink-200/90 rounded-full px-2.5 py-1 flex items-center gap-1.5 shadow-md">
-          <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse" />
-          <span className="text-[10px] font-mono text-purple-950 font-semibold">B.Tech CSE</span>
-          <ShieldCheck className="w-3 h-3 text-purple-600" />
         </div>
       )}
-    </div>
+    </>
   );
 };

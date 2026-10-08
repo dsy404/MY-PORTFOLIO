@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#2e1065" stop-opacity="0.95" />
+      <stop offset="45%" stop-color="#1e1b4b" />
+      <stop offset="85%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#090d16" />
+    </radialGradient>
+
+    <!-- Ambient Glows -->
+    <linearGradient id="rimGlowPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="rimGlowCyan" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Skin Tones -->
+    <linearGradient id="skinBase" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f2c199" />
+      <stop offset="40%" stop-color="#e2ab80" />
+      <stop offset="85%" stop-color="#d49467" />
+      <stop offset="100%" stop-color="#be7b50" />
+    </linearGradient>
+
+    <linearGradient id="skinHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe4cf" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#f2c199" stop-opacity="0" />
+    </linearGradient>
+
+    <linearGradient id="skinShadow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="100%" stop-color="#9a5a30" stop-opacity="0.5" />
+    </linearGradient>
+
+    <!-- Hair Gradients -->
+    <linearGradient id="hairBase" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#231f20" />
+      <stop offset="35%" stop-color="#141113" />
+      <stop offset="70%" stop-color="#090809" />
+      <stop offset="100%" stop-color="#050405" />
+    </linearGradient>
+
+    <linearGradient id="hairSheen" x1="0%" y1="0%" x2="100%" y2="60%">
+      <stop offset="0%" stop-color="#4a3e47" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#2a2228" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#141113" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Blazer Gradients -->
+    <linearGradient id="blazerMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c3345" />
+      <stop offset="50%" stop-color="#1e2433" />
+      <stop offset="100%" stop-color="#131722" />
+    </linearGradient>
+
+    <linearGradient id="blazerLapelLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#384259" />
+      <stop offset="100%" stop-color="#1e2433" />
+    </linearGradient>
+
+    <linearGradient id="blazerLapelRight" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#333c52" />
+      <stop offset="100%" stop-color="#1a202d" />
+    </linearGradient>
+
+    <!-- Shirt Gradients -->
+    <linearGradient id="shirtBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff" />
+      <stop offset="40%" stop-color="#e0f2fe" />
+      <stop offset="85%" stop-color="#bae6fd" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+
+    <!-- Lip Gradient -->
+    <linearGradient id="lipGrad" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#c9576b" />
+      <stop offset="50%" stop-color="#dc687c" />
+      <stop offset="100%" stop-color="#b64459" />
+    </linearGradient>
+
+    <!-- Eye Gradient -->
+    <radialGradient id="eyeIris" cx="40%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#4a2810" />
+      <stop offset="60%" stop-color="#2b1506" />
+      <stop offset="100%" stop-color="#0d0501" />
+    </radialGradient>
+
+    <!-- Filter for Soft Glow -->
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- 1. STUDIO BACKGROUND -->
+  <rect width="512" height="512" fill="url(#bgGrad)" />
+
+  <!-- Background Studio Lighting Rings -->
+  <circle cx="256" cy="220" r="190" fill="#a855f7" opacity="0.12" filter="url(#softGlow)" />
+  <circle cx="340" cy="180" r="130" fill="#ec4899" opacity="0.08" filter="url(#softGlow)" />
+  <circle cx="170" cy="240" r="140" fill="#38bdf8" opacity="0.08" filter="url(#softGlow)" />
+
+  <!-- Grid overlay for tech developer feel -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="1">
+    <line x1="64" y1="0" x2="64" y2="512" />
+    <line x1="128" y1="0" x2="128" y2="512" />
+    <line x1="192" y1="0" x2="192" y2="512" />
+    <line x1="256" y1="0" x2="256" y2="512" />
+    <line x1="320" y1="0" x2="320" y2="512" />
+    <line x1="384" y1="0" x2="384" y2="512" />
+    <line x1="448" y1="0" x2="448" y2="512" />
+    <line x1="0" y1="64" x2="512" y2="64" />
+    <line x1="0" y1="128" x2="512" y2="128" />
+    <line x1="0" y1="192" x2="512" y2="192" />
+    <line x1="0" y1="256" x2="512" y2="256" />
+    <line x1="0" y1="320" x2="512" y2="320" />
+    <line x1="0" y1="384" x2="512" y2="384" />
+    <line x1="0" y1="448" x2="512" y2="448" />
+  </g>
+
+  <!-- 2. PONYTAIL (Behind Head & Shoulders) -->
+  <!-- Ponytail hair tail flowing back/down on right -->
+  <path d="M 320 180 C 375 190 410 240 405 310 C 400 360 380 400 365 430 C 355 390 355 330 340 280 C 330 250 315 220 305 200 Z" fill="url(#hairBase)" />
+  <path d="M 335 210 C 385 240 395 310 385 380 C 375 330 365 270 340 230 Z" fill="url(#hairSheen)" opacity="0.6" />
+  <!-- Hair scrunchie / band -->
+  <ellipse cx="324" cy="192" rx="14" ry="10" transform="rotate(-25 324 192)" fill="#8b5cf6" />
+  <ellipse cx="324" cy="192" rx="10" ry="7" transform="rotate(-25 324 192)" fill="#c084fc" opacity="0.8" />
+
+  <!-- 3. CLOTHING - BODY & SHOULDERS -->
+  <!-- Inner shirt body base -->
+  <path d="M 195 380 L 317 380 L 330 512 L 182 512 Z" fill="url(#shirtBlue)" />
+  <!-- Shirt vertical placket & buttons -->
+  <line x1="256" y1="380" x2="256" y2="512" stroke="#93c5fd" stroke-width="2" />
+  <circle cx="256" cy="425" r="3" fill="#ffffff" stroke="#93c5fd" stroke-width="1" />
+  <circle cx="256" cy="470" r="3" fill="#ffffff" stroke="#93c5fd" stroke-width="1" />
+
+  <!-- Tailored Charcoal Blazer - Back shoulders & body -->
+  <path d="M 120 400 C 135 365 175 350 215 350 L 297 350 C 337 350 377 365 392 400 L 440 512 L 72 512 Z" fill="url(#blazerMain)" />
+
+  <!-- Blazer Shoulder Seams & Structure -->
+  <path d="M 130 395 C 160 365 205 355 235 355" stroke="#3b465e" stroke-width="2" fill="none" />
+  <path d="M 382 395 C 352 365 307 355 277 355" stroke="#3b465e" stroke-width="2" fill="none" />
+
+  <!-- Light Blue Shirt Collar Points -->
+  <!-- Left Shirt Collar -->
+  <path d="M 220 340 L 256 385 L 235 410 L 200 365 Z" fill="url(#shirtBlue)" stroke="#93c5fd" stroke-width="1" />
+  <!-- Right Shirt Collar -->
+  <path d="M 292 340 L 256 385 L 277 410 L 312 365 Z" fill="url(#shirtBlue)" stroke="#93c5fd" stroke-width="1" />
+
+  <!-- Blazer Lapels (Charcoal Jacket Front) -->
+  <!-- Left Lapel -->
+  <path d="M 150 420 L 225 352 L 236 415 L 205 512 L 110 512 Z" fill="url(#blazerLapelLeft)" />
+  <!-- Right Lapel -->
+  <path d="M 362 420 L 287 352 L 276 415 L 307 512 L 402 512 Z" fill="url(#blazerLapelRight)" />
+  <!-- Blazer Lapel Notch / Fold Accent Lines -->
+  <path d="M 225 352 L 244 445 L 220 512" stroke="#475569" stroke-width="2.5" fill="none" />
+  <path d="M 287 352 L 268 445 L 292 512" stroke="#475569" stroke-width="2.5" fill="none" />
+
+  <!-- 4. NECK & CLAVICLE -->
+  <path d="M 226 270 C 226 310 228 348 232 365 C 242 372 270 372 280 365 C 284 348 286 310 286 270 Z" fill="url(#skinBase)" />
+  <!-- Neck shadow under chin -->
+  <path d="M 226 270 C 242 292 270 292 286 270 C 286 295 282 320 278 330 C 266 335 246 335 234 330 C 230 320 226 295 226 270 Z" fill="url(#skinShadow)" opacity="0.6" />
+  <!-- Graceful neck highlight -->
+  <path d="M 252 290 L 260 290 L 258 355 L 254 355 Z" fill="#ffffff" opacity="0.15" />
+
+  <!-- 5. EARS -->
+  <!-- Left ear -->
+  <ellipse cx="190" cy="225" rx="10" ry="16" transform="rotate(-5 190 225)" fill="url(#skinBase)" />
+  <path d="M 191 216 C 187 220 188 232 192 233" stroke="#b07045" stroke-width="1.5" fill="none" />
+  <!-- Left Earring Pearl / Stud -->
+  <circle cx="191" cy="236" r="2.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.5" />
+
+  <!-- Right ear -->
+  <ellipse cx="322" cy="225" rx="10" ry="16" transform="rotate(5 322 225)" fill="url(#skinBase)" />
+  <path d="M 321 216 C 325 220 324 232 320 233" stroke="#b07045" stroke-width="1.5" fill="none" />
+  <!-- Right Earring Pearl / Stud -->
+  <circle cx="321" cy="236" r="2.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.5" />
+
+  <!-- 6. FACE SHAPE -->
+  <!-- Soft, graceful jawline and chin -->
+  <path d="M 192 180 C 190 235 204 278 256 280 C 308 278 322 235 320 180 C 320 120 192 120 192 180 Z" fill="url(#skinBase)" />
+  
+  <!-- Subtle cheek contour and soft blush -->
+  <!-- Left soft blush -->
+  <ellipse cx="218" cy="232" rx="16" ry="10" fill="#f43f5e" opacity="0.14" filter="url(#softGlow)" />
+  <!-- Right soft blush -->
+  <ellipse cx="294" cy="232" rx="16" ry="10" fill="#f43f5e" opacity="0.14" filter="url(#softGlow)" />
+  <!-- Forehead highlight -->
+  <ellipse cx="256" cy="165" rx="36" ry="18" fill="url(#skinHighlight)" opacity="0.4" />
+  <!-- Chin highlight -->
+  <ellipse cx="256" cy="268" rx="14" ry="7" fill="url(#skinHighlight)" opacity="0.35" />
+
+  <!-- 7. FACIAL FEATURES -->
+  <!-- Eyebrows (Neat, gracefully arched) -->
+  <!-- Left eyebrow -->
+  <path d="M 214 186 C 224 180 236 181 246 187" stroke="#1c1917" stroke-width="3" stroke-linecap="round" fill="none" />
+  <path d="M 215 186 C 224 181 235 182 245 187" stroke="#44403c" stroke-width="1.5" stroke-linecap="round" fill="none" />
+  <!-- Right eyebrow -->
+  <path d="M 266 187 C 276 181 288 180 298 186" stroke="#1c1917" stroke-width="3" stroke-linecap="round" fill="none" />
+  <path d="M 267 187 C 277 182 288 181 297 186" stroke="#44403c" stroke-width="1.5" stroke-linecap="round" fill="none" />
+
+  <!-- Eyes (Warm, bright, expressive almond eyes) -->
+  <!-- Left Eye -->
+  <g>
+    <!-- Upper eyelid crease -->
+    <path d="M 218 195 C 226 191 238 192 244 196" stroke="#78350f" stroke-width="1" stroke-linecap="round" opacity="0.5" fill="none" />
+    <!-- Sclera (White) -->
+    <path d="M 216 204 C 222 197 238 197 246 204 C 238 210 222 210 216 204 Z" fill="#ffffff" />
+    <!-- Iris -->
+    <circle cx="231" cy="203.5" r="5.5" fill="url(#eyeIris)" />
+    <!-- Pupil -->
+    <circle cx="231" cy="203.5" r="2.8" fill="#000000" />
+    <!-- Catchlight / Glint -->
+    <circle cx="229.5" cy="201.8" r="1.5" fill="#ffffff" />
+    <circle cx="233" cy="205" r="0.8" fill="#ffffff" opacity="0.8" />
+    <!-- Eyelash Line (Upper) -->
+    <path d="M 214 204 C 222 196 238 196 248 203" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none" />
+    <!-- Subtle lower lash line -->
+    <path d="M 218 205 C 226 209 238 209 245 205" stroke="#78350f" stroke-width="1" opacity="0.6" fill="none" />
+  </g>
+
+  <!-- Right Eye -->
+  <g>
+    <!-- Upper eyelid crease -->
+    <path d="M 268 196 C 274 192 286 191 294 195" stroke="#78350f" stroke-width="1" stroke-linecap="round" opacity="0.5" fill="none" />
+    <!-- Sclera (White) -->
+    <path d="M 266 204 C 274 197 290 197 296 204 C 290 210 274 210 266 204 Z" fill="#ffffff" />
+    <!-- Iris -->
+    <circle cx="281" cy="203.5" r="5.5" fill="url(#eyeIris)" />
+    <!-- Pupil -->
+    <circle cx="281" cy="203.5" r="2.8" fill="#000000" />
+    <!-- Catchlight / Glint -->
+    <circle cx="279.5" cy="201.8" r="1.5" fill="#ffffff" />
+    <circle cx="283" cy="205" r="0.8" fill="#ffffff" opacity="0.8" />
+    <!-- Eyelash Line (Upper) -->
+    <path d="M 264 203 C 274 196 290 196 298 204" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none" />
+    <!-- Subtle lower lash line -->
+    <path d="M 267 205 C 274 209 286 209 294 205" stroke="#78350f" stroke-width="1" opacity="0.6" fill="none" />
+  </g>
+
+  <!-- Nose -->
+  <!-- Bridge highlight & soft side contour -->
+  <path d="M 254 202 L 253 226 L 247 232" stroke="#b46e42" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.5" />
+  <path d="M 256 203 L 256 228" stroke="#ffe4cf" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.4" />
+  <!-- Nostrils & tip curve -->
+  <path d="M 247 232 C 251 235 261 235 265 232" stroke="#9a5228" stroke-width="1.8" stroke-linecap="round" fill="none" />
+  <ellipse cx="251" cy="232" rx="2" ry="1.2" fill="#5c2c0e" opacity="0.7" />
+  <ellipse cx="261" cy="232" rx="2" ry="1.2" fill="#5c2c0e" opacity="0.7" />
+  <circle cx="256" cy="230" r="1.5" fill="#ffe4cf" opacity="0.5" />
+
+  <!-- Mouth & Smile (Warm, genuine, welcoming smile) -->
+  <!-- Upper Lip -->
+  <path d="M 240 248 C 248 245 253 246 256 248 C 259 246 264 245 272 248 C 267 252 245 252 240 248 Z" fill="url(#lipGrad)" />
+  <!-- Warm Smile Opening (Teeth / Dark Accent) -->
+  <path d="M 241 249 C 248 255 264 255 271 249 Z" fill="#4a1525" />
+  <path d="M 244 249 C 250 253 262 253 268 249 Z" fill="#ffffff" />
+  <!-- Lower Lip -->
+  <path d="M 241 250 C 248 259 264 259 271 250 C 265 258 247 258 241 250 Z" fill="url(#lipGrad)" />
+  <!-- Smile Corners & Shadow under lower lip -->
+  <circle cx="239" cy="248" r="1" fill="#7a243b" />
+  <circle cx="273" cy="248" r="1" fill="#7a243b" />
+  <path d="M 248 261 C 253 263 259 263 264 261" stroke="#9a5228" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.4" />
+
+  <!-- 8. HAIR - MAIN MASS & FOREHEAD FRAMING (Drawn in front of face) -->
+  <!-- Main voluminous hair crown pulled sleekly back -->
+  <path d="M 192 180 C 188 120 220 85 256 85 C 295 85 324 120 320 180 C 314 165 300 150 285 142 C 265 132 245 132 225 142 C 210 150 196 165 192 180 Z" fill="url(#hairBase)" />
+
+  <!-- Side bangs swept back behind ears -->
+  <!-- Left swept temple strand -->
+  <path d="M 194 175 C 196 195 198 215 192 230 C 188 200 190 185 194 175 Z" fill="url(#hairBase)" />
+  <!-- Right swept temple strand -->
+  <path d="M 318 175 C 316 195 314 215 320 230 C 324 200 322 185 318 175 Z" fill="url(#hairBase)" />
+
+  <!-- Sleek hair sheen / highlights on crown -->
+  <path d="M 215 130 C 235 110 275 110 295 130 C 275 120 235 120 215 130 Z" fill="url(#hairSheen)" opacity="0.75" />
+  <path d="M 230 115 C 245 105 265 105 280 115 C 265 110 245 110 230 115 Z" fill="#6d5d6a" opacity="0.5" />
+
+  <!-- Fine hair wisps / strands around hairline -->
+  <path d="M 225 142 C 235 150 245 152 250 148" stroke="#231f20" stroke-width="1.5" fill="none" />
+  <path d="M 285 142 C 275 150 265 152 260 148" stroke="#231f20" stroke-width="1.5" fill="none" />
+
+  <!-- Ponytail base junction on top right -->
+  <path d="M 305 130 C 325 135 338 155 330 180 C 322 170 315 150 305 130 Z" fill="url(#hairBase)" />
+
+  <!-- 9. STUDIO LIGHTING OVERLAY (Subtle Pink & Purple Edge Glow) -->
+  <!-- Left cool cyan/blue rim accent -->
+  <path d="M 125 410 C 145 375 185 360 215 355" stroke="url(#rimGlowCyan)" stroke-width="3" fill="none" opacity="0.7" />
+  <!-- Right warm pink/purple rim accent -->
+  <path d="M 385 410 C 365 375 325 360 295 355" stroke="url(#rimGlowPink)" stroke-width="3" fill="none" opacity="0.8" />
+  <!-- Hair crown soft purple rim light -->
+  <path d="M 210 100 C 240 85 272 85 302 100" stroke="#c084fc" stroke-width="2" fill="none" opacity="0.4" />
+</svg>

@@ -26,6 +26,11 @@ function savePhotoPlugin(): Plugin {
                 }
                 fs.writeFileSync(path.join(publicDir, 'profile-picture.jpg'), buffer);
                 fs.writeFileSync(path.join(publicDir, 'profile.png'), buffer);
+                const distDir = path.resolve(__dirname, 'dist');
+                if (fs.existsSync(distDir)) {
+                  fs.writeFileSync(path.join(distDir, 'profile-picture.jpg'), buffer);
+                  fs.writeFileSync(path.join(distDir, 'profile.png'), buffer);
+                }
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ success: true, message: 'Photo saved successfully to disk' }));
                 return;
