@@ -50,6 +50,22 @@ export interface HackathonItem {
   skillsApplied: string[];
 }
 
+export interface CertificateItem {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  category: 'AI & Machine Learning' | 'Cloud & Global Hackathons' | 'Open Source & Web' | 'Academic & Specialization';
+  credentialId?: string;
+  description: string;
+  skills: string[];
+  verificationUrl?: string;
+  status: 'Verified' | 'Completed' | 'Honors';
+  badgeColor?: 'purple' | 'pink' | 'amber' | 'emerald';
+  imageUrl?: string;
+  instructorOrSignatory?: string;
+}
+
 export interface ResumeData {
   name: string;
   location: string;

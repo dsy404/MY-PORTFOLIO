@@ -12,6 +12,7 @@ import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { AchievementsSection } from './components/AchievementsSection';
+import { CertificatesSection } from './components/CertificatesSection';
 import { EducationSection } from './components/EducationSection';
 import { ResumeSection } from './components/ResumeSection';
 import { ContactSection } from './components/ContactSection';
@@ -71,12 +72,17 @@ export default function App() {
           <EducationSection />
         </SectionPopup>
 
-        {/* 9. Formal Resume Section - Pops up on scroll */}
+        {/* 9. Certificates Section - Pops up on scroll */}
+        <SectionPopup id="certificates-popup" amount={0.06}>
+          <CertificatesSection />
+        </SectionPopup>
+
+        {/* 10. Formal Resume Section - Pops up on scroll */}
         <SectionPopup id="resume-popup" amount={0.06}>
           <ResumeSection />
         </SectionPopup>
 
-        {/* 10. Contact Section - Pops up on scroll */}
+        {/* 11. Contact Section - Pops up on scroll */}
         <SectionPopup id="contact-popup" amount={0.06}>
           <ContactSection />
         </SectionPopup>

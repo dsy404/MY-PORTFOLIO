@@ -1,4 +1,4 @@
-import { Project, SkillItem, ExperienceItem, HackathonItem, ResumeData } from '../types/portfolio';
+import { Project, SkillItem, ExperienceItem, HackathonItem, ResumeData, CertificateItem } from '../types/portfolio';
 
 export const personalInfo = {
   name: "Deepshikha Yadav",
@@ -334,6 +334,92 @@ export const hackathonsData: HackathonItem[] = [
       "Networked with ambitious peers to exchange best engineering practices and collaborative project ideas"
     ],
     skillsApplied: ["C++ Algorithms", "Full-Stack Development", "Problem Solving", "Time Management", "Hands-on Workshops"]
+  }
+];
+
+export const certificatesData: CertificateItem[] = [
+  {
+    id: "google-solution-challenge-2026",
+    title: "Google Solution Challenge 2026",
+    issuer: "Google Developer Student Clubs / Google Developers",
+    date: "Jul 2026",
+    category: "Cloud & Global Hackathons",
+    credentialId: "GSC-2026-DY-FAIRTRACE",
+    instructorOrSignatory: "Google Developers Global Community & GDSC Lead",
+    description: "Awarded for designing and engineering FAIRTRACE-AI, an automated AI fairness and demographic bias evaluation platform aligned with the United Nations Sustainable Development Goals (SDGs).",
+    skills: ["Responsible AI", "Scikit-learn", "AIF360", "SHAP / LIME", "FastAPI", "React"],
+    verificationUrl: "https://developers.google.com/community/gdsc-solution-challenge",
+    status: "Honors",
+    badgeColor: "purple"
+  },
+  {
+    id: "microsoft-ai-skills",
+    title: "Microsoft AI Skills Certification",
+    issuer: "Microsoft Learn",
+    date: "Jun 2026",
+    category: "AI & Machine Learning",
+    credentialId: "MS-AI-SKILLS-936953",
+    instructorOrSignatory: "Microsoft Worldwide Learning Accreditation Board",
+    description: "Demonstrated verified competency in generative artificial intelligence foundations, responsible AI principles, transformer architectures, prompt engineering, and Azure AI services.",
+    skills: ["Generative AI", "Responsible AI", "Prompt Engineering", "Large Language Models", "Azure AI"],
+    verificationUrl: "https://learn.microsoft.com",
+    status: "Verified",
+    badgeColor: "pink"
+  },
+  {
+    id: "google-vibe-coding-ai-intensive",
+    title: "Google 5-Day AI Intensive Vibe Coding Program",
+    issuer: "Google Developers & AI Studio",
+    date: "2026",
+    category: "AI & Machine Learning",
+    credentialId: "GOOGLE-AI-INT-2026-PHOENIX",
+    instructorOrSignatory: "Google AI Intensive Program Directors",
+    description: "Completed an intensive program focusing on building multi-agent systems and full-stack AI-first architectures, culminating in the development of Phoenix AI, an education platform for underserved learners.",
+    skills: ["Gemini API", "Multi-Agent Systems", "LangGraph", "Vector Databases", "TypeScript"],
+    verificationUrl: "https://ai.google.dev",
+    status: "Honors",
+    badgeColor: "purple"
+  },
+  {
+    id: "srmcem-ai-ml-training",
+    title: "AI & Machine Learning Specialization",
+    issuer: "Shri Ramswaroop Memorial College of Engineering & Management",
+    date: "Jul 2026",
+    category: "Academic & Specialization",
+    credentialId: "SRMCEM-AIML-2026-04",
+    instructorOrSignatory: "Head of Department, Computer Science & Engineering",
+    description: "Intensive 2-week hands-on training program in Python, NumPy, Pandas, Matplotlib, Scikit-learn, reinforcement learning, and supervised classification algorithms. Built the Heart Disease Prediction logistic regression model.",
+    skills: ["Python", "Scikit-Learn", "Data Science", "Supervised Learning", "Classification Models"],
+    status: "Completed",
+    badgeColor: "pink"
+  },
+  {
+    id: "gssoc-2026-contributor",
+    title: "GirlScript Summer of Code (GSSoC '26) Contributor",
+    issuer: "GirlScript Foundation",
+    date: "2026",
+    category: "Open Source & Web",
+    credentialId: "GSSOC-2026-DSY404",
+    instructorOrSignatory: "GirlScript Summer of Code Organizing Committee",
+    description: "Recognized contributor to open-source repositories across web development and developer tooling, resolving critical issues and delivering feature pull requests to community projects.",
+    skills: ["Open Source", "Git & GitHub", "Code Review", "React", "JavaScript", "Community Collaboration"],
+    verificationUrl: "https://github.com/dsy404",
+    status: "Verified",
+    badgeColor: "emerald"
+  },
+  {
+    id: "et-ai-hackathon-cert",
+    title: "The Economic Times AI Hackathon Finalist",
+    issuer: "The Economic Times & Hack2Skill",
+    date: "2025 – 2026",
+    category: "Cloud & Global Hackathons",
+    credentialId: "ET-AI-HACK-2026-DY",
+    instructorOrSignatory: "The Economic Times Innovation Jury & Hack2Skill",
+    description: "Recognized for building innovative enterprise AI solutions under strict sprint timelines during the national-level Economic Times AI Hackathon.",
+    skills: ["Rapid Prototyping", "Team Engineering", "AI Problem Solving", "System Design"],
+    verificationUrl: "https://hack2skill.com",
+    status: "Honors",
+    badgeColor: "amber"
   }
 ];
 

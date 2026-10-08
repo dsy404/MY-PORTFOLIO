@@ -15,7 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'achievements', 'education', 'resume', 'contact'];
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'services', 'achievements', 'education', 'certificates', 'resume', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -40,9 +40,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
     { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Resume', href: '#resume' },
-    { name: 'Services', href: '#services' },
+    { name: 'Certificates', href: '#certificates' },
     { name: 'Achievements', href: '#achievements' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
   ];
 
