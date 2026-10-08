@@ -11,7 +11,6 @@ import { SkillsSection } from './components/SkillsSection';
 import { JourneySection } from './components/JourneySection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ServicesSection } from './components/ServicesSection';
-import { AchievementsSection } from './components/AchievementsSection';
 import { CertificatesSection } from './components/CertificatesSection';
 import { EducationSection } from './components/EducationSection';
 import { ResumeSection } from './components/ResumeSection';
@@ -62,11 +61,6 @@ export default function App() {
 
         {/* 6. What I Do / Services Section */}
         <ServicesSection />
-
-        {/* 7. Hackathons & Achievements Section - Pops up on scroll */}
-        <SectionPopup id="achievements-popup" amount={0.06}>
-          <AchievementsSection />
-        </SectionPopup>
 
         {/* 8. Education Section - Pops up on scroll */}
         <SectionPopup id="education-popup" amount={0.06}>
