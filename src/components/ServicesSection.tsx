@@ -1,134 +1,158 @@
 import React from 'react';
-import { 
-  Globe2, 
-  GitPullRequest, 
-  CheckCircle2, 
-} from 'lucide-react';
-import { servicesData } from '../data/portfolioData';
-import { AnimatedSection } from './AnimatedSection';
+import { motion } from 'motion/react';
+import { Terminal, Database, Server, GitPullRequest, Search, CheckCircle2 } from 'lucide-react';
 
 export const ServicesSection: React.FC = () => {
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200">
+    <section id="services" className="relative min-h-screen py-32 bg-[var(--color-cream)] overflow-hidden">
       
-      {/* Background multi-tone pastel pink & purple glows */}
-      <div 
-        className="absolute top-1/3 left-10 w-96 h-96 bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute bottom-1/4 right-10 w-96 h-96 bg-pink-200/45 rounded-full blur-[140px] pointer-events-none" 
-        aria-hidden="true" 
-      />
+      {/* Decorative background shapes */}
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-[var(--color-lavender)]/40 to-transparent rounded-bl-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-t from-[var(--color-peach)]/40 to-transparent rounded-tr-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* Section Header with Fade & Slide-up */}
-        <AnimatedSection className="mb-16">
-          <div className="text-xs font-mono uppercase tracking-widest text-purple-800 font-semibold mb-2 flex items-center gap-2">
-            <span>SPECIALIZATIONS & VALUE OFFERING</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-pink-500 inline-block" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-[#0a1128] tracking-tight">
+        <div className="mb-24 text-center flex flex-col items-center">
+          <motion.div
+            initial={{ height: 0 }}
+            whileInView={{ height: 60 }}
+            viewport={{ once: true }}
+            className="w-1 bg-[var(--color-rose)] mb-6"
+          />
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-7xl font-display font-black text-[var(--color-plum)] uppercase tracking-tighter"
+          >
             What I Do
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-rose-400 rounded-full mt-4" />
-          <p className="text-sm text-slate-600 mt-4 max-w-2xl">
-            Focusing on scalable full-stack web engineering and open-source software collaboration.
-          </p>
-        </AnimatedSection>
+          </motion.h2>
+        </div>
 
-        {/* Two Large Distinct Service Cards with Pastel Themes */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {servicesData.map((service, index) => {
-            const isFullStack = service.id === 'full-stack';
-            const theme = isFullStack 
-              ? {
-                  cardBorder: 'hover:border-sky-300',
-                  iconBadge: 'bg-sky-100 text-sky-800 border-sky-200',
-                  blob: 'bg-sky-100/60',
-                  checkColor: 'text-sky-600'
-                }
-              : {
-                  cardBorder: 'hover:border-emerald-300',
-                  iconBadge: 'bg-emerald-100 text-emerald-800 border-emerald-200',
-                  blob: 'bg-emerald-100/60',
-                  checkColor: 'text-emerald-600'
-                };
+        <div className="flex flex-col gap-24">
+          
+          {/* SERVICE 1: FULL-STACK DEVELOPMENT */}
+          <div className="w-full">
+            <h3 className="text-sm font-mono text-[var(--color-plum)]/60 font-bold uppercase tracking-widest mb-6 ml-4">
+              01 — Full-Stack Architecture
+            </h3>
+            
+            <div className="w-full bg-white/70 backdrop-blur-xl rounded-[32px] border-2 border-[var(--color-lavender)] shadow-2xl shadow-[var(--color-plum)]/5 overflow-hidden group cursor-none" data-cursor="hover">
+              
+              {/* Browser Window Header */}
+              <div className="bg-[var(--color-lavender)]/30 border-b border-[var(--color-lavender)] px-6 py-4 flex items-center gap-4">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-400" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400" />
+                </div>
+                <div className="flex-1 bg-white/50 rounded-full h-8 flex items-center px-4 text-xs font-mono text-[var(--color-plum)]/50">
+                  <Search size={14} className="mr-2" /> localhost:3000/architecture
+                </div>
+              </div>
 
-            return (
-              <AnimatedSection 
-                key={service.id} 
-                direction="up" 
-                delay={0.15 * index}
-                className="h-full"
-              >
-                <div className={`p-8 md:p-10 rounded-3xl bg-white border border-slate-200 ${theme.cardBorder} transition-all duration-300 shadow-xl hover:shadow-2xl relative overflow-hidden group flex flex-col justify-between h-full`}>
+              {/* Browser Content - Data Flow Visual */}
+              <div className="p-8 md:p-12">
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-4 relative">
                   
-                  {/* Decorative background accent */}
-                  <div 
-                    className={`absolute -bottom-20 -right-20 w-64 h-64 ${theme.blob} rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500 pointer-events-none`} 
-                    aria-hidden="true" 
-                  />
-
-                  <div>
-                    {/* Service Icon & Label */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className={`p-3.5 rounded-2xl border ${theme.iconBadge} shadow-2xs`}>
-                        {isFullStack ? <Globe2 className="w-7 h-7" /> : <GitPullRequest className="w-7 h-7" />}
-                      </div>
-                      <span className="text-xs font-mono text-slate-500 font-semibold">
-                        0{index + 1}. DOMAIN FOCUS
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#0a1128] mb-2 group-hover:text-blue-700 transition-colors">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-sm font-semibold text-blue-700 mb-4">
-                      {service.subtitle}
-                    </p>
-
-                    <p className="text-sm text-slate-600 leading-relaxed mb-8">
-                      {service.description}
-                    </p>
-
-                    {/* Capabilities Checklist with Pastel Accents */}
-                    <div className="space-y-3 mb-8">
-                      <div className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-2">
-                        CORE CAPABILITIES
-                      </div>
-                      {service.capabilities.map((cap, cIdx) => (
-                        <div key={cIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                          <CheckCircle2 className={`w-4 h-4 ${theme.checkColor} shrink-0 mt-0.5`} />
-                          <span>{cap}</span>
-                        </div>
-                      ))}
-                    </div>
+                  {/* Animated Data Line (Desktop) */}
+                  <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-[var(--color-plum)]/10 -translate-y-1/2 z-0 overflow-hidden">
+                    <motion.div 
+                      className="w-24 h-full bg-[var(--color-rose)]"
+                      animate={{ x: ["-100%", "500%"] }}
+                      transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                    />
                   </div>
 
-                  {/* Tech Stack Strip at Bottom */}
-                  <div className="pt-6 border-t border-slate-200">
-                    <div className="text-[11px] font-mono text-slate-500 font-semibold uppercase tracking-wider mb-2">
-                      TECHNOLOGIES IN PLAY
+                  {/* Frontend */}
+                  <div className="relative z-10 flex flex-col items-center bg-white p-6 rounded-2xl border border-[var(--color-lavender)] shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-full bg-[var(--color-peach)] flex items-center justify-center text-[var(--color-plum)] mb-4">
+                      <Terminal size={24} />
                     </div>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-mono text-slate-700">
-                      {service.technologies.map((tech, tIdx) => (
-                        <React.Fragment key={tech}>
-                          <span className="text-[#0a1128] font-medium hover:text-blue-700 transition-colors">{tech}</span>
-                          {tIdx < service.technologies.length - 1 && <span className="text-slate-300">/</span>}
-                        </React.Fragment>
-                      ))}
+                    <span className="font-mono text-sm font-bold text-[var(--color-plum)]">Frontend</span>
+                    <span className="text-[10px] text-[var(--color-plum)]/60 font-mono mt-2">React • Tailwind</span>
+                  </div>
+
+                  {/* API / Server */}
+                  <div className="relative z-10 flex flex-col items-center bg-white p-6 rounded-2xl border border-[var(--color-lavender)] shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-full bg-[var(--color-blush)] flex items-center justify-center text-[var(--color-plum)] mb-4">
+                      <Server size={24} />
                     </div>
+                    <span className="font-mono text-sm font-bold text-[var(--color-plum)]">API Engine</span>
+                    <span className="text-[10px] text-[var(--color-plum)]/60 font-mono mt-2">Node.js • Express</span>
+                  </div>
+
+                  {/* Database */}
+                  <div className="relative z-10 flex flex-col items-center bg-white p-6 rounded-2xl border border-[var(--color-lavender)] shadow-xl hover:scale-105 transition-transform duration-300">
+                    <div className="w-16 h-16 rounded-full bg-[var(--color-rose)] flex items-center justify-center text-[var(--color-plum)] mb-4">
+                      <Database size={24} />
+                    </div>
+                    <span className="font-mono text-sm font-bold text-[var(--color-plum)]">Database</span>
+                    <span className="text-[10px] text-[var(--color-plum)]/60 font-mono mt-2">SQL • MongoDB</span>
                   </div>
 
                 </div>
-              </AnimatedSection>
-            );
-          })}
-        </div>
+              </div>
+            </div>
+          </div>
 
+          {/* SERVICE 2: OPEN SOURCE */}
+          <div className="w-full">
+            <h3 className="text-sm font-mono text-[var(--color-plum)]/60 font-bold uppercase tracking-widest mb-6 ml-4">
+              02 — Open Source Contribution
+            </h3>
+            
+            <div className="w-full bg-[#0d1117] rounded-[32px] border border-[#30363d] shadow-2xl overflow-hidden group cursor-none" data-cursor="hover">
+              
+              <div className="p-8 md:p-12">
+                {/* GitHub style visual */}
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative">
+                  
+                  {/* Connection Line */}
+                  <div className="hidden md:block absolute top-1/2 left-10 right-10 h-0.5 bg-[#30363d] -translate-y-1/2 z-0" />
+
+                  <div className="relative z-10 flex flex-col items-center gap-3 bg-[#161b22] px-6 py-4 rounded-xl border border-[#30363d] text-[#c9d1d9] group-hover:-translate-y-2 transition-transform">
+                    <Code2 className="text-[#8b949e]" />
+                    <span className="font-mono text-xs font-bold">Write Code</span>
+                  </div>
+
+                  <motion.div 
+                    animate={{ rotate: 360 }} 
+                    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                    className="relative z-10 bg-[#21262d] p-3 rounded-full border border-[#30363d] text-[#8b949e] hidden md:block"
+                  >
+                    <GitPullRequest size={20} />
+                  </motion.div>
+
+                  <div className="relative z-10 flex flex-col items-center gap-3 bg-[#161b22] px-6 py-4 rounded-xl border border-[#30363d] text-[#c9d1d9] group-hover:-translate-y-2 transition-transform delay-75">
+                    <GitPullRequest className="text-[#3fb950]" />
+                    <span className="font-mono text-xs font-bold">Submit PR</span>
+                  </div>
+
+                  <motion.div 
+                    animate={{ scale: [1, 1.2, 1] }} 
+                    transition={{ repeat: Infinity, duration: 2 }}
+                    className="relative z-10 bg-[#21262d] p-3 rounded-full border border-[#30363d] text-[#8b949e] hidden md:block"
+                  >
+                    <CheckCircle2 size={20} className="text-[#a371f7]" />
+                  </motion.div>
+
+                  <div className="relative z-10 flex flex-col items-center gap-3 bg-[#161b22] px-6 py-4 rounded-xl border border-[#30363d] text-[#c9d1d9] group-hover:-translate-y-2 transition-transform delay-150">
+                    <CheckCircle2 className="text-[#a371f7]" />
+                    <span className="font-mono text-xs font-bold">Merged!</span>
+                  </div>
+
+                </div>
+
+                <div className="mt-12 text-center text-[#8b949e] font-mono text-sm max-w-2xl mx-auto leading-relaxed">
+                  Active participant in global open-source programs like GSSoC '26, collaborating with maintainers to fix bugs, build features, and improve documentation for the broader community.
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

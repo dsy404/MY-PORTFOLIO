@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
@@ -20,6 +20,8 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { SectionPopup } from './components/AnimatedSection';
 import { CustomCursor } from './components/CustomCursor';
+import { LoadingScreen } from './components/LoadingScreen';
+import { AnimatePresence } from 'motion/react';
 
 export default function App() {
   const handleScrollToContact = () => {
@@ -29,10 +31,16 @@ export default function App() {
     }
   };
 
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-pink-500 selection:text-white overflow-x-hidden cursor-none">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[var(--color-rose)] selection:text-white overflow-x-hidden cursor-none">
       <CustomCursor />
       
+      <AnimatePresence mode="wait">
+        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
       {/* Sticky Navigation Bar */}
       <Navbar onContactClick={handleScrollToContact} />
 
