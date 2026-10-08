@@ -49,15 +49,11 @@ export default function App() {
         {/* 1. Hero Section */}
         <Hero />
 
-        {/* 2. About Me Section - Pops up on scroll */}
-        <SectionPopup id="about-popup" amount={0.06}>
-          <AboutSection />
-        </SectionPopup>
+        {/* 2. About Me Section */}
+        <AboutSection />
 
-        {/* 3. Skills Section - Pops up on scroll */}
-        <SectionPopup id="skills-popup" amount={0.06}>
-          <SkillsSection />
-        </SectionPopup>
+        {/* 3. Skills Section */}
+        <SkillsSection />
 
         {/* 4. My Journey Timeline Section - Horizontal Scroll Experience */}
         <JourneySection />
@@ -65,15 +61,11 @@ export default function App() {
         {/* 4.5 Built Under Pressure - Hackathons */}
         <HackathonSection />
 
-        {/* 5. Projects Section with Live Demos & Modals - Pops up on scroll */}
-        <SectionPopup id="projects-popup" amount={0.06}>
-          <ProjectsSection />
-        </SectionPopup>
+        {/* 5. Projects Section with Live Demos & Modals */}
+        <ProjectsSection />
 
-        {/* 6. What I Do / Services Section - Pops up on scroll */}
-        <SectionPopup id="services-popup" amount={0.06}>
-          <ServicesSection />
-        </SectionPopup>
+        {/* 6. What I Do / Services Section */}
+        <ServicesSection />
 
         {/* 7. Hackathons & Achievements Section - Pops up on scroll */}
         <SectionPopup id="achievements-popup" amount={0.06}>
@@ -95,10 +87,8 @@ export default function App() {
           <ResumeSection />
         </SectionPopup>
 
-        {/* 11. Contact Section - Pops up on scroll */}
-        <SectionPopup id="contact-popup" amount={0.06}>
-          <ContactSection />
-        </SectionPopup>
+        {/* 11. Contact Section */}
+        <ContactSection />
       </main>
 
       {/* Footer */}

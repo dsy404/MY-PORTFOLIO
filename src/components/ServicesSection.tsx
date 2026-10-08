@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Terminal, Database, Server, GitPullRequest, Search, CheckCircle2 } from 'lucide-react';
+import { Terminal, Database, Server, GitPullRequest, Search, CheckCircle2, Code2 } from 'lucide-react';
 
 export const ServicesSection: React.FC = () => {
   return (

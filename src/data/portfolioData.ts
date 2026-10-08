@@ -387,7 +387,7 @@ export const certificatesData: CertificateItem[] = [
     skills: ["Open Source", "Contribution", "Web Development"],
     verificationUrl: "https://unstop.com",
     status: "Verified",
-    badgeColor: "blue",
+    badgeColor: "purple",
     platform: "Unstop / EduLinkUp"
   },
 

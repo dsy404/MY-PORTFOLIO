@@ -60,14 +60,14 @@ export const ProjectsSection: React.FC = () => {
                 <div>
                   <h5 className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-2">The Solution</h5>
                   <p className="font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium">
-                    {phoenixProject.description}
+                    {phoenixProject.summary}
                   </p>
                 </div>
               </div>
 
               {/* Tech Stack Tags */}
               <div className="flex flex-wrap gap-2 mb-10">
-                {phoenixProject.tags.map(tag => (
+                {phoenixProject.techStack.map(tag => (
                   <span key={tag} className="px-3 py-1 bg-[var(--color-lavender)]/50 text-[var(--color-plum)] rounded-full font-mono text-xs font-bold border border-[var(--color-lavender)]">
                     {tag}
                   </span>
@@ -77,7 +77,7 @@ export const ProjectsSection: React.FC = () => {
               {/* Action Buttons */}
               <div className="flex items-center gap-4 cursor-none" data-cursor="hover">
                 <a 
-                  href={phoenixProject.liveUrl} 
+                  href={phoenixProject.demoUrl || phoenixProject.githubUrl} 
                   target="_blank" 
                   rel="noreferrer"
                   className="flex items-center gap-2 px-6 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
@@ -105,11 +105,9 @@ export const ProjectsSection: React.FC = () => {
               transition={{ duration: 1.2, ease: "easeOut" }}
               className="absolute inset-0 w-full h-full"
             >
-              <img 
-                src={phoenixProject.image} 
-                alt={phoenixProject.title}
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000 ease-out grayscale-[20%] group-hover:grayscale-0"
-              />
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-lavender)] to-[var(--color-rose)] w-full h-full flex items-center justify-center font-display text-4xl text-[var(--color-plum)]/20 font-black group-hover:scale-105 transition-transform duration-1000 ease-out">
+                {phoenixProject.title}
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-cream)] via-transparent to-transparent opacity-60 lg:hidden" />
             </motion.div>
           </div>
@@ -135,13 +133,9 @@ export const ProjectsSection: React.FC = () => {
               whileInView={{ rotate: 0, scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="absolute inset-0 w-full h-full bg-[var(--color-peach)]"
+              className="absolute inset-0 w-full h-full bg-[var(--color-peach)] flex items-center justify-center font-display text-6xl text-[var(--color-plum)]/20 font-black group-hover:scale-110 transition-transform duration-700 ease-out"
             >
-              <img 
-                src={genzifyProject.image} 
-                alt={genzifyProject.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-              />
+              {genzifyProject.title}
             </motion.div>
           </div>
 
@@ -162,11 +156,11 @@ export const ProjectsSection: React.FC = () => {
               
               <div className="bg-white/60 backdrop-blur-md p-8 rounded-3xl border border-[var(--color-plum)]/20 shadow-xl mb-8 text-left max-w-md ml-auto">
                 <p className="font-sans text-[var(--color-plum)] leading-relaxed font-medium text-lg">
-                  {genzifyProject.description}
+                  {genzifyProject.summary}
                 </p>
                 <div className="mt-4 pt-4 border-t border-[var(--color-plum)]/10">
                   <p className="font-mono text-xs text-[var(--color-plum)]/60 font-bold uppercase tracking-wider mb-2">Stack</p>
-                  <p className="font-mono text-sm text-[var(--color-plum)] font-bold">{genzifyProject.tags.join(' • ')}</p>
+                  <p className="font-mono text-sm text-[var(--color-plum)] font-bold">{genzifyProject.techStack.join(' • ')}</p>
                 </div>
               </div>
 
