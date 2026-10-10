@@ -30,7 +30,7 @@ export const ContactSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-black text-[var(--color-cream)] leading-[0.85] tracking-tighter mb-8"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-display font-black text-[var(--color-cream)] leading-[0.9] tracking-tighter mb-8"
           >
             LET'S<br/>
             BUILD<br/>
