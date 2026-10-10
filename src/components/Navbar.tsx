@@ -58,8 +58,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[90%] max-w-4xl rounded-full border border-[var(--color-blush)]/50 backdrop-blur-xl ${
-          isScrolled ? 'bg-[var(--color-cream)]/80 shadow-2xl shadow-[var(--color-plum)]/10 py-3' : 'bg-[var(--color-cream)]/40 py-4'
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[90%] max-w-4xl rounded-full border border-[var(--color-blush)]/50 backdrop-blur-2xl ${
+          isScrolled ? 'bg-[var(--color-cream)]/95 shadow-2xl shadow-[var(--color-plum)]/10 py-3' : 'bg-[var(--color-cream)]/60 py-4'
         }`}
       >
         <div className="px-6 flex items-center justify-between">

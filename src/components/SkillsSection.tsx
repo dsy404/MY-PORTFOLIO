@@ -58,37 +58,37 @@ export const SkillsSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
           {skillsData.map((skill, index) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group relative bg-white rounded-2xl p-6 border border-[var(--color-lavender)] hover:border-[var(--color-plum)]/50 shadow-sm hover:shadow-xl transition-all duration-300 cursor-none"
+              transition={{ delay: index * 0.05, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative bg-white/60 backdrop-blur-md rounded-[32px] p-8 border border-white/80 hover:bg-white transition-colors duration-500 cursor-none shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(74,53,64,0.1)]"
               data-cursor="hover"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-peach)]/50 text-[var(--color-plum)] flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--color-lavender)] transition-all duration-300">
-                    {iconMap[skill.iconName] || <Code2 size={20} />}
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-2xl bg-[var(--color-peach)]/40 text-[var(--color-plum)] flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 group-hover:bg-[var(--color-blush)] transition-all duration-500">
+                    {iconMap[skill.iconName] || <Code2 size={24} />}
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-xl text-[var(--color-plum)]">{skill.name}</h3>
-                    <div className="flex items-center gap-2 mt-1">
+                    <h3 className="font-display font-black text-2xl text-[var(--color-plum)] tracking-tight">{skill.name}</h3>
+                    <div className="flex items-center gap-2 mt-1.5">
                       <div className={`w-2 h-2 rounded-full ${getCategoryColor(skill.category)}`} />
-                      <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-[var(--color-plum)]/60">
+                      <span className="font-mono text-[10px] uppercase font-bold tracking-widest text-[var(--color-plum)]/60">
                         {skill.category}
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="text-[var(--color-plum)]/30 group-hover:text-[var(--color-rose)] group-hover:translate-x-1 transition-all">
-                  <ChevronRight size={20} />
+                <div className="text-[var(--color-plum)]/20 group-hover:text-[var(--color-rose)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300">
+                  <Sparkles size={20} />
                 </div>
               </div>
-              <p className="text-sm font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium">
+              <p className="text-base font-sans text-[var(--color-plum)]/70 leading-relaxed">
                 {skill.description}
               </p>
             </motion.div>

@@ -125,6 +125,26 @@ export const Hero: React.FC = () => {
           >
             {personalInfo.bio}
           </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, duration: 0.8 }}
+            className="flex flex-col sm:flex-row items-center gap-4 mt-8 z-20"
+          >
+            <a 
+              href="#projects"
+              className="px-8 py-3 bg-[var(--color-plum)] text-[var(--color-cream)] rounded-full font-mono text-sm font-bold uppercase tracking-widest hover:bg-[#34242d] transition-all hover:scale-105"
+            >
+              View Projects
+            </a>
+            <a 
+              href="#contact"
+              className="px-8 py-3 bg-transparent border-2 border-[var(--color-plum)] text-[var(--color-plum)] rounded-full font-mono text-sm font-bold uppercase tracking-widest hover:bg-[var(--color-plum)] hover:text-[var(--color-cream)] transition-all hover:scale-105"
+            >
+              Contact Me
+            </a>
+          </motion.div>
         </motion.div>
         
         {/* Scroll down indicator */}

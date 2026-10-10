@@ -123,11 +123,11 @@ export const AboutSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="mt-8 text-lg md:text-xl font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium"
+            className="mt-8 text-lg md:text-2xl font-sans text-[var(--color-plum)]/80 leading-relaxed font-medium"
           >
-            I am a 2nd-year B.Tech Computer Science student at Shri Ram Swaroop Memorial College of Engineering and Management, dedicated to building software that bridges computational theory with practical real-world impact.
+            I'm a second-year B.Tech student building software that turns computational theory into real-world impact.
             <br/><br/>
-            My engineering journey is driven by hands-on experimentation. From developing responsive full-stack web applications to training predictive machine learning models with Python, scikit-learn, and NumPy, I enjoy understanding how systems work under the hood and crafting solutions that make tasks easier for people.
+            My engineering journey is driven by hands-on iteration. Whether I'm building multi-agent AI systems, training machine learning models, or crafting responsive full-stack web experiences, I focus on writing clean code that actually solves problems and makes lives easier.
           </motion.p>
         </div>
 
