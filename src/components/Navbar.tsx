@@ -27,14 +27,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onContactClick }) => {
       setIsScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = navLinks.map(link => document.getElementById(link.target));
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navLinks[i].target);
-          break;
+      for (let i = navLinks.length - 1; i >= 0; i--) {
+        const section = document.getElementById(navLinks[i].target);
+        if (section) {
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          if (sectionTop <= scrollPosition) {
+            setActiveSection(navLinks[i].target);
+            break;
+          }
         }
       }
     };

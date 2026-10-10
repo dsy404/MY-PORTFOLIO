@@ -21,6 +21,8 @@ import { CustomCursor } from './components/CustomCursor';
 import { LoadingScreen } from './components/LoadingScreen';
 import { AnimatePresence } from 'motion/react';
 
+import { SocialSidebar } from './components/SocialSidebar';
+
 export default function App() {
   const handleScrollToContact = () => {
     const contactEl = document.getElementById('contact');
@@ -34,6 +36,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[var(--color-rose)] selection:text-white cursor-none">
       <CustomCursor />
+      <SocialSidebar />
       
       <AnimatePresence mode="wait">
         {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}

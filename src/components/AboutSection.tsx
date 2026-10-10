@@ -108,14 +108,29 @@ export const AboutSection: React.FC = () => {
             className="h-1 bg-[var(--color-rose)] mb-8"
           />
           <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1 }
+              }
+            }}
             className="text-4xl sm:text-5xl md:text-6xl font-display font-medium text-[var(--color-plum)] leading-[1.1] tracking-tight"
           >
-            I don't just want to learn technology. <br className="hidden md:block"/>
-            <span className="font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-plum)] to-[var(--color-rose)]">I want to build with it.</span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">I</motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">don't</motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">just</motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">want</motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">to</motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">learn</motion.span>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block mr-2">technology.</motion.span>
+            <br className="hidden md:block"/>
+            <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-plum)] to-[var(--color-rose)] inline-block mt-2 md:mt-0">
+              I want to build with it.
+            </motion.span>
           </motion.h2>
           
           <motion.p

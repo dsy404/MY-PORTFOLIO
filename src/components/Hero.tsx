@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
     <section 
       ref={containerRef}
       id="home" 
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-pastel-mesh-hero pt-20"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-pastel-mesh-hero pt-32 pb-24"
     >
       {/* Decorative blurred orb in background - representing the "3D glass orb" conceptually until WebGL is added */}
       <motion.div 
@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-            className="absolute top-[0%] left-[5%] md:left-[10%] flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:scale-105 transition-transform"
+            className="absolute top-[-15%] md:top-[-10%] left-[-15%] md:left-[-10%] flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:scale-105 transition-transform"
           >
             <span className="w-2 h-2 rounded-full bg-[var(--color-rose)] animate-pulse" />
             FULL STACK DEVELOPER
@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 1, ease: "easeOut" }}
-            className="absolute bottom-[5%] right-[5%] md:right-[10%] flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:scale-105 transition-transform"
+            className="absolute bottom-[-10%] md:bottom-[0%] right-[-5%] md:right-[5%] flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:scale-105 transition-transform"
           >
             AI EXPLORER
           </motion.div>
@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             animate={{ opacity: 1, scale: 1, rotate: -5 }}
             transition={{ delay: 0.8, duration: 1 }}
-            className="absolute top-[45%] left-[2%] hidden lg:flex items-center gap-2 px-4 py-2 bg-[var(--color-cream)]/70 backdrop-blur-md rounded-full border border-[var(--color-lavender)] shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:rotate-0 transition-transform"
+            className="absolute top-[45%] left-[-5%] hidden lg:flex items-center gap-2 px-4 py-2 bg-[var(--color-cream)]/70 backdrop-blur-md rounded-full border border-[var(--color-lavender)] shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:rotate-0 transition-transform"
           >
             HACKATHON BUILDER
           </motion.div>
@@ -81,7 +81,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
             animate={{ opacity: 1, scale: 1, rotate: 5 }}
             transition={{ delay: 1, duration: 1 }}
-            className="absolute top-[35%] right-[2%] hidden lg:flex items-center gap-2 px-4 py-2 bg-[var(--color-peach)]/70 backdrop-blur-md rounded-full border border-[var(--color-blush)] shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:rotate-0 transition-transform"
+            className="absolute top-[25%] right-[-5%] hidden lg:flex items-center gap-2 px-4 py-2 bg-[var(--color-peach)]/70 backdrop-blur-md rounded-full border border-[var(--color-blush)] shadow-xl text-xs font-mono font-bold text-[var(--color-plum)] cursor-default hover:rotate-0 transition-transform"
           >
             B.TECH CSE '29
           </motion.div>
